@@ -446,6 +446,7 @@ footer .sep{opacity:.3;}
       <p>Ce diagnostic révèle vos tendances naturelles. Ce n&#39;est pas un jugement — c&#39;est un point de départ pour développer votre conscience cognitive.</p>
     </div>
     <div class="res-notice"><strong>Rappel :</strong> Tous les êtres humains sont sujets aux biais cognitifs. Ils résultent de raccourcis mentaux que notre cerveau utilise pour traiter l&#39;information rapidement. <strong>En prendre conscience est déjà une étape majeure.</strong></div>
+    <div id="radar-container" class="radar-card"></div>
     <div id="dom-sec"></div>
     <div id="mod-sec"></div>
     <div id="str-sec"></div>
@@ -521,13 +522,56 @@ function buildResults(){
   const scores={};BIASES.forEach(b=>scores[b.id]=0);
   shuffled.forEach((q,qi)=>{if(answers[qi]!==undefined){const v=q.options[answers[qi]].value;scores[q.biasId]=(scores[q.biasId]||0)+(v===1?2:v===2?1:0);}});
   const sorted=BIASES.map(b=>({...b,score:scores[b.id]||0})).sort((a,b)=>b.score-a.score);
+  buildRadar(sorted);
   fillSec('dom-sec','⚠️ Tendances marqu\xe9es',sorted.filter(b=>b.score>=3),'Tendance forte');
-  fillSec('mod-sec','🔶 Tendances mod\xe9r\xe9es',sorted.filter(b=>b.score>0&&b.score<3),'Tendance mod\xe9r\xe9e');
+  fillSec('mod-sec','\U0001f536 Tendances mod\xe9r\xe9es',sorted.filter(b=>b.score>0&&b.score<3),'Tendance mod\xe9r\xe9e');
   const strSec=document.getElementById('str-sec');strSec.innerHTML='';
   const absent=sorted.filter(b=>b.score===0);
   if(absent.length){const t=document.createElement('div');t.className='res-sec-title';t.innerHTML='✅ Biais peu pr\xe9sents';strSec.appendChild(t);const ch=document.createElement('div');ch.className='chips';absent.forEach(b=>{const c=document.createElement('div');c.className='chip';c.textContent=b.icon+' '+b.name;ch.appendChild(c);});strSec.appendChild(ch);}
   setNav('nav-diag');showPage('results');
 }
+function buildRadar(sorted){
+  const el=document.getElementById('radar-container');if(!el)return;
+  const n=sorted.length,cx=240,cy=240,rMax=155,rLabel=185,MAX=4;
+  const PI2=Math.PI*2;
+  const ang=i=>(i/n)*PI2-Math.PI/2;
+  const pt=(i,ratio)=>({x:cx+rMax*ratio*Math.cos(ang(i)),y:cy+rMax*ratio*Math.sin(ang(i))});
+  const col=s=>s>=3?'#D96A2B':s>0?'#E8B73A':'#9FA65A';
+  let svg='<svg class="radar-svg" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">';
+  // Grilles
+  [0.25,0.5,0.75,1].forEach(r=>{
+    const p=sorted.map((_,i)=>pt(i,r));
+    svg+='<polygon points="'+p.map(q=>q.x.toFixed(1)+','+q.y.toFixed(1)).join(' ')+'" fill="none" stroke="rgba(47,79,62,.09)" stroke-width="1"/>';
+  });
+  // Axes
+  sorted.forEach((_,i)=>{const p=pt(i,1);svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+p.x.toFixed(1)+'" y2="'+p.y.toFixed(1)+'" stroke="rgba(47,79,62,.10)" stroke-width="1"/>';});
+  // Polygone profil
+  const pp=sorted.map((b,i)=>pt(i,Math.max(b.score/MAX,.05)));
+  svg+='<polygon points="'+pp.map(p=>p.x.toFixed(1)+','+p.y.toFixed(1)).join(' ')+'" fill="rgba(47,79,62,.13)" stroke="#2F4F3E" stroke-width="2.5" stroke-linejoin="round"/>';
+  // Points + labels
+  sorted.forEach((b,i)=>{
+    const ratio=Math.max(b.score/MAX,.05);
+    const p=pt(i,ratio);
+    const a=ang(i);
+    const lx=cx+rLabel*Math.cos(a),ly=cy+rLabel*Math.sin(a);
+    const anchor=lx<cx-8?'end':lx>cx+8?'start':'middle';
+    const dy=ly<cy-8?'-0.3em':ly>cy+8?'1.1em':'0.35em';
+    const short=b.name.length>15?b.name.substring(0,13)+'…':b.name;
+    svg+='<circle cx="'+p.x.toFixed(1)+'" cy="'+p.y.toFixed(1)+'" r="5" fill="'+col(b.score)+'" stroke="#fff" stroke-width="1.5"/>';
+    svg+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" dy="'+dy+'" text-anchor="'+anchor+'" font-size="10.5" font-family="Inter,sans-serif" fill="#6B7280">'+b.icon+' '+short+'</text>';
+  });
+  svg+='<circle cx="'+cx+'" cy="'+cy+'" r="3.5" fill="#2F4F3E"/>';
+  svg+='</svg>';
+  el.innerHTML='<div class="radar-title">Vue d\'ensemble de votre profil cognitif</div>'
+    +'<div class="radar-sub">Plus la surface s\'\xe9tend vers un axe, plus la tendance est marqu\xe9e.</div>'
+    +svg
+    +'<div class="radar-legend">'
+    +'<div class="legend-item"><div class="legend-dot" style="background:#D96A2B"></div>Tendance forte</div>'
+    +'<div class="legend-item"><div class="legend-dot" style="background:#E8B73A"></div>Tendance mod\xe9r\xe9e</div>'
+    +'<div class="legend-item"><div class="legend-dot" style="background:#9FA65A"></div>Peu pr\xe9sent</div>'
+    +'</div>';
+}
+
 function fillSec(id,title,list,lvl){
   const sec=document.getElementById(id);sec.innerHTML='';if(!list.length)return;
   const t=document.createElement('div');t.className='res-sec-title';t.innerHTML=title;sec.appendChild(t);
