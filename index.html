@@ -4,753 +4,902 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MonCoach Comportemental — Une application FormaSo</title>
-<meta name="description" content="Identifiez vos tendances cognitives dominantes. Outil de diagnostic pédagogique FormaSo par Sophie Sirgue.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Lato:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Identifiez vos tendances cognitives dominantes. Outil de diagnostic pédagogique FormaSo par Sophie Sirgue, formatrice indépendante.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ══ CHARTE FORMASO ══ */
+/* ══════════════════════════════════════════════════
+   CHARTE FORMASO — DIRECTION ARTISTIQUE PREMIUM
+   Ambiance : Apple · Notion · Linear · Stripe
+   ══════════════════════════════════════════════════ */
+
 :root {
   --vert:      #2F4F3E;
-  --vert-mid:  #3A6250;
+  --vert-m:    #3A6250;
   --vert-cl:   #4A7060;
   --olive:     #6B7A2E;
-  --kaki:      #9FA65A;
-  --jaune:     #E8B73A;   /* CTA principal */
-  --orange:    #D96A2B;   /* accent */
-  --brun:      #6A4B3A;   /* sous-titres */
-  --beige:     #FAF7F2;   /* fonds */
-  --beige-ch:  #F2E7D5;   /* beige chaud */
-  --gris-ch:   #8A8176;   /* gris chaud */
-  --texte:     #2B2B2B;   /* texte principal */
+  --jaune:     #E8B73A;
+  --orange:    #D96A2B;
+  --beige:     #FAF7F2;
+  --beige-ch:  #F2E7D5;
+  --brun:      #6A4B3A;
+  --texte:     #2B2B2B;
+  --gris:      #6B7280;
+  --gris-cl:   #9CA3AF;
   --blanc:     #ffffff;
-  --r:         14px;
-  --shadow:    0 4px 20px rgba(0,0,0,.08);
+
+  /* Shadows premium */
+  --sh-xs: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --sh-sm: 0 4px 12px rgba(0,0,0,.06), 0 2px 4px rgba(0,0,0,.04);
+  --sh-md: 0 8px 28px rgba(0,0,0,.08), 0 4px 8px rgba(0,0,0,.04);
+  --sh-lg: 0 20px 60px rgba(0,0,0,.10), 0 8px 20px rgba(0,0,0,.05);
+  --sh-float: 0 24px 80px rgba(47,79,62,.12), 0 8px 24px rgba(0,0,0,.06);
+
+  --r-sm:  8px;
+  --r-md:  16px;
+  --r-lg:  24px;
+  --r-xl:  32px;
 }
 
-* { box-sizing:border-box; margin:0; padding:0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Lato', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--beige);
   color: var(--texte);
-  min-height: 100vh;
-  padding-bottom: 40px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ══ NAV ══ */
+/* ══ NAVIGATION — fine, lumineuse ══ */
 nav {
-  background: var(--vert);
-  padding: 0 32px;
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(250,247,242,.88);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid rgba(47,79,62,.08);
+  padding: 0 40px; height: 64px;
   display: flex; align-items: center; justify-content: space-between;
-  height: 66px; position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 12px rgba(0,0,0,.25);
 }
-.logo { display:flex; align-items:center; gap:12px; cursor:pointer; }
-.logo-text  { color:#fff; font-family:'Playfair Display',serif; font-size:17px; font-weight:700; }
-.logo-sub   { color:rgba(255,255,255,.6); font-size:10px; letter-spacing:.12em; text-transform:uppercase; font-family:'Lato',sans-serif; }
-.nav-links  { display:flex; gap:4px; }
+.logo {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--vert) 0%, var(--vert-cl) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; box-shadow: var(--sh-sm);
+}
+.logo-text  { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--vert); }
+.logo-label { font-size: 10px; color: var(--gris); letter-spacing: .08em; text-transform: uppercase; margin-top: 1px; }
+.nav-links  { display: flex; gap: 2px; }
 .nbtn {
-  background:none; border:none; color:rgba(255,255,255,.8);
-  padding:8px 16px; border-radius:8px; cursor:pointer;
-  font-size:14px; font-family:'Lato',sans-serif; font-weight:600; transition:.2s;
+  background: none; border: none; color: var(--gris);
+  padding: 7px 14px; border-radius: 8px; font-size: 14px; font-weight: 500;
+  font-family: 'Inter', sans-serif; cursor: pointer; transition: all .15s;
 }
-.nbtn:hover, .nbtn.active { background:rgba(255,255,255,.15); color:#fff; }
+.nbtn:hover   { background: rgba(47,79,62,.06); color: var(--vert); }
+.nbtn.active  { background: rgba(47,79,62,.08); color: var(--vert); font-weight: 600; }
 
 /* ══ PAGES ══ */
-.page { display:none; }
-.page.active { display:block; }
+.page { display: none; }
+.page.active { display: block; }
 
-/* ══ HERO ══ */
+/* ══════════════════════
+   PAGE ACCUEIL
+   ══════════════════════ */
+
+/* Hero — fond vivant avec halos et formes organiques */
 .hero {
   position: relative; overflow: hidden;
-  background: linear-gradient(160deg, #2F4F3E 0%, #3A6250 40%, #4A7060 100%);
-  padding: 90px 32px 80px; text-align: center; color: #fff;
+  min-height: 88vh; display: flex; align-items: center;
+  background: var(--blanc);
+  padding: 100px 40px 80px;
 }
-/* Formes décoratives SVG */
-.hero-deco {
-  position:absolute; inset:0; pointer-events:none; z-index:0; overflow:hidden;
-}
-.hero-content { position:relative; z-index:1; }
 
-.hero-badge {
-  display:inline-block;
-  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
-  padding:7px 20px; border-radius:30px;
-  font-size:12px; letter-spacing:.1em; margin-bottom:32px;
-  font-family:'Lato',sans-serif; font-weight:600;
+/* Fond vivant : halos lumineux organiques */
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
 }
+.halo {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: .22;
+}
+.halo-1 { width: 700px; height: 700px; background: #2F4F3E; top: -200px; right: -150px; }
+.halo-2 { width: 500px; height: 500px; background: #E8B73A; bottom: -100px; left: -80px;  opacity: .12; }
+.halo-3 { width: 400px; height: 400px; background: #9FA65A; top: 40%;   right: 25%;  opacity: .10; }
+
+/* Formes organiques subtiles */
+.hero-shapes {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1120px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+
+.hero-left {}
+
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(47,79,62,.06); border: 1px solid rgba(47,79,62,.12);
+  padding: 6px 16px; border-radius: 30px;
+  font-size: 12px; font-weight: 600; color: var(--vert);
+  letter-spacing: .05em; margin-bottom: 32px;
+}
+.hero-pill span { font-size: 14px; }
+
 .hero h1 {
-  font-family:'Playfair Display',serif;
-  font-size: clamp(28px,5vw,52px); font-weight:900; line-height:1.15;
-  margin-bottom:6px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 800; line-height: 1.12;
+  color: var(--texte); margin-bottom: 24px;
+  letter-spacing: -.01em;
 }
-.hero h1 em { color:var(--jaune); font-style:normal; }
-.hero-sub {
-  font-size:17px; opacity:.85; max-width:580px;
-  margin:18px auto 40px; line-height:1.75;
-  font-family:'Lato',sans-serif;
+.hero h1 em {
+  color: var(--vert); font-style: normal;
+  background: linear-gradient(135deg, #2F4F3E 0%, #4A7060 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ══ BOUTONS ══ */
-/* CTA principal : jaune signature */
-.btn-cta {
+.hero-p {
+  font-size: 17px; color: var(--gris); line-height: 1.8;
+  max-width: 440px; margin-bottom: 40px;
+}
+
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-primary {
   background: var(--jaune); color: var(--vert);
-  border:none; padding:15px 36px; border-radius:50px;
-  font-size:16px; font-weight:700; font-family:'Lato',sans-serif;
-  cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:8px;
+  border: none; padding: 14px 32px; border-radius: 50px;
+  font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: all .2s;
+  box-shadow: 0 4px 16px rgba(232,183,58,.35);
+  display: inline-flex; align-items: center; gap: 8px;
 }
-.btn-cta:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(232,183,58,.5); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,183,58,.45); }
 
-/* Secondaire : contour blanc (sur fond vert) */
-.btn-outline-w {
-  background:transparent; color:#fff;
-  border:2px solid rgba(255,255,255,.5);
-  padding:13px 28px; border-radius:50px;
-  font-size:15px; font-weight:600; font-family:'Lato',sans-serif;
-  cursor:pointer; transition:.2s;
-}
-.btn-outline-w:hover { background:rgba(255,255,255,.12); }
-
-/* Secondaire : contour vert (sur fond clair) */
 .btn-ghost {
-  background:none; border:2px solid var(--vert); color:var(--vert);
-  padding:12px 26px; border-radius:50px;
-  font-size:14px; font-weight:700; font-family:'Lato',sans-serif;
-  cursor:pointer; transition:.2s;
+  background: transparent; border: 1.5px solid rgba(47,79,62,.2);
+  color: var(--vert); padding: 13px 28px; border-radius: 50px;
+  font-size: 15px; font-weight: 600; font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: all .2s;
 }
-.btn-ghost:hover { background:var(--vert); color:#fff; }
+.btn-ghost:hover { background: rgba(47,79,62,.05); border-color: rgba(47,79,62,.4); }
 
-.btn-back {
-  background:none; border:none; color:var(--brun);
-  font-size:14px; font-weight:600; font-family:'Lato',sans-serif;
-  cursor:pointer; display:inline-flex; align-items:center; gap:6px; padding:6px 0;
+/* Carte flottante à droite */
+.hero-visual {
+  display: flex; flex-direction: column; gap: 16px;
 }
-.btn-back:hover { color:var(--vert); text-decoration:underline; }
+.float-card {
+  background: var(--blanc); border-radius: var(--r-lg);
+  padding: 24px 28px; box-shadow: var(--sh-float);
+  border: 1px solid rgba(47,79,62,.06);
+  transition: transform .3s ease;
+}
+.float-card:hover { transform: translateY(-4px); }
+.fc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.fc-icon { font-size: 22px; }
+.fc-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--vert); }
+.fc-bar { height: 6px; background: var(--beige-ch); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+.fc-fill { height: 100%; border-radius: 3px; }
+.fc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.fc-label { font-size: 12px; color: var(--gris); }
+.fc-val   { font-size: 12px; font-weight: 700; color: var(--texte); }
+.fc-chip  {
+  background: rgba(47,79,62,.07); border-radius: 20px;
+  padding: 4px 12px; font-size: 11px; font-weight: 600;
+  color: var(--vert); display: inline-flex; align-items: center; gap: 5px;
+}
 
-/* ══ FEATURES HOME (sections alternées blanc/beige) ══ */
-.section-blanc { background:var(--blanc); padding:64px 32px; }
-.section-beige { background:var(--beige-ch); padding:64px 32px; }
+/* Stats sous le hero */
+.hero-stats {
+  position: relative; z-index: 2;
+  max-width: 1120px; margin: 0 auto; padding: 40px 40px 60px;
+  display: flex; gap: 48px;
+}
+.hs { text-align: left; }
+.hs-n { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--vert); }
+.hs-l { font-size: 13px; color: var(--gris); margin-top: 2px; }
+.hs-div { width: 1px; background: rgba(47,79,62,.12); }
+
+/* ══ SECTION FEATURES ══ */
+.section {
+  padding: 100px 40px;
+  max-width: 1120px; margin: 0 auto;
+}
+.section-full { padding: 100px 40px; }
+.section-bg-beige { background: var(--beige-ch); }
+.section-bg-white { background: var(--blanc); }
+
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--orange);
+  margin-bottom: 14px;
+}
 .section-title {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3vw,34px); font-weight:800;
-  color:var(--vert); text-align:center; margin-bottom:10px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 3vw, 40px); font-weight: 800;
+  color: var(--texte); line-height: 1.2;
+  margin-bottom: 16px; letter-spacing: -.01em;
 }
 .section-sub {
-  text-align:center; font-size:15px; color:var(--gris-ch);
-  max-width:540px; margin:0 auto 48px; line-height:1.7;
+  font-size: 16px; color: var(--gris); line-height: 1.8;
+  max-width: 520px; margin-bottom: 64px;
 }
-.features {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px; max-width:960px; margin:0 auto;
-}
-.feat {
-  background:var(--blanc); border-radius:var(--r); padding:30px 24px;
-  text-align:center; box-shadow:var(--shadow);
-  border-top:3px solid var(--jaune); transition:.2s;
-}
-.feat:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,.12); }
-.feat-icon { font-size:32px; margin-bottom:14px; }
-.feat h3 {
-  font-family:'Playfair Display',serif;
-  font-size:16px; font-weight:700; color:var(--vert); margin-bottom:8px;
-}
-.feat p { font-size:13px; color:var(--gris-ch); line-height:1.65; }
 
-/* CTA section bas de home */
-.cta-section {
-  position:relative; overflow:hidden;
-  background:linear-gradient(160deg, #2F4F3E 0%, #3A6250 60%, #4A7060 100%);
-  padding:72px 32px; text-align:center; color:#fff;
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
 }
-.cta-section .hero-deco { position:absolute; inset:0; pointer-events:none; z-index:0; }
-.cta-inner { position:relative; z-index:1; }
-.cta-section h2 {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3vw,36px); font-weight:800; margin-bottom:14px;
+.feat-card {
+  background: var(--blanc); border-radius: var(--r-lg);
+  padding: 32px 28px; box-shadow: var(--sh-sm);
+  border: 1px solid rgba(0,0,0,.04);
+  transition: all .25s ease;
 }
-.cta-section p { font-size:16px; opacity:.85; margin-bottom:32px; }
-.cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.feat-card:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+.feat-ic { font-size: 28px; margin-bottom: 18px; }
+.feat-t {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; font-weight: 700; color: var(--texte);
+  margin-bottom: 10px;
+}
+.feat-p { font-size: 14px; color: var(--gris); line-height: 1.75; }
+.feat-accent { width: 32px; height: 3px; border-radius: 2px; background: var(--jaune); margin-bottom: 20px; }
 
-/* ══ DIAGNOSTIC ══ */
-.diag-wrap { max-width:700px; margin:0 auto; padding:40px 24px 80px; }
-.back-bar   { max-width:820px; margin:0 auto; padding:20px 24px 0; }
+/* ══ CTA FINAL ══ */
+.cta-wrap {
+  text-align: center;
+  padding: 100px 40px;
+  position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: var(--blanc);
+}
+.cta-halo-1 { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: #2F4F3E; top: -200px; left: 50%; transform: translateX(-50%); filter: blur(120px); opacity: .06; pointer-events: none; }
+.cta-halo-2 { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: var(--jaune); bottom: -50px; right: 10%; filter: blur(80px); opacity: .10; pointer-events: none; }
+.cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.cta-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3.5vw, 44px); font-weight: 800;
+  color: var(--texte); margin-bottom: 16px; line-height: 1.2;
+}
+.cta-inner p { font-size: 16px; color: var(--gris); margin-bottom: 36px; line-height: 1.8; }
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-.diag-intro { text-align:center; padding:44px 20px; }
-.diag-intro h2 {
-  font-family:'Playfair Display',serif;
-  font-size:30px; font-weight:800; color:var(--vert); margin-bottom:14px;
+/* ══ BANDEAU FORMASO ══ */
+footer {
+  background: var(--vert); color: rgba(255,255,255,.7);
+  padding: 16px 40px; text-align: center; font-size: 13px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
 }
-.diag-intro p  { font-size:16px; color:var(--brun); line-height:1.75; margin-bottom:10px; }
-.diag-note {
-  background:rgba(47,79,62,.08); border-left:4px solid var(--vert);
-  border-radius:0 10px 10px 0; padding:14px 18px; margin:24px 0;
-  font-size:14px; color:var(--vert); line-height:1.65; text-align:left; font-weight:600;
-}
-.diag-stats { display:flex; justify-content:center; gap:18px; margin:28px 0; flex-wrap:wrap; }
-.stat-box {
-  background:var(--blanc); border-radius:12px; padding:18px 24px;
-  text-align:center; box-shadow:var(--shadow); min-width:95px;
-  border-bottom:3px solid var(--jaune);
-}
-.stat-box strong {
-  display:block; font-family:'Playfair Display',serif;
-  font-size:28px; color:var(--vert); font-weight:900;
-}
-.stat-box span { font-size:12px; color:var(--gris-ch); }
+footer a      { color: var(--jaune); font-weight: 600; text-decoration: none; }
+footer strong { color: #fff; }
+footer .sep   { opacity: .3; }
 
-/* Progression */
-.prog-wrap { margin-bottom:28px; }
-.prog-top  { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.prog-lbl  { font-size:13px; color:var(--gris-ch); }
-.prog-cnt  { font-size:14px; font-weight:700; color:var(--vert); font-family:'Playfair Display',serif; }
-.prog-track{ height:6px; background:#DDD5C8; border-radius:3px; overflow:hidden; }
-.prog-fill { height:100%; background:linear-gradient(90deg,var(--vert),var(--vert-cl)); border-radius:3px; transition:width .4s ease; }
+/* ══════════════════════
+   DIAGNOSTIC
+   ══════════════════════ */
+.diag-layout { max-width: 680px; margin: 0 auto; padding: 48px 24px 100px; }
 
-/* Carte question */
+.diag-intro-wrap { text-align: center; padding: 60px 20px; }
+.diag-intro-wrap h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 800; color: var(--texte);
+  margin-bottom: 16px; line-height: 1.25;
+}
+.diag-intro-wrap .sub { font-size: 16px; color: var(--gris); line-height: 1.8; margin-bottom: 32px; }
+
+.notice-card {
+  background: rgba(47,79,62,.04); border: 1px solid rgba(47,79,62,.10);
+  border-radius: var(--r-md); padding: 20px 24px;
+  font-size: 14px; color: var(--vert); line-height: 1.75;
+  text-align: left; margin-bottom: 40px; font-weight: 500;
+}
+
+.kpi-row { display: flex; justify-content: center; gap: 24px; margin-bottom: 44px; flex-wrap: wrap; }
+.kpi {
+  background: var(--blanc); border-radius: var(--r-md);
+  padding: 20px 28px; text-align: center;
+  box-shadow: var(--sh-sm); border: 1px solid rgba(0,0,0,.04);
+  min-width: 110px;
+}
+.kpi strong {
+  display: block; font-family: 'Playfair Display', serif;
+  font-size: 30px; font-weight: 900; color: var(--vert);
+}
+.kpi span { font-size: 12px; color: var(--gris); margin-top: 4px; display: block; }
+
+/* Progress */
+.prog {
+  background: var(--blanc); border-radius: var(--r-md);
+  padding: 16px 20px; margin-bottom: 24px;
+  box-shadow: var(--sh-xs); border: 1px solid rgba(0,0,0,.04);
+}
+.prog-row  { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.prog-lbl  { font-size: 13px; color: var(--gris); }
+.prog-cnt  { font-size: 13px; font-weight: 700; color: var(--vert); }
+.prog-track{ height: 4px; background: var(--beige-ch); border-radius: 2px; overflow: hidden; }
+.prog-fill { height: 100%; background: linear-gradient(90deg, var(--vert), var(--vert-cl)); border-radius: 2px; transition: width .4s ease; }
+
+/* Question card */
 .q-card {
-  background:var(--blanc); border-radius:16px; padding:36px;
-  box-shadow:var(--shadow); margin-bottom:20px;
-  border-top:4px solid var(--jaune);
+  background: var(--blanc); border-radius: var(--r-xl);
+  padding: 40px 36px; box-shadow: var(--sh-float);
+  border: 1px solid rgba(47,79,62,.06); margin-bottom: 20px;
 }
-.q-num  { font-size:11px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.12em; margin-bottom:14px; }
-.q-text { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; line-height:1.65; color:var(--texte); margin-bottom:28px; }
-
-/* Options — 100% identiques visuellement */
-.opts { display:flex; flex-direction:column; gap:11px; }
+.q-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+.q-num-badge {
+  background: rgba(47,79,62,.07); border-radius: 6px;
+  padding: 4px 10px; font-size: 11px; font-weight: 700;
+  color: var(--vert); letter-spacing: .06em;
+}
+.q-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.6;
+  color: var(--texte); margin-bottom: 28px;
+}
+.opts { display: flex; flex-direction: column; gap: 10px; }
 .opt {
-  display:flex; align-items:flex-start; gap:14px;
-  padding:15px 18px; background:var(--beige-ch);
-  border:2px solid transparent; border-radius:12px;
-  cursor:pointer; text-align:left; width:100%;
-  font-size:15px; line-height:1.55; color:var(--texte);
-  font-family:'Lato',sans-serif; transition:.15s;
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 18px; border-radius: var(--r-md);
+  background: var(--beige); border: 1.5px solid transparent;
+  cursor: pointer; text-align: left; width: 100%;
+  font-size: 14.5px; line-height: 1.6; color: var(--texte);
+  font-family: 'Inter', sans-serif; transition: all .15s;
 }
-.opt:hover { border-color:rgba(47,79,62,.3); background:#EEF0E8; }
-.opt.sel   { border-color:var(--vert); background:#EEF0E8; box-shadow:0 0 0 3px rgba(47,79,62,.1); }
-.opt-lbl {
-  width:30px; height:30px; min-width:30px; border-radius:50%;
-  background:var(--blanc); border:2px solid #C8BFAE;
-  display:flex; align-items:center; justify-content:center;
-  font-weight:800; font-size:12px; color:var(--gris-ch);
-  flex-shrink:0; margin-top:1px; transition:.15s;
-  font-family:'Lato',sans-serif;
+.opt:hover { background: var(--beige-ch); border-color: rgba(47,79,62,.20); }
+.opt.sel   { background: rgba(47,79,62,.06); border-color: var(--vert); }
+.opt-ltr {
+  width: 28px; height: 28px; min-width: 28px; border-radius: 50%;
+  background: var(--blanc); border: 1.5px solid #D1C9BE;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--gris-cl);
+  font-family: 'Inter', sans-serif; flex-shrink: 0;
+  transition: all .15s; margin-top: 1px;
 }
-.opt.sel .opt-lbl { background:var(--vert); border-color:var(--vert); color:#fff; }
-.opt-txt { flex:1; }
+.opt.sel .opt-ltr { background: var(--vert); border-color: var(--vert); color: #fff; }
 
-/* Nav questions */
-.q-nav { display:flex; justify-content:space-between; align-items:center; margin-top:10px; gap:12px; }
-.q-hint { text-align:center; font-size:12px; color:var(--gris-ch); margin-top:14px; font-style:italic; }
-.btn-prev-q {
-  background:none; border:2px solid var(--vert); color:var(--vert);
-  padding:11px 22px; border-radius:50px; font-size:14px; font-weight:700;
-  font-family:'Lato',sans-serif; cursor:pointer; transition:.2s;
-  display:flex; align-items:center; gap:6px;
+/* Nav btns */
+.q-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.btn-prev {
+  background: none; border: 1.5px solid rgba(47,79,62,.18);
+  color: var(--vert); padding: 11px 24px; border-radius: 50px;
+  font-size: 14px; font-weight: 600; font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: all .15s;
 }
-.btn-prev-q:hover { background:var(--vert); color:#fff; }
-.btn-next-q {
-  background:var(--jaune); color:var(--vert); border:none;
-  padding:13px 30px; border-radius:50px; font-size:15px; font-weight:800;
-  font-family:'Lato',sans-serif; cursor:pointer; transition:.2s;
-  opacity:.35; pointer-events:none;
-  display:flex; align-items:center; gap:6px;
+.btn-prev:hover { background: rgba(47,79,62,.05); border-color: var(--vert); }
+.btn-next {
+  background: var(--jaune); color: var(--vert); border: none;
+  padding: 13px 32px; border-radius: 50px;
+  font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: all .2s;
+  opacity: .3; pointer-events: none;
+  box-shadow: 0 4px 16px rgba(232,183,58,.3);
 }
-.btn-next-q.on { opacity:1; pointer-events:auto; }
-.btn-next-q.on:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(232,183,58,.45); }
+.btn-next.on { opacity: 1; pointer-events: auto; }
+.btn-next.on:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(232,183,58,.45); }
+.q-hint { text-align: center; font-size: 12px; color: var(--gris-cl); margin-top: 12px; }
 
-/* ══ RÉSULTATS ══ */
-.res-wrap { max-width:840px; margin:0 auto; padding:40px 24px 80px; }
-.res-head { text-align:center; padding:40px 0 32px; }
+/* ══════════════════════
+   RÉSULTATS
+   ══════════════════════ */
+.res-wrap { max-width: 820px; margin: 0 auto; padding: 48px 24px 100px; }
+.res-head { text-align: center; padding: 48px 0 36px; }
 .res-head h2 {
-  font-family:'Playfair Display',serif;
-  font-size:30px; font-weight:800; color:var(--vert); margin-bottom:10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 800; color: var(--texte);
+  margin-bottom: 12px; line-height: 1.2;
 }
-.res-head p { font-size:15px; color:var(--brun); max-width:520px; margin:0 auto; line-height:1.7; }
+.res-head p { font-size: 15px; color: var(--gris); max-width: 500px; margin: 0 auto; line-height: 1.8; }
 
 .res-notice {
-  background:linear-gradient(135deg, var(--vert) 0%, var(--vert-mid) 100%);
-  color:#fff; border-radius:14px; padding:24px 28px;
-  margin-bottom:36px; font-size:15px; line-height:1.75; position:relative; overflow:hidden;
+  background: rgba(47,79,62,.04); border: 1px solid rgba(47,79,62,.10);
+  border-radius: var(--r-md); padding: 20px 24px;
+  font-size: 14px; color: var(--texte); line-height: 1.8;
+  margin-bottom: 44px;
 }
-.res-notice strong { color:var(--jaune); }
+.res-notice strong { color: var(--vert); font-weight: 700; }
 
 .res-sec-title {
-  font-family:'Playfair Display',serif;
-  font-size:19px; font-weight:800; color:var(--vert);
-  margin:36px 0 18px; padding-bottom:10px;
-  border-bottom:2px solid var(--beige-ch);
-  display:flex; align-items:center; gap:8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 800; color: var(--texte);
+  margin: 40px 0 18px;
+  display: flex; align-items: center; gap: 10px;
 }
 
-.bcr {
-  background:var(--blanc); border-radius:14px; padding:28px;
-  margin-bottom:16px; box-shadow:var(--shadow);
-  border-left:5px solid var(--vert);
+.bias-card {
+  background: var(--blanc); border-radius: var(--r-lg);
+  padding: 28px 32px; margin-bottom: 14px;
+  box-shadow: var(--sh-sm); border: 1px solid rgba(0,0,0,.04);
 }
-.bcr-head { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; flex-wrap:wrap; }
-.bcr-icon { font-size:26px; margin-top:2px; }
-.bcr-name {
-  font-family:'Playfair Display',serif;
-  font-size:18px; font-weight:800; color:var(--vert);
+.bc-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.bc-icon   { font-size: 28px; margin-top: 1px; }
+.bc-info   { flex: 1; }
+.bc-name   { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 800; color: var(--texte); margin-bottom: 4px; }
+.bc-short  { font-size: 13px; color: var(--gris); font-style: italic; }
+.bc-badge  {
+  background: var(--beige-ch); border-radius: 20px;
+  padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--brun);
+  white-space: nowrap; margin-left: auto;
 }
-.bcr-def  { font-size:13px; color:var(--gris-ch); margin-top:3px; font-style:italic; }
-.bcr-lvl  {
-  margin-left:auto; background:var(--beige-ch); border-radius:20px;
-  padding:4px 14px; font-size:12px; font-weight:700; color:var(--brun);
-  white-space:nowrap;
-}
-.bcr-body { font-size:14px; line-height:1.75; color:#444; margin-bottom:16px; }
-.bcr-rt   { font-size:14px; font-weight:700; color:var(--orange); margin-bottom:10px; }
-.bcr-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
-.bcr-list li { display:flex; gap:10px; font-size:14px; color:var(--brun); line-height:1.55; }
-.bcr-list li::before { content:"→"; color:var(--vert-cl); font-weight:800; flex-shrink:0; }
+.bc-body   { font-size: 14px; color: var(--gris); line-height: 1.8; margin-bottom: 18px; }
+.bc-tips-label { font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 10px; }
+.bc-tips   { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.bc-tips li { display: flex; gap: 10px; font-size: 14px; color: var(--texte); line-height: 1.6; }
+.bc-tips li::before { content: "→"; color: var(--vert-cl); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
 
-.chips { display:flex; flex-wrap:wrap; gap:10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  background:var(--blanc); border:2px solid var(--kaki); border-radius:30px;
-  padding:7px 18px; font-size:14px; font-weight:700; color:var(--vert);
-  display:flex; align-items:center; gap:6px; box-shadow:var(--shadow);
+  background: var(--blanc); border: 1.5px solid rgba(47,79,62,.15);
+  border-radius: 30px; padding: 6px 16px;
+  font-size: 13px; font-weight: 600; color: var(--vert);
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: var(--sh-xs);
 }
-.res-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:48px; }
 
-/* ══ CATALOGUE ══ */
-.cat-hero {
-  position:relative; overflow:hidden;
-  background:linear-gradient(160deg, #2F4F3E 0%, #3A6250 40%, #4A7060 100%);
-  padding:56px 32px; text-align:center; color:#fff;
+.res-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,.06); }
+
+.btn-back {
+  background: none; border: none; color: var(--gris);
+  font-size: 14px; font-weight: 500; font-family: 'Inter', sans-serif;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 0;
 }
-.cat-hero .hero-deco { position:absolute; inset:0; pointer-events:none; z-index:0; }
-.cat-hero-inner { position:relative; z-index:1; }
-.cat-hero h2 {
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,3vw,36px); font-weight:800; margin-bottom:10px;
+.btn-back:hover { color: var(--vert); }
+
+/* ══════════════════════
+   CATALOGUE
+   ══════════════════════ */
+.cat-header {
+  background: var(--blanc);
+  padding: 80px 40px 60px;
+  text-align: center;
+  position: relative; overflow: hidden;
 }
-.cat-hero p { opacity:.85; font-size:15px; }
+.cat-header-halo { position: absolute; width: 600px; height: 400px; border-radius: 50%; background: #2F4F3E; top: -150px; left: 50%; transform: translateX(-50%); filter: blur(120px); opacity: .05; pointer-events: none; }
 
 .cat-grid {
-  display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
-  gap:20px; max-width:1120px; margin:40px auto; padding:0 24px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px; max-width: 1120px; margin: 48px auto 80px; padding: 0 40px;
 }
 .bcard {
-  background:var(--blanc); border-radius:var(--r); padding:28px;
-  box-shadow:var(--shadow); cursor:pointer; transition:.2s;
-  border-top:4px solid var(--jaune);
+  background: var(--blanc); border-radius: var(--r-lg);
+  padding: 28px; box-shadow: var(--sh-xs); border: 1px solid rgba(0,0,0,.05);
+  cursor: pointer; transition: all .2s;
 }
-.bcard:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,.12); }
-.bcard-head { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-.bcard-icon { font-size:26px; }
-.bcard-name {
-  font-family:'Playfair Display',serif;
-  font-size:16px; font-weight:800; color:var(--vert);
-}
-.bcard-def  { font-size:13px; color:var(--gris-ch); line-height:1.6; margin-bottom:14px; }
-.bcard-more { font-size:13px; font-weight:700; color:var(--orange); }
+.bcard:hover { transform: translateY(-3px); box-shadow: var(--sh-md); }
+.bcard-top  { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.bcard-icon { font-size: 24px; }
+.bcard-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--texte); }
+.bcard-def  { font-size: 13px; color: var(--gris); line-height: 1.65; margin-bottom: 16px; }
+.bcard-link { font-size: 13px; font-weight: 600; color: var(--vert); display: flex; align-items: center; gap: 4px; }
 
 /* ══ MODAL ══ */
 .overlay {
-  display:none; position:fixed; inset:0;
-  background:rgba(43,43,43,.55); z-index:200;
-  align-items:center; justify-content:center; padding:20px;
+  display: none; position: fixed; inset: 0;
+  background: rgba(43,43,43,.4); z-index: 300;
+  align-items: center; justify-content: center; padding: 24px;
+  backdrop-filter: blur(4px);
 }
-.overlay.open { display:flex; }
+.overlay.open { display: flex; }
 .modal {
-  background:var(--blanc); border-radius:18px; padding:40px;
-  max-width:640px; width:100%; max-height:88vh; overflow-y:auto;
-  position:relative; box-shadow:0 20px 60px rgba(0,0,0,.2);
+  background: var(--blanc); border-radius: var(--r-xl);
+  padding: 44px; max-width: 600px; width: 100%;
+  max-height: 86vh; overflow-y: auto;
+  position: relative; box-shadow: var(--sh-lg);
 }
-.modal-x {
-  position:absolute; top:16px; right:16px;
-  background:var(--beige-ch); border:none; width:34px; height:34px;
-  border-radius:50%; cursor:pointer; font-size:16px;
-  display:flex; align-items:center; justify-content:center; color:var(--brun);
+.modal-close {
+  position: absolute; top: 18px; right: 18px;
+  background: var(--beige); border: none; width: 32px; height: 32px;
+  border-radius: 50%; cursor: pointer; font-size: 14px;
+  display: flex; align-items: center; justify-content: center; color: var(--gris);
 }
-.m-icon  { font-size:40px; margin-bottom:14px; }
-.m-name  { font-family:'Playfair Display',serif; font-size:24px; font-weight:800; color:var(--vert); margin-bottom:6px; }
-.m-short { font-size:14px; color:var(--brun); font-style:italic; margin-bottom:18px; }
-.m-def   { font-size:15px; line-height:1.75; color:var(--texte); margin-bottom:22px; }
-.m-rt    { font-size:14px; font-weight:700; color:var(--orange); margin-bottom:10px; }
-
-/* ══ BANDEAU FORMASO ══ */
-#fs-credit {
-  position:fixed; bottom:0; left:0; right:0;
-  background:var(--vert); color:rgba(255,255,255,.8);
-  text-align:center; padding:7px 16px; font-size:12px;
-  z-index:150; box-shadow:0 -2px 8px rgba(0,0,0,.2);
-  font-family:'Lato',sans-serif;
-}
-#fs-credit a    { color:var(--jaune); font-weight:700; text-decoration:none; }
-#fs-credit strong { color:#fff; }
+.m-icon  { font-size: 36px; margin-bottom: 16px; }
+.m-name  { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; color: var(--texte); margin-bottom: 6px; }
+.m-short { font-size: 14px; color: var(--gris); font-style: italic; margin-bottom: 18px; }
+.m-def   { font-size: 15px; color: var(--texte); line-height: 1.8; margin-bottom: 24px; }
+.m-tips-label { font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+.m-tips  { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.m-tips li { display: flex; gap: 10px; font-size: 14px; color: var(--texte); line-height: 1.6; }
+.m-tips li::before { content: "→"; color: var(--vert-cl); font-weight: 700; flex-shrink: 0; }
 
 /* ══ RESPONSIVE ══ */
-@media(max-width:640px){
-  nav { padding:0 16px; }
-  .q-card { padding:22px 16px; }
-  .diag-wrap,.res-wrap { padding:20px 14px 60px; }
-  .modal { padding:28px 18px; }
-  .cat-grid,.features { grid-template-columns:1fr; padding:0 16px; }
-  .q-nav { flex-wrap:wrap; }
-  .btn-prev-q,.btn-next-q { flex:1; justify-content:center; }
-  .hero { padding:60px 20px 56px; }
+@media (max-width: 860px) {
+  .hero-inner     { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual    { display: none; }
+  .features-grid  { grid-template-columns: 1fr; }
+  nav             { padding: 0 20px; }
+  .nbtn           { padding: 6px 10px; font-size: 13px; }
+  .section        { padding: 60px 20px; }
+  .section-full   { padding: 60px 20px; }
+  .cat-grid       { padding: 0 20px; grid-template-columns: 1fr; }
+  .hero           { padding: 80px 24px 60px; }
+  .hero-stats     { padding: 20px 24px 40px; gap: 24px; flex-wrap: wrap; }
+  .cta-wrap       { padding: 60px 24px; }
+  .modal          { padding: 28px 20px; }
+  .q-card         { padding: 28px 20px; }
+  .q-nav          { flex-wrap: wrap; }
+  .btn-prev, .btn-next { flex: 1; justify-content: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav>
   <div class="logo" onclick="goHome()">
-    <span style="font-size:26px">🧠</span>
+    <div class="logo-mark">🧠</div>
     <div>
       <div class="logo-text">MonCoach Comportemental</div>
-      <div class="logo-sub">Plateforme pédagogique · FormaSo</div>
+      <div class="logo-label">Une application FormaSo</div>
     </div>
   </div>
   <div class="nav-links">
     <button class="nbtn active" id="nav-home" onclick="goHome()">Accueil</button>
-    <button class="nbtn" id="nav-diag" onclick="startDiag()">Diagnostic</button>
-    <button class="nbtn" id="nav-cat"  onclick="showCatalog()">Les biais</button>
+    <button class="nbtn"        id="nav-diag" onclick="startDiag()">Diagnostic</button>
+    <button class="nbtn"        id="nav-cat"  onclick="showCatalog()">Les biais</button>
   </div>
 </nav>
 
-<!-- ══ ACCUEIL ══ -->
+<!-- ════════════════ PAGE ACCUEIL ════════════════ -->
 <div id="page-home" class="page active">
 
-  <!-- Hero avec formes géométriques décoratives -->
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-deco">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="90%" cy="20%"  r="220" fill="#8FC4B3" opacity=".12"/>
-        <circle cx="5%"  cy="80%"  r="180" fill="#9FA65A" opacity=".10"/>
-        <circle cx="50%" cy="110%" r="260" fill="#4A7060" opacity=".15"/>
-        <polygon points="0,0 140,0 0,140" fill="#E8B73A" opacity=".07"/>
-        <rect x="75%" y="60%" width="120" height="120" rx="20" fill="#9FA65A" opacity=".08" transform="rotate(30,900,400)"/>
+    <div class="hero-bg">
+      <div class="halo halo-1"></div>
+      <div class="halo halo-2"></div>
+      <div class="halo halo-3"></div>
+    </div>
+    <div class="hero-shapes">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
+        <circle cx="88%" cy="15%" r="180" fill="none" stroke="rgba(47,79,62,.06)" stroke-width="1"/>
+        <circle cx="88%" cy="15%" r="280" fill="none" stroke="rgba(47,79,62,.04)" stroke-width="1"/>
+        <circle cx="5%"  cy="85%" r="120" fill="none" stroke="rgba(232,183,58,.08)" stroke-width="1"/>
       </svg>
     </div>
-    <div class="hero-content">
-      <div class="hero-badge">🎓 Outil pédagogique de diagnostic cognitif · FormaSo</div>
-      <h1>Comprendre mes tendances cognitives<br><em>pour décider avec lucidité</em></h1>
-      <p class="hero-sub">Un outil de diagnostic pour identifier vos biais cognitifs dominants, comprendre leur fonctionnement et découvrir des stratégies concrètes pour les atténuer.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-        <button class="btn-cta" onclick="startDiag()">Passer le test →</button>
-        <button class="btn-outline-w" onclick="showCatalog()">Explorer les 12 biais</button>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-pill"><span>🎓</span> Outil pédagogique · FormaSo</div>
+        <h1>Comprendre vos <em>biais cognitifs</em> pour décider avec lucidité</h1>
+        <p class="hero-p">Un diagnostic pour identifier vos tendances cognitives dominantes, comprendre leur origine et découvrir des stratégies concrètes pour décider avec plus de recul.</p>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="startDiag()">Passer le test →</button>
+          <button class="btn-ghost"   onclick="showCatalog()">Explorer les biais</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="float-card">
+          <div class="fc-head"><span class="fc-icon">📊</span><span class="fc-title">Votre profil cognitif</span></div>
+          <div class="fc-row"><span class="fc-label">Biais de confirmation</span><span class="fc-val">Fort</span></div>
+          <div class="fc-bar"><div class="fc-fill" style="width:78%;background:#2F4F3E"></div></div>
+          <div class="fc-row"><span class="fc-label">Effet de cadrage</span><span class="fc-val">Modéré</span></div>
+          <div class="fc-bar"><div class="fc-fill" style="width:45%;background:#E8B73A"></div></div>
+          <div class="fc-row" style="margin-top:14px"><span class="fc-label">Diagnostic complété</span><div class="fc-chip">✓ 24 situations</div></div>
+        </div>
+        <div class="float-card" style="margin-left:32px">
+          <div class="fc-head"><span class="fc-icon">💡</span><span class="fc-title">Stratégie recommandée</span></div>
+          <p style="font-size:13px;color:#6B7280;line-height:1.7">Formuler activement l&#39;hypothèse inverse avant toute prise de décision importante.</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">24</div><div class="hs-l">situations concrètes</div></div>
+      <div class="hs-div"></div>
+      <div class="hs"><div class="hs-n">12</div><div class="hs-l">biais analysés</div></div>
+      <div class="hs-div"></div>
+      <div class="hs"><div class="hs-n">~10<small style="font-size:18px">min</small></div><div class="hs-l">durée estimée</div></div>
+      <div class="hs-div"></div>
+      <div class="hs"><div class="hs-n">0</div><div class="hs-l">donnée collectée</div></div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="section-full section-bg-white">
+    <div class="section" style="padding-top:0;padding-bottom:0">
+      <div class="section-label">Pourquoi ce diagnostic</div>
+      <div class="section-title">Un outil de prise de conscience,<br>pas d&#39;évaluation</div>
+      <p class="section-sub">Ce dispositif révèle vos tendances cognitives naturelles. Il n&#39;y a ni bonne ni mauvaise réponse — seulement des profils différents.</p>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-ic">🔬</div>
+          <div class="feat-accent"></div>
+          <div class="feat-t">Fondé sur la recherche</div>
+          <p class="feat-p">Contenus issus de la psychologie cognitive — travaux de Kahneman, Tversky et des sciences comportementales modernes.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ic">📊</div>
+          <div class="feat-accent" style="background:var(--orange)"></div>
+          <div class="feat-t">Résultats personnalisés</div>
+          <p class="feat-p">À l&#39;issue du test, découvrez vos tendances dominantes accompagnées de pistes d&#39;action concrètes et actionnables.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-ic">🔒</div>
+          <div class="feat-accent" style="background:var(--vert-cl)"></div>
+          <div class="feat-t">Aucune donnée collectée</div>
+          <p class="feat-p">Vos réponses restent sur votre appareil. Aucun compte requis, aucun tracking, aucune publicité.</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Features — fond blanc -->
-  <div class="section-blanc">
-    <div class="section-title">Un diagnostic, pas un test noté</div>
-    <p class="section-sub">Ce dispositif révèle vos tendances cognitives naturelles. Il n'y a ni bonne ni mauvaise réponse — seulement des profils différents.</p>
-    <div class="features" style="max-width:860px;margin:0 auto">
-      <div class="feat">
-        <div class="feat-icon">🔬</div>
-        <h3>Fondé sur la science</h3>
-        <p>Contenus issus de la psychologie cognitive (Kahneman, Tversky, Wason…) et des sciences comportementales.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">📊</div>
-        <h3>Diagnostic personnalisé</h3>
-        <p>À l'issue du test, découvrez vos tendances cognitives dominantes et des pistes d'action concrètes.</p>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🔒</div>
-        <h3>Aucune donnée collectée</h3>
-        <p>Vos réponses restent sur votre appareil. Aucun compte, aucun tracking, aucune publicité.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA bas — fond vert avec déco -->
-  <div class="cta-section">
-    <div class="hero-deco">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="10%"  cy="50%"  r="160" fill="#8FC4B3" opacity=".10"/>
-        <circle cx="95%"  cy="30%"  r="140" fill="#9FA65A" opacity=".10"/>
-        <polygon points="100%,100% 100%,0 70%,100%" fill="#E8B73A" opacity=".06"/>
-      </svg>
+  <!-- CTA FINAL -->
+  <div class="cta-wrap">
+    <div class="cta-bg">
+      <div class="cta-halo-1"></div>
+      <div class="cta-halo-2"></div>
     </div>
     <div class="cta-inner">
-      <h2>Prêt à découvrir votre profil ?</h2>
-      <p>24 situations concrètes · 12 biais analysés · Résultats immédiats</p>
+      <div class="section-label" style="text-align:center">Prêt à commencer ?</div>
+      <h2>Découvrez votre profil cognitif en 10 minutes</h2>
+      <p>24 situations concrètes · 12 biais analysés · Résultats immédiats avec stratégies personnalisées</p>
       <div class="cta-btns">
-        <button class="btn-cta" onclick="startDiag()">Passer le test →</button>
-        <button class="btn-outline-w" onclick="showCatalog()">Explorer les biais</button>
+        <button class="btn-primary" onclick="startDiag()">Passer le test →</button>
+        <button class="btn-ghost"   onclick="showCatalog()">Explorer les 12 biais</button>
       </div>
     </div>
   </div>
 
+  <footer>
+    <span>Une application</span>
+    <a href="https://formaso.fr" target="_blank">FormaSo</a>
+    <span class="sep">·</span>
+    <span>Conçue par <strong>Sophie Sirgue</strong>, formatrice indépendante</span>
+  </footer>
 </div>
 
-<!-- ══ DIAGNOSTIC ══ -->
+<!-- ════════════════ DIAGNOSTIC ════════════════ -->
 <div id="page-diag" class="page">
-  <div class="diag-wrap">
+  <div class="diag-layout">
 
+    <!-- Intro -->
     <div id="diag-intro">
-      <div class="diag-intro">
-        <h2>🧭 Diagnostic de profil cognitif</h2>
-        <p>Ce diagnostic vous aide à identifier vos <strong>tendances cognitives</strong> dominantes parmi 12 biais documentés par la recherche en psychologie.</p>
-        <div class="diag-note">
-          ⚠️ Il n'y a pas de bonne ou mauvaise réponse.<br>
-          Répondez honnêtement : choisissez ce qui vous ressemble le plus. Ce diagnostic ne juge pas votre intelligence — il révèle des tendances universellement humaines.
+      <div class="diag-intro-wrap">
+        <div class="section-label" style="text-align:center">Diagnostic cognitif</div>
+        <h2>Identifiez vos tendances comportementales</h2>
+        <p class="sub">Ce diagnostic identifie vos tendances cognitives dominantes parmi 12 biais documentés par la recherche en psychologie.</p>
+        <div class="notice-card">
+          ℹ️&nbsp; Il n&#39;y a pas de bonne ou mauvaise réponse. Répondez honnêtement en choisissant ce qui vous ressemble le mieux. Ce diagnostic ne juge pas votre intelligence — il révèle des tendances universellement humaines.
         </div>
-        <div class="diag-stats">
-          <div class="stat-box"><strong>24</strong><span>situations</span></div>
-          <div class="stat-box"><strong>~10 min</strong><span>durée</span></div>
-          <div class="stat-box"><strong>12</strong><span>biais analysés</span></div>
+        <div class="kpi-row">
+          <div class="kpi"><strong>24</strong><span>situations</span></div>
+          <div class="kpi"><strong>~10<small style="font-size:14px">min</small></strong><span>durée</span></div>
+          <div class="kpi"><strong>12</strong><span>biais</span></div>
         </div>
-        <button class="btn-cta" onclick="beginDiag()">Passer le test →</button>
+        <button class="btn-primary" onclick="beginDiag()">Commencer le diagnostic →</button>
       </div>
     </div>
 
+    <!-- Questions -->
     <div id="diag-question" style="display:none">
-      <div class="prog-wrap">
-        <div class="prog-top">
-          <span class="prog-lbl">Progression du diagnostic</span>
+      <div class="prog">
+        <div class="prog-row">
+          <span class="prog-lbl">Progression</span>
           <span class="prog-cnt" id="prog-count">1 / 24</span>
         </div>
         <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
       </div>
-
       <div class="q-card">
-        <div class="q-num"  id="q-num">Situation 1</div>
+        <div class="q-meta">
+          <span class="q-num-badge" id="q-num">Situation 1</span>
+        </div>
         <div class="q-text" id="q-text"></div>
         <div class="opts"   id="q-opts"></div>
       </div>
-
       <div class="q-nav">
-        <button class="btn-prev-q" id="btn-prev" onclick="prevQ()">← Précédent</button>
-        <button class="btn-next-q" id="btn-next" onclick="nextQ()">Suivant →</button>
+        <button class="btn-prev" id="btn-prev" onclick="prevQ()">← Précédent</button>
+        <button class="btn-next" id="btn-next" onclick="nextQ()">Suivant →</button>
       </div>
       <p class="q-hint">Vous pouvez revenir à la situation précédente à tout moment.</p>
     </div>
 
   </div>
+  <footer>
+    <span>Une application</span><a href="https://formaso.fr" target="_blank">FormaSo</a>
+    <span class="sep">·</span><span><strong>Sophie Sirgue</strong>, formatrice indépendante</span>
+  </footer>
 </div>
 
-<!-- ══ RÉSULTATS ══ -->
+<!-- ════════════════ RÉSULTATS ════════════════ -->
 <div id="page-results" class="page">
   <div class="res-wrap">
-    <div class="back-bar" style="padding:20px 0 0">
+    <div style="padding:24px 0 0">
       <button class="btn-back" onclick="startDiag()">← Refaire le diagnostic</button>
     </div>
     <div class="res-head">
-      <h2>📊 Votre profil de tendances cognitives</h2>
-      <p>Ce diagnostic révèle vos tendances naturelles. Ce n'est pas un jugement — c'est un point de départ pour développer votre conscience cognitive.</p>
+      <div class="section-label" style="text-align:center">Vos résultats</div>
+      <h2>Votre profil de tendances cognitives</h2>
+      <p>Ce diagnostic révèle vos tendances naturelles. Ce n&#39;est pas un jugement — c&#39;est un point de départ pour développer votre conscience cognitive.</p>
     </div>
     <div class="res-notice">
-      <strong>Rappel :</strong> Tous les êtres humains sont sujets aux biais cognitifs. Ils résultent de raccourcis mentaux que notre cerveau utilise pour traiter l'information rapidement. <strong>En prendre conscience est déjà une étape majeure.</strong>
+      <strong>Rappel :</strong> Tous les êtres humains sont sujets aux biais cognitifs. Ils résultent de raccourcis mentaux utilisés par notre cerveau pour traiter l&#39;information rapidement. <strong>En prendre conscience est déjà une étape majeure.</strong>
     </div>
     <div id="dom-sec"></div>
     <div id="mod-sec"></div>
     <div id="str-sec"></div>
     <div class="res-actions">
-      <button class="btn-cta"   onclick="startDiag()">Refaire le diagnostic</button>
-      <button class="btn-ghost" onclick="showCatalog()">Explorer tous les biais</button>
-      <button class="btn-ghost" onclick="goHome()">Retour à l'accueil</button>
+      <button class="btn-primary" onclick="startDiag()">Refaire le diagnostic</button>
+      <button class="btn-ghost"   onclick="showCatalog()">Explorer les biais</button>
+      <button class="btn-back"    onclick="goHome()">Retour à l&#39;accueil</button>
     </div>
   </div>
+  <footer>
+    <span>Une application</span><a href="https://formaso.fr" target="_blank">FormaSo</a>
+    <span class="sep">·</span><span><strong>Sophie Sirgue</strong>, formatrice indépendante</span>
+  </footer>
 </div>
 
-<!-- ══ CATALOGUE ══ -->
+<!-- ════════════════ CATALOGUE ════════════════ -->
 <div id="page-catalog" class="page">
-  <div class="cat-hero">
-    <div class="hero-deco">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="90%" cy="50%" r="160" fill="#8FC4B3" opacity=".12"/>
-        <circle cx="5%"  cy="30%" r="120" fill="#9FA65A" opacity=".10"/>
-        <polygon points="0,100% 0,0 120,0" fill="#E8B73A" opacity=".07"/>
-      </svg>
+  <div class="cat-header">
+    <div class="cat-header-halo"></div>
+    <div style="position:relative;z-index:1">
+      <div class="section-label">Bibliothèque</div>
+      <div class="section-title" style="margin-bottom:12px">Les 12 biais cognitifs</div>
+      <p style="font-size:15px;color:var(--gris);max-width:480px;margin:0 auto">Cliquez sur un biais pour découvrir sa définition et des stratégies concrètes pour l&#39;atténuer.</p>
+      <div style="margin-top:24px">
+        <button class="btn-back" onclick="goHome()">← Retour à l&#39;accueil</button>
+      </div>
     </div>
-    <div class="cat-hero-inner">
-      <h2>Les 12 biais cognitifs</h2>
-      <p>Cliquez sur un biais pour découvrir sa définition et des stratégies concrètes pour l'atténuer.</p>
-    </div>
-  </div>
-  <div class="back-bar" style="max-width:1120px">
-    <button class="btn-back" onclick="goHome()">← Retour à l'accueil</button>
   </div>
   <div class="cat-grid" id="cat-grid"></div>
+  <footer>
+    <span>Une application</span><a href="https://formaso.fr" target="_blank">FormaSo</a>
+    <span class="sep">·</span><span><strong>Sophie Sirgue</strong>, formatrice indépendante</span>
+  </footer>
 </div>
 
-<!-- ══ MODAL ══ -->
+<!-- MODAL -->
 <div class="overlay" id="overlay" onclick="closeModal(event)">
   <div class="modal">
-    <button class="modal-x" onclick="closeModal()">✕</button>
+    <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="m-icon"  id="m-icon"></div>
     <div class="m-name"  id="m-name"></div>
     <div class="m-short" id="m-short"></div>
     <div class="m-def"   id="m-def"></div>
-    <div class="m-rt">💡 Stratégies pour l&#39;atténuer :</div>
-    <ul class="bcr-list" id="m-reduce"></ul>
+    <div class="m-tips-label">Stratégies pour l&#39;atténuer</div>
+    <ul class="m-tips"   id="m-reduce"></ul>
   </div>
 </div>
 
-<!-- ══ BANDEAU FORMASO ══ -->
-<div id="fs-credit">
-  Une application <a href="https://formaso.fr" target="_blank">FormaSo</a> &nbsp;|&nbsp;
-  Conçue par <strong>Sophie Sirgue</strong> &nbsp;·&nbsp; Formatrice indépendante
-</div>
-
 <script>
-const QUESTIONS = [{"id": "q_conf_1", "biasId": "confirmation", "question": "Vous gérez un projet depuis six mois et défendez une orientation stratégique. Un rapport interne pointe des indicateurs en baisse. Quelle est votre première réaction ?", "options": [{"label": "A", "value": 2, "text": "Je lis le rapport en diagonale, en me disant qu'il manque probablement du contexte."}, {"label": "B", "value": 1, "text": "Je cherche dans le rapport ce qui valide ma stratégie, et demande une analyse complémentaire sur les points négatifs."}, {"label": "C", "value": 3, "text": "Je lis le rapport intégralement, y compris les points qui remettent en cause mon orientation."}, {"label": "D", "value": 2, "text": "Je partage le rapport avec l'équipe pour que chacun interprète les données librement."}], "explanation": "Face à une information qui contredit notre position, nous filtrons naturellement les données pour préserver notre vision. Lire un rapport en cherchant d'abord ce qui confirme (réponse B) illustre ce mécanisme. L'approche la plus rigoureuse consiste à confronter activement ses conclusions aux données contradictoires (C)."}, {"id": "q_conf_2", "biasId": "confirmation", "question": "Vous venez de recruter quelqu'un pour qui vous avez eu un excellent ressenti lors de l'entretien. Trois semaines plus tard, vous supervisez son travail. Que remarquez-vous en priorité ?", "options": [{"label": "A", "value": 1, "text": "Surtout ses initiatives et ses réussites, qui correspondent à ce que j'avais perçu."}, {"label": "B", "value": 2, "text": "Ses résultats globaux, même si je reconnais que mon premier avis colore un peu ma lecture."}, {"label": "C", "value": 3, "text": "Je construis une grille d'évaluation avec des indicateurs définis à l'avance, indépendamment de mon ressenti initial."}, {"label": "D", "value": 2, "text": "Je cherche à tester mes hypothèses positives ET négatives pour avoir un tableau équilibré."}], "explanation": "Nos premières impressions agissent comme un filtre sur les informations suivantes. On remarque plus facilement ce qui confirme le jugement initial. Cette tendance s'applique aussi bien aux recrutements qu'aux décisions stratégiques ou aux relations personnelles."}, {"id": "q_anch_1", "biasId": "anchoring", "question": "Vous négociez le renouvellement d'un contrat de prestation. Avant même que vous parliez, le prestataire annonce un tarif 30 % plus élevé qu'avant. Vous avez votre propre estimation. Comment abordez-vous la suite ?", "options": [{"label": "A", "value": 1, "text": "Je propose instinctivement un compromis entre son tarif et l'ancien, plutôt qu'en partant de mon estimation."}, {"label": "B", "value": 3, "text": "J'avais préparé mon propre chiffre cible indépendamment ; je m'y réfère comme point d'ancrage à moi."}, {"label": "C", "value": 2, "text": "Je demande une justification détaillée du nouveau tarif avant de donner toute réponse."}, {"label": "D", "value": 1, "text": "Je me retrouve à raisonner à partir de son chiffre de départ, même en sachant que c'est une tactique."}], "explanation": "Le premier chiffre mentionné dans une négociation agit comme une ancre cognitive puissante. Même en connaissant ce mécanisme, nous tendons à ajuster nos propositions par rapport à ce point initial. La meilleure protection est de préparer sa propre estimation avant d'être exposé à celle de l'autre."}, {"id": "q_anch_2", "biasId": "anchoring", "question": "Votre responsable vous demande d'estimer la durée d'un projet. Avant que vous répondiez, il dit : « Je pense que ça devrait tenir en six semaines. » Comment procédez-vous ?", "options": [{"label": "A", "value": 1, "text": "Je me base sur cette estimation comme point de départ et j'ajuste légèrement selon ma propre analyse."}, {"label": "B", "value": 2, "text": "Je demande à pouvoir revenir avec une estimation structurée avant de valider quoi que ce soit."}, {"label": "C", "value": 3, "text": "J'avais déjà fait mentalement mon propre calcul ; je compare les deux sans laisser son chiffre influencer le mien."}, {"label": "D", "value": 1, "text": "Je propose sept semaines, me sentant un peu coupable de dépasser son estimation."}], "explanation": "Un chiffre entendu avant d'avoir terminé son propre raisonnement modifie notre estimation finale, même involontairement. La décomposition méthodique (bottom-up) réalisée avant tout ancrage externe est la stratégie la plus efficace."}, {"id": "q_halo_1", "biasId": "halo", "question": "Lors d'un séminaire, un intervenant charismatique et très bien habillé présente une thèse sur laquelle vous avez des doutes. Quelle est votre réaction spontanée ?", "options": [{"label": "A", "value": 1, "text": "Je suis convaincu par sa présentation — quelqu'un d'aussi à l'aise doit maîtriser son sujet."}, {"label": "B", "value": 2, "text": "J'apprécie la présentation, mais je prends note des points qui m'interrogent pour vérifier plus tard."}, {"label": "C", "value": 3, "text": "Je dissocie consciemment la qualité de la prestation de la solidité du contenu."}, {"label": "D", "value": 1, "text": "Je me dis que mes doutes tiennent peut-être à ma propre méconnaissance du sujet."}], "explanation": "L'impression générale laissée par une personne (charisme, présentation, réputation) colore notre jugement sur la qualité de ses idées. Cet effet fonctionne dans les deux sens : une personne perçue négativement sur un trait verra ses autres qualités sous-évaluées."}, {"id": "q_halo_2", "biasId": "halo", "question": "Un collaborateur avec qui vous avez d'excellentes relations vous remet un rapport. Vous repérez une erreur méthodologique. Comment réagissez-vous ?", "options": [{"label": "A", "value": 2, "text": "Je lui signale le problème, mais avec beaucoup de ménagement, me demandant si j'ai bien compris."}, {"label": "B", "value": 1, "text": "Je pense que ça doit être une erreur de mise en forme ; son analyse est généralement très solide."}, {"label": "C", "value": 3, "text": "Je traite cette erreur comme je le ferais pour n'importe quel autre rapport, et je la remonte clairement."}, {"label": "D", "value": 1, "text": "Je m'interroge sur ma propre lecture — peut-être que je rate quelque chose que lui a bien vu."}], "explanation": "La qualité de notre relation avec quelqu'un influence notre lecture de son travail. Quand on apprécie quelqu'un, on tend à minimiser ses erreurs ou à douter de notre propre jugement avant de douter du sien."}, {"id": "q_avail_1", "biasId": "availability", "question": "Après avoir lu plusieurs articles sur une fraude bancaire en ligne largement médiatisée, vous êtes invité à activer un nouveau service de paiement numérique proposé par votre banque. Comment évaluez-vous le risque ?", "options": [{"label": "A", "value": 1, "text": "Je ressens une méfiance accrue et décide d'attendre avant d'activer le service."}, {"label": "B", "value": 2, "text": "Je lis attentivement les conditions de sécurité avant de prendre ma décision."}, {"label": "C", "value": 3, "text": "Je cherche les données réelles sur la sécurité de ce type de service, indépendamment des cas médiatisés."}, {"label": "D", "value": 1, "text": "Je pense que les fraudes sont plus fréquentes qu'avant et préfère éviter ce type d'outil."}], "explanation": "Les exemples facilement rappelables à l'esprit — notamment parce qu'ils ont été très médiatisés — semblent plus fréquents qu'ils ne le sont statistiquement. La couverture médiatique d'un événement ne reflète pas sa probabilité réelle."}, {"id": "q_avail_2", "biasId": "availability", "question": "Vous devez choisir un mode de transport pour un déplacement professionnel long. Une catastrophe aérienne s'est produite il y a dix jours. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je préfère prendre le train — même si c'est plus long, je me sens moins à l'aise à l'idée de prendre l'avion en ce moment."}, {"label": "B", "value": 3, "text": "Je compare les statistiques d'accidents sur les deux modes de transport pour cette distance, sur plusieurs années."}, {"label": "C", "value": 2, "text": "Je reconnais que l'actualité influence mon ressenti, mais je décide quand même en fonction du confort et du temps."}, {"label": "D", "value": 1, "text": "Je pense que les avions sont moins bien contrôlés qu'avant et que le risque a réellement augmenté."}], "explanation": "Un événement récent et saillant fausse notre perception de la probabilité. Juste après une catastrophe aérienne, beaucoup de gens surestiment le risque de voler, alors que statistiquement, les avions restent l'un des moyens de transport les plus sûrs par kilomètre parcouru."}, {"id": "q_stq_1", "biasId": "statusquo", "question": "Votre équipe utilise un logiciel depuis cinq ans. Une nouvelle solution, plus performante selon les tests pilotes, est proposée. La migration prendrait trois semaines. Quelle est votre position ?", "options": [{"label": "A", "value": 1, "text": "Je pense que notre logiciel actuel fait très bien le travail et que les bénéfices ne justifient pas la perturbation."}, {"label": "B", "value": 2, "text": "Je suis ouvert, mais je veux voir un retour d'expérience d'une autre équipe avant de décider."}, {"label": "C", "value": 3, "text": "J'évalue les bénéfices concrets sur 12 mois versus le coût de la transition, sans a priori sur le résultat."}, {"label": "D", "value": 1, "text": "Je m'assure de garder l'ancien logiciel en parallèle « au cas où », même si la migration est validée."}], "explanation": "L'effort de changement est ressenti comme une perte, alors que les bénéfices attendus paraissent abstraits. Ce déséquilibre nous pousse à sur-pondérer les coûts de la transition et à minimiser les avantages potentiels du changement."}, {"id": "q_stq_2", "biasId": "statusquo", "question": "Votre banque principale vous coûte 18 € par mois. Une banque en ligne propose les mêmes services pour 0 €, avec de meilleures conditions. Quelle est votre démarche ?", "options": [{"label": "A", "value": 1, "text": "Je me dis que changer de banque est une démarche compliquée et que ça ne vaut pas la peine pour ça."}, {"label": "B", "value": 2, "text": "Je compare sérieusement les deux offres, mais je ressens une certaine hésitation à quitter une relation installée."}, {"label": "C", "value": 3, "text": "J'évalue les deux offres sur des critères objectifs : coûts, services, sécurité, flexibilité."}, {"label": "D", "value": 1, "text": "Je reste fidèle à ma banque — je la connais, le personnel aussi, et ça a de la valeur."}], "explanation": "La situation présente bénéficie d'un avantage psychologique que les alternatives n'ont pas : elle est connue, prévisible, sans effort. Nous avons tendance à sur-estimer les inconvénients du changement et sous-estimer ce que nous perdons en restant."}, {"id": "q_auth_1", "biasId": "authority", "question": "Un consultant externe, présenté comme expert reconnu, recommande une réorganisation qui va à l'encontre de l'expérience de votre équipe terrain. Votre manager veut suivre la recommandation. Vous :", "options": [{"label": "A", "value": 1, "text": "Faites confiance au consultant — c'est son domaine, il a vu bien plus d'entreprises que vous."}, {"label": "B", "value": 2, "text": "Demandez à votre manager que l'équipe puisse présenter ses retours avant la décision finale."}, {"label": "C", "value": 3, "text": "Proposez une confrontation structurée : recommandation du consultant vs analyse de l'équipe, avec des critères explicites d'arbitrage."}, {"label": "D", "value": 1, "text": "Supposez que votre équipe manque peut-être de recul et qu'un regard extérieur voit des choses que vous ne voyez pas."}], "explanation": "L'expertise légitime est précieuse, mais elle ne remplace pas la connaissance du contexte spécifique. La déférence automatique à une figure d'autorité — sans confronter son analyse à la réalité terrain — peut mener à des décisions inadaptées."}, {"id": "q_auth_2", "biasId": "authority", "question": "Un médecin vous prescrit un traitement. Vous avez lu des témoignages en ligne qui suggèrent des effets secondaires fréquents. Comment réagissez-vous ?", "options": [{"label": "A", "value": 1, "text": "Je suis la prescription sans poser de question — c'est le médecin qui sait."}, {"label": "B", "value": 2, "text": "J'en parle avec le médecin lors de la consultation suivante, mais je commence quand même le traitement."}, {"label": "C", "value": 3, "text": "Je pose des questions au médecin dès la consultation : probabilité des effets secondaires, alternatives possibles, critères de réévaluation."}, {"label": "D", "value": 1, "text": "Je fais confiance au médecin mais je lis quand même le témoignage d'une infirmière sur un forum, que je considère comme crédible."}], "explanation": "L'autorité médicale est fondée, mais le dialogue avec le professionnel de santé est essentiel. Faire confiance à une autorité ne signifie pas s'interdire de poser des questions — c'est même ce qu'un professionnel de santé compétent attend de ses patients."}, {"id": "q_conf2_1", "biasId": "conformity", "question": "En réunion, vous avez préparé une analyse qui contredit le consensus qui se dessine. Quatre collègues semblent déjà d'accord entre eux. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je ne dis rien — quatre personnes ne peuvent pas toutes se tromper, je dois manquer quelque chose."}, {"label": "B", "value": 2, "text": "Je pose une question ouverte pour comprendre leur raisonnement avant de prendre position."}, {"label": "C", "value": 3, "text": "Je présente mon analyse même si elle est minoritaire, en l'appuyant sur mes données."}, {"label": "D", "value": 1, "text": "Je défends une position légèrement différente de la leur, sans aller jusqu'à contredire franchement le groupe."}], "explanation": "La pression sociale du groupe est un mécanisme puissant. Exprimer un désaccord face à une majorité demande un effort cognitif et émotionnel réel. Pourtant, les groupes homogènes prennent souvent de moins bonnes décisions que les groupes où des voix dissidentes s'expriment."}, {"id": "q_conf2_2", "biasId": "conformity", "question": "Vous êtes sur le point d'écrire un avis négatif sur un restaurant que vous avez trouvé décevant. Vous remarquez qu'il a 4,6 étoiles sur 400 avis. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je révise légèrement mon évaluation à la hausse — peut-être que j'ai eu une mauvaise expérience isolée."}, {"label": "B", "value": 2, "text": "J'essaie de comprendre ce que les autres ont aimé que je n'ai pas apprécié, et j'adapte mon avis en conséquence."}, {"label": "C", "value": 3, "text": "J'écris mon avis en me basant uniquement sur ma propre expérience, quelle que soit la note globale."}, {"label": "D", "value": 1, "text": "Je m'abstiens — il y a sûrement quelque chose que je n'ai pas compris si tant de gens sont satisfaits."}], "explanation": "La note collective agit comme une ancre sociale qui modifie rétrospectivement notre propre évaluation. Ce phénomène explique notamment la polarisation des avis en ligne : les opinions tendent à rejoindre le consensus perçu."}, {"id": "q_opt_1", "biasId": "optimism", "question": "Vous planifiez un projet ambitieux. Une estimation rigoureuse donne 5 mois, mais votre direction attend 3 mois. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je m'engage sur 3 mois — notre équipe est efficace et je veux rester compétitif."}, {"label": "B", "value": 2, "text": "Je propose 4 mois comme compromis en espérant que l'équipe tient ce délai."}, {"label": "C", "value": 3, "text": "Je présente mon estimation de 5 mois avec une ventilation par phase et une analyse des risques, même si c'est inconfortable."}, {"label": "D", "value": 1, "text": "Je pense que l'estimation de 5 mois inclut des marges excessives et que nous pouvons faire mieux."}], "explanation": "Le biais d'optimisme nous pousse à sous-estimer la durée et les ressources nécessaires — c'est la « loi de Hofstadter ». Les projets prennent presque toujours plus de temps que prévu, y compris en tenant compte de cette loi."}, {"id": "q_opt_2", "biasId": "optimism", "question": "Vous envisagez de lancer une activité indépendante. Les statistiques montrent que 60 % des nouvelles entreprises ferment dans les 5 premières années. Quelle est votre réaction à cette donnée ?", "options": [{"label": "A", "value": 1, "text": "Je pense que ces statistiques concernent des gens moins préparés que moi ou sur des marchés différents."}, {"label": "B", "value": 2, "text": "Je prends la statistique au sérieux et je renforce mon business plan pour l'intégrer dans mon analyse de risque."}, {"label": "C", "value": 3, "text": "J'utilise ce taux comme référence de base et j'analyse systématiquement quels facteurs d'échec s'appliquent à mon cas."}, {"label": "D", "value": 1, "text": "Je suis confiant — les gens qui réussissent n'ont pas arrêté parce que les statistiques étaient défavorables."}], "explanation": "Le biais d'optimisme nous conduit à croire que nous sommes moins exposés aux risques que la moyenne. Kahneman et Lovallo appellent cela le « planning fallacy » : nous raisonnons à partir de notre cas (inside view) en ignorant les données statistiques disponibles (outside view)."}, {"id": "q_neg_1", "biasId": "negativity", "question": "À l'issue d'une présentation, vous recevez 12 retours : 10 positifs et 2 critiques. Le soir, quelle est votre pensée dominante ?", "options": [{"label": "A", "value": 1, "text": "Je repasse mentalement les deux critiques, me demandant ce que j'aurais dû faire différemment."}, {"label": "B", "value": 2, "text": "Je note les critiques pour progresser, mais j'ai globalement un sentiment positif de la séance."}, {"label": "C", "value": 3, "text": "Je traite les 12 retours à proportion : 83 % de positif, c'est un bon résultat ; les critiques sont des pistes d'amélioration."}, {"label": "D", "value": 1, "text": "Je me demande si les 10 retours positifs étaient sincères ou juste de la politesse."}], "explanation": "Les informations négatives ont un impact psychologique plus fort que les informations positives de même intensité. Ce mécanisme a une valeur adaptative — être attentif aux menaces — mais dans un contexte professionnel, il peut conduire à un découragement disproportionné."}, {"id": "q_neg_2", "biasId": "negativity", "question": "En début de semaine, vous lisez une série d'articles alarmants sur votre secteur professionnel. Comment cela influence-t-il votre perception de votre propre situation ?", "options": [{"label": "A", "value": 1, "text": "Je commence à m'inquiéter pour mon poste, même si ma situation personnelle n'a pas changé."}, {"label": "B", "value": 2, "text": "Je reconnais que l'actualité génère un sentiment négatif, mais j'essaie de ne pas généraliser à ma situation."}, {"label": "C", "value": 3, "text": "Je contextualise : l'actualité médiatise les difficultés, pas les réussites ; je vais chercher des données de fond sur mon secteur."}, {"label": "D", "value": 1, "text": "Je commence à explorer d'autres pistes professionnelles par précaution, même sans signal concret dans mon entreprise."}], "explanation": "Les médias couvrent davantage les événements négatifs que positifs, ce qui crée une perception biaisée de la réalité. Faire la distinction entre la couverture médiatique d'une tendance et la réalité vécue est un exercice de pensée critique essentiel."}, {"id": "q_dk_1", "biasId": "dunningkruger", "question": "Vous venez de suivre une formation de deux jours sur la gestion de projet. Un collègue vous demande votre avis sur un problème complexe dans un projet que vous n'avez pas suivi. Que répondez-vous ?", "options": [{"label": "A", "value": 1, "text": "Je donne mon analyse — la formation m'a donné les outils pour évaluer ce type de situation."}, {"label": "B", "value": 2, "text": "Je partage quelques pistes issues de la formation, en précisant que je manque de contexte sur ce projet."}, {"label": "C", "value": 3, "text": "Je distingue clairement ce que la formation m'a apporté de ce que je ne maîtrise pas encore, et je l'exprime."}, {"label": "D", "value": 1, "text": "Je me sens suffisamment équipé pour répondre — deux jours de formation intensive, c'est solide."}], "explanation": "Les connaissances partielles créent souvent une confiance excessive, car elles ne permettent pas encore de mesurer l'étendue de ce qu'on ne sait pas. Kruger et Dunning ont montré que les personnes peu expérimentées dans un domaine surestiment systématiquement leur niveau."}, {"id": "q_dk_2", "biasId": "dunningkruger", "question": "Vous animez votre première réunion de management. Elle se passe plutôt bien. Quelle est votre évaluation de vos capacités de manager à l'issue ?", "options": [{"label": "A", "value": 1, "text": "Je me sens naturellement à l'aise dans ce rôle — le management n'est finalement pas si complexe."}, {"label": "B", "value": 2, "text": "C'est encourageant, mais je reconnais avoir encore beaucoup à apprendre sur la durée."}, {"label": "C", "value": 3, "text": "Je réalise un bilan structuré de ce que j'ai bien géré et des aspects qui dépassent encore mon niveau."}, {"label": "D", "value": 1, "text": "Je pense avoir les qualités humaines pour ce rôle ; les compétences techniques, ça vient avec la pratique."}], "explanation": "Le management est l'une des disciplines où l'effet Dunning-Kruger se manifeste le plus clairement. Une seule expérience positive ne révèle pas les limites réelles de la compétence — elle cache souvent ce qu'on n'a pas encore eu à affronter."}, {"id": "q_fram_1", "biasId": "framing", "question": "Votre médecin vous présente deux options chirurgicales : « L'opération A a un taux de survie de 92 % » ; « L'opération B présente un risque de mortalité de 8 % ». Quelle est votre réaction ?", "options": [{"label": "A", "value": 1, "text": "L'opération A me semble clairement plus rassurante, même si je réalise que c'est la même statistique."}, {"label": "B", "value": 2, "text": "Je demande des informations complémentaires : effets secondaires, récupération, taux de complications."}, {"label": "C", "value": 3, "text": "Je reformule les deux options dans les mêmes termes pour neutraliser l'effet de la présentation."}, {"label": "D", "value": 1, "text": "Je ne m'en rends pas compte sur le moment, mais l'option A m'influence davantage dans ma décision."}], "explanation": "La même information présentée différemment génère des préférences différentes. Kahneman et Tversky ont montré que nous réagissons différemment à « 92 % de survie » et à « 8 % de mortalité », bien que ces formulations soient mathématiquement identiques."}, {"id": "q_fram_2", "biasId": "framing", "question": "Un produit alimentaire est étiqueté « 90 % sans matière grasse ». Un produit concurrent mentionne qu'il « contient 10 % de matière grasse ». Comment évaluez-vous ces deux produits ?", "options": [{"label": "A", "value": 1, "text": "Le premier me semble meilleur pour la santé — la formulation positive est plus claire."}, {"label": "B", "value": 2, "text": "Je consulte les valeurs nutritionnelles détaillées pour comparer réellement les deux."}, {"label": "C", "value": 3, "text": "Je traduis mentalement les deux étiquettes dans la même unité pour les comparer à iso-information."}, {"label": "D", "value": 1, "text": "Je ne perçois pas vraiment de différence entre les deux formulations au premier coup d'œil."}], "explanation": "Le cadrage positif (« 90 % sans matière grasse ») génère une perception plus favorable que le cadrage négatif (« 10 % de matière grasse ») pour la même réalité. Ce mécanisme est largement exploité dans le marketing alimentaire et pharmaceutique."}, {"id": "q_hind_1", "biasId": "hindsight", "question": "Un projet que vous avez soutenu échoue malgré des mois d'efforts. En faisant le bilan, quelle est votre lecture ?", "options": [{"label": "A", "value": 1, "text": "Je me dis que les signaux d'alerte étaient visibles dès le début — on aurait dû les voir."}, {"label": "B", "value": 2, "text": "J'analyse les décisions clés pour comprendre ce qui aurait pu être fait différemment."}, {"label": "C", "value": 3, "text": "Je reconstitue l'information disponible à chaque étape pour évaluer si les décisions étaient raisonnables dans leur contexte."}, {"label": "D", "value": 1, "text": "Je pense que la plupart des problèmes étaient prévisibles par quelqu'un avec suffisamment d'expérience."}], "explanation": "Une fois un événement survenu, il nous semble avoir été prévisible — c'est l'illusion rétrospective. Ce biais déforme notre mémoire de ce que nous savions avant l'événement, ce qui rend difficile l'apprentissage réel à partir des échecs."}, {"id": "q_hind_2", "biasId": "hindsight", "question": "Six mois plus tôt, vous aviez prédit qu'un concurrent lancerait un nouveau produit sur votre marché. C'est arrivé. Comment interprétez-vous cette réussite ?", "options": [{"label": "A", "value": 1, "text": "Je me sens conforté dans la qualité de mon analyse — c'était clairement visible pour qui regardait les bons signaux."}, {"label": "B", "value": 2, "text": "Je note le succès de la prédiction, mais j'identifie aussi les éléments que je n'avais pas anticipés."}, {"label": "C", "value": 3, "text": "J'examine ce que j'avais réellement comme données à l'époque, pour distinguer ce qui tenait de la chance ou de la méthode."}, {"label": "D", "value": 1, "text": "Je pense avoir un bon sens des dynamiques de marché — cette prédiction le confirme."}], "explanation": "Après un événement, notre confiance en notre capacité à l'avoir prévu augmente — parfois indûment. Ce biais affecte autant les succès que les échecs : il fausse notre évaluation de ce que nous savons réellement, et peut alimenter une confiance excessive dans nos prédictions futures."}];
-const BIASES    = [{"id": "confirmation", "name": "Biais de confirmation", "shortDef": "Tendance à chercher les informations qui confirment nos croyances.", "icon": "🔍", "color": "#2563EB", "definition": "Le biais de confirmation est la tendance à rechercher, interpréter, mémoriser et rappeler les informations d'une manière qui confirme nos croyances ou hypothèses préexistantes, tout en accordant moins d'attention aux informations qui les contredisent. C'est l'un des biais cognitifs les plus documentés en psychologie.", "howToReduce": ["Formuler activement l'hypothèse inverse de celle qu'on soutient.", "Chercher délibérément des arguments contredisant votre position (steel-manning).", "Consulter des sources diverses, y compris celles avec lesquelles on est en désaccord.", "Dans les équipes, nommer un « avocat du diable »."]}, {"id": "anchoring", "name": "Biais d'ancrage", "shortDef": "Influence excessive d'une première information sur nos jugements.", "icon": "⚓", "color": "#7C3AED", "definition": "Le biais d'ancrage décrit notre tendance à accorder un poids disproportionné à la première information reçue (l'ancre) lorsque nous formulons des jugements ou prenons des décisions. Même lorsque l'ancre est manifestement arbitraire ou non pertinente, elle continue d'influencer nos estimations de manière significative.", "howToReduce": ["Générer sa propre estimation avant d'être exposé à une ancre externe.", "En négociation, considérer plusieurs scénarios indépendants avant de répondre.", "Adopter une méthode d'estimation structurée (planification par référence de classe).", "Prendre conscience de l'ancre en la nommant explicitement dans le groupe."]}, {"id": "halo", "name": "Effet de halo", "shortDef": "Une impression globale positive ou négative colore tous nos jugements.", "icon": "✨", "color": "#D97706", "definition": "L'effet de halo est un biais cognitif par lequel l'impression générale que l'on a d'une personne, d'une marque ou d'une situation influence la manière dont on évalue ses caractéristiques spécifiques. Une personne perçue comme charismatique sera supposée compétente, honnête et intelligente, même sans preuves directes.", "howToReduce": ["Structurer les évaluations par critères indépendants, évalués séparément.", "Utiliser des grilles d'évaluation standardisées avant d'avoir une vision globale.", "Anonymiser les candidatures lors du tri initial.", "Former les évaluateurs à identifier leurs premières impressions."]}, {"id": "availability", "name": "Biais de disponibilité", "shortDef": "On surestime la probabilité de ce qui nous vient facilement à l'esprit.", "icon": "🧠", "color": "#059669", "definition": "Le biais de disponibilité est une heuristique par laquelle nous évaluons la probabilité d'un événement en fonction de la facilité avec laquelle des exemples nous viennent à l'esprit. Plus un exemple est facile à rappeler — parce qu'il est récent, émotionnellement marquant ou médiatisé —, plus nous surestimerons sa fréquence ou sa probabilité.", "howToReduce": ["Consulter les données statistiques objectives avant d'évaluer un risque.", "Distinguer l'émotion suscitée par un exemple de sa fréquence réelle.", "Utiliser des bases de référence et des taux de base dans les décisions."]}, {"id": "statusquo", "name": "Biais de statu quo", "shortDef": "Préférence pour l'état actuel des choses, résistance au changement.", "icon": "⚖️", "color": "#DC2626", "definition": "Le biais de statu quo est notre tendance à préférer l'état actuel des choses et à percevoir tout changement comme une perte potentielle. Même lorsqu'une alternative serait objectivement meilleure, nous avons tendance à rester dans la situation existante par défaut, en surestimant le coût du changement.", "howToReduce": ["Reformuler la décision en termes de coût de l'inaction plutôt que de coût du changement.", "Rendre les alternatives plus concrètes et moins abstraites.", "Proposer des transitions progressives plutôt que des ruptures brutales."]}, {"id": "authority", "name": "Biais d'autorité", "shortDef": "Tendance à accorder plus de crédit à une opinion en raison du statut de son auteur.", "icon": "🎓", "color": "#0891B2", "definition": "Le biais d'autorité est notre tendance à accorder plus de poids à l'opinion d'une personne perçue comme une autorité — en raison de son titre, de son statut, de son diplôme ou de sa réputation — sans évaluer la valeur intrinsèque de son argument.", "howToReduce": ["Développer une culture du questionnement respectueux.", "Évaluer les arguments plutôt que les sources.", "Présenter les idées anonymement avant discussion dans les équipes.", "Former les managers à valoriser les désaccords constructifs."]}, {"id": "conformity", "name": "Biais de conformité", "shortDef": "Tendance à aligner nos opinions sur celles du groupe.", "icon": "👥", "color": "#7C3AED", "definition": "Le biais de conformité est notre tendance à modifier nos croyances, nos perceptions ou nos comportements pour les aligner sur ceux du groupe auquel nous appartenons ou voulons appartenir. Il peut conduire à des comportements contraires à notre jugement initial.", "howToReduce": ["Utiliser des techniques de vote anonyme avant les discussions de groupe.", "Recueillir les avis individuels écrits avant toute délibération collective.", "Nommer un « avocat du diable » dans les réunions de décision.", "Valoriser explicitement les désaccords dans la culture d'équipe."]}, {"id": "optimism", "name": "Biais d'optimisme", "shortDef": "Tendance à surestimer les chances de succès et sous-estimer les risques.", "icon": "🌟", "color": "#F59E0B", "definition": "Le biais d'optimisme est notre tendance à croire que nos chances de vivre des événements positifs sont supérieures à la moyenne, et que nos risques de vivre des événements négatifs sont inférieurs. Nous nous percevons comme plus susceptibles de réussir, d'être en bonne santé et de connaître le bonheur que nos semblables.", "howToReduce": ["Utiliser la « planification par référence de classe » : comparer son projet à des projets similaires passés.", "Effectuer un pre-mortem : imaginer que le projet a échoué et identifier les causes possibles.", "Solliciter des estimations indépendantes de personnes non investies."]}, {"id": "negativity", "name": "Biais de négativité", "shortDef": "Les expériences négatives ont plus de poids que les positives équivalentes.", "icon": "⚡", "color": "#6B7280", "definition": "Le biais de négativité décrit notre tendance à accorder plus de poids aux expériences, aux informations et aux émotions négatives qu'aux positives de même intensité. Une critique a plus d'impact qu'un compliment, une perte est ressentie plus intensément qu'un gain équivalent.", "howToReduce": ["Pratiquer la reconnaissance des succès : tenir un journal de réussites.", "Dans le management, systématiser les feedbacks positifs spécifiques.", "Adopter la règle des 5:1 en management (Gottman) : 5 interactions positives pour 1 négative.", "Recadrer les erreurs comme des apprentissages plutôt que des échecs."]}, {"id": "dunningkruger", "name": "Effet Dunning-Kruger", "shortDef": "Les moins compétents surestiment leurs compétences ; les experts les sous-estiment.", "icon": "📊", "color": "#DC2626", "definition": "L'effet Dunning-Kruger est un biais cognitif par lequel des personnes peu compétentes dans un domaine tendent à surestimer leurs propres compétences, tandis que les personnes très compétentes ont tendance à sous-estimer les leurs. La compétence requise pour évaluer une performance est souvent la même que celle requise pour l'exécuter.", "howToReduce": ["Développer la pratique métacognitive : réfléchir régulièrement sur ce qu'on sait et ne sait pas.", "Chercher des retours réguliers de personnes compétentes dans le domaine.", "Adopter une posture d'apprenant permanent (growth mindset)."]}, {"id": "framing", "name": "Biais de cadrage", "shortDef": "Notre décision change selon la façon dont l'information est présentée.", "icon": "🖼️", "color": "#0891B2", "definition": "Le biais de cadrage (framing effect) décrit le phénomène par lequel nos décisions et nos jugements sont influencés par la façon dont une information est formulée, indépendamment de son contenu objectif. « 90% de survie » et « 10% de mortalité » représentent la même réalité mais suscitent des réactions très différentes.", "howToReduce": ["Présenter systématiquement les informations dans plusieurs formats (positif et négatif).", "Rechercher la formulation alternative de toute information importante.", "Utiliser des données brutes (chiffres absolus) plutôt que des formulations relatives."]}, {"id": "hindsight", "name": "Biais rétrospectif", "shortDef": "Après un événement, on se croit plus capable de l'avoir prédit qu'on ne l'était.", "icon": "🔮", "color": "#7C3AED", "definition": "Le biais rétrospectif (hindsight bias), souvent appelé « j'aurais dû le savoir », est notre tendance à percevoir des événements passés comme ayant été prévisibles, une fois qu'ils se sont produits. Ce biais distord notre mémoire des prédictions passées et réduit notre capacité à apprendre de nos erreurs.", "howToReduce": ["Tenir un journal de décisions : noter ses prédictions avant les événements.", "Utiliser le pre-mortem : anticiper les échecs avant qu'ils ne surviennent.", "Dans les analyses post-événement, reconstituer le contexte informationnel initial.", "Distinguer la qualité d'une décision de la qualité de son résultat."]}];
-const BMAP      = Object.fromEntries(BIASES.map(b => [b.id, b]));
+const QUESTIONS=[{"id": "q_conf_1", "biasId": "confirmation", "question": "Vous gérez un projet depuis six mois et défendez une orientation stratégique. Un rapport interne pointe des indicateurs en baisse. Quelle est votre première réaction ?", "options": [{"label": "A", "value": 2, "text": "Je lis le rapport en diagonale, en me disant qu'il manque probablement du contexte."}, {"label": "B", "value": 1, "text": "Je cherche dans le rapport ce qui valide ma stratégie, et demande une analyse complémentaire sur les points négatifs."}, {"label": "C", "value": 3, "text": "Je lis le rapport intégralement, y compris les points qui remettent en cause mon orientation."}, {"label": "D", "value": 2, "text": "Je partage le rapport avec l'équipe pour que chacun interprète les données librement."}], "explanation": "Face à une information qui contredit notre position, nous filtrons naturellement les données pour préserver notre vision. Lire un rapport en cherchant d'abord ce qui confirme (réponse B) illustre ce mécanisme. L'approche la plus rigoureuse consiste à confronter activement ses conclusions aux données contradictoires (C)."}, {"id": "q_conf_2", "biasId": "confirmation", "question": "Vous venez de recruter quelqu'un pour qui vous avez eu un excellent ressenti lors de l'entretien. Trois semaines plus tard, vous supervisez son travail. Que remarquez-vous en priorité ?", "options": [{"label": "A", "value": 1, "text": "Surtout ses initiatives et ses réussites, qui correspondent à ce que j'avais perçu."}, {"label": "B", "value": 2, "text": "Ses résultats globaux, même si je reconnais que mon premier avis colore un peu ma lecture."}, {"label": "C", "value": 3, "text": "Je construis une grille d'évaluation avec des indicateurs définis à l'avance, indépendamment de mon ressenti initial."}, {"label": "D", "value": 2, "text": "Je cherche à tester mes hypothèses positives ET négatives pour avoir un tableau équilibré."}], "explanation": "Nos premières impressions agissent comme un filtre sur les informations suivantes. On remarque plus facilement ce qui confirme le jugement initial. Cette tendance s'applique aussi bien aux recrutements qu'aux décisions stratégiques ou aux relations personnelles."}, {"id": "q_anch_1", "biasId": "anchoring", "question": "Vous négociez le renouvellement d'un contrat de prestation. Avant même que vous parliez, le prestataire annonce un tarif 30 % plus élevé qu'avant. Vous avez votre propre estimation. Comment abordez-vous la suite ?", "options": [{"label": "A", "value": 1, "text": "Je propose instinctivement un compromis entre son tarif et l'ancien, plutôt qu'en partant de mon estimation."}, {"label": "B", "value": 3, "text": "J'avais préparé mon propre chiffre cible indépendamment ; je m'y réfère comme point d'ancrage à moi."}, {"label": "C", "value": 2, "text": "Je demande une justification détaillée du nouveau tarif avant de donner toute réponse."}, {"label": "D", "value": 1, "text": "Je me retrouve à raisonner à partir de son chiffre de départ, même en sachant que c'est une tactique."}], "explanation": "Le premier chiffre mentionné dans une négociation agit comme une ancre cognitive puissante. Même en connaissant ce mécanisme, nous tendons à ajuster nos propositions par rapport à ce point initial. La meilleure protection est de préparer sa propre estimation avant d'être exposé à celle de l'autre."}, {"id": "q_anch_2", "biasId": "anchoring", "question": "Votre responsable vous demande d'estimer la durée d'un projet. Avant que vous répondiez, il dit : « Je pense que ça devrait tenir en six semaines. » Comment procédez-vous ?", "options": [{"label": "A", "value": 1, "text": "Je me base sur cette estimation comme point de départ et j'ajuste légèrement selon ma propre analyse."}, {"label": "B", "value": 2, "text": "Je demande à pouvoir revenir avec une estimation structurée avant de valider quoi que ce soit."}, {"label": "C", "value": 3, "text": "J'avais déjà fait mentalement mon propre calcul ; je compare les deux sans laisser son chiffre influencer le mien."}, {"label": "D", "value": 1, "text": "Je propose sept semaines, me sentant un peu coupable de dépasser son estimation."}], "explanation": "Un chiffre entendu avant d'avoir terminé son propre raisonnement modifie notre estimation finale, même involontairement. La décomposition méthodique (bottom-up) réalisée avant tout ancrage externe est la stratégie la plus efficace."}, {"id": "q_halo_1", "biasId": "halo", "question": "Lors d'un séminaire, un intervenant charismatique et très bien habillé présente une thèse sur laquelle vous avez des doutes. Quelle est votre réaction spontanée ?", "options": [{"label": "A", "value": 1, "text": "Je suis convaincu par sa présentation — quelqu'un d'aussi à l'aise doit maîtriser son sujet."}, {"label": "B", "value": 2, "text": "J'apprécie la présentation, mais je prends note des points qui m'interrogent pour vérifier plus tard."}, {"label": "C", "value": 3, "text": "Je dissocie consciemment la qualité de la prestation de la solidité du contenu."}, {"label": "D", "value": 1, "text": "Je me dis que mes doutes tiennent peut-être à ma propre méconnaissance du sujet."}], "explanation": "L'impression générale laissée par une personne (charisme, présentation, réputation) colore notre jugement sur la qualité de ses idées. Cet effet fonctionne dans les deux sens : une personne perçue négativement sur un trait verra ses autres qualités sous-évaluées."}, {"id": "q_halo_2", "biasId": "halo", "question": "Un collaborateur avec qui vous avez d'excellentes relations vous remet un rapport. Vous repérez une erreur méthodologique. Comment réagissez-vous ?", "options": [{"label": "A", "value": 2, "text": "Je lui signale le problème, mais avec beaucoup de ménagement, me demandant si j'ai bien compris."}, {"label": "B", "value": 1, "text": "Je pense que ça doit être une erreur de mise en forme ; son analyse est généralement très solide."}, {"label": "C", "value": 3, "text": "Je traite cette erreur comme je le ferais pour n'importe quel autre rapport, et je la remonte clairement."}, {"label": "D", "value": 1, "text": "Je m'interroge sur ma propre lecture — peut-être que je rate quelque chose que lui a bien vu."}], "explanation": "La qualité de notre relation avec quelqu'un influence notre lecture de son travail. Quand on apprécie quelqu'un, on tend à minimiser ses erreurs ou à douter de notre propre jugement avant de douter du sien."}, {"id": "q_avail_1", "biasId": "availability", "question": "Après avoir lu plusieurs articles sur une fraude bancaire en ligne largement médiatisée, vous êtes invité à activer un nouveau service de paiement numérique proposé par votre banque. Comment évaluez-vous le risque ?", "options": [{"label": "A", "value": 1, "text": "Je ressens une méfiance accrue et décide d'attendre avant d'activer le service."}, {"label": "B", "value": 2, "text": "Je lis attentivement les conditions de sécurité avant de prendre ma décision."}, {"label": "C", "value": 3, "text": "Je cherche les données réelles sur la sécurité de ce type de service, indépendamment des cas médiatisés."}, {"label": "D", "value": 1, "text": "Je pense que les fraudes sont plus fréquentes qu'avant et préfère éviter ce type d'outil."}], "explanation": "Les exemples facilement rappelables à l'esprit — notamment parce qu'ils ont été très médiatisés — semblent plus fréquents qu'ils ne le sont statistiquement. La couverture médiatique d'un événement ne reflète pas sa probabilité réelle."}, {"id": "q_avail_2", "biasId": "availability", "question": "Vous devez choisir un mode de transport pour un déplacement professionnel long. Une catastrophe aérienne s'est produite il y a dix jours. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je préfère prendre le train — même si c'est plus long, je me sens moins à l'aise à l'idée de prendre l'avion en ce moment."}, {"label": "B", "value": 3, "text": "Je compare les statistiques d'accidents sur les deux modes de transport pour cette distance, sur plusieurs années."}, {"label": "C", "value": 2, "text": "Je reconnais que l'actualité influence mon ressenti, mais je décide quand même en fonction du confort et du temps."}, {"label": "D", "value": 1, "text": "Je pense que les avions sont moins bien contrôlés qu'avant et que le risque a réellement augmenté."}], "explanation": "Un événement récent et saillant fausse notre perception de la probabilité. Juste après une catastrophe aérienne, beaucoup de gens surestiment le risque de voler, alors que statistiquement, les avions restent l'un des moyens de transport les plus sûrs par kilomètre parcouru."}, {"id": "q_stq_1", "biasId": "statusquo", "question": "Votre équipe utilise un logiciel depuis cinq ans. Une nouvelle solution, plus performante selon les tests pilotes, est proposée. La migration prendrait trois semaines. Quelle est votre position ?", "options": [{"label": "A", "value": 1, "text": "Je pense que notre logiciel actuel fait très bien le travail et que les bénéfices ne justifient pas la perturbation."}, {"label": "B", "value": 2, "text": "Je suis ouvert, mais je veux voir un retour d'expérience d'une autre équipe avant de décider."}, {"label": "C", "value": 3, "text": "J'évalue les bénéfices concrets sur 12 mois versus le coût de la transition, sans a priori sur le résultat."}, {"label": "D", "value": 1, "text": "Je m'assure de garder l'ancien logiciel en parallèle « au cas où », même si la migration est validée."}], "explanation": "L'effort de changement est ressenti comme une perte, alors que les bénéfices attendus paraissent abstraits. Ce déséquilibre nous pousse à sur-pondérer les coûts de la transition et à minimiser les avantages potentiels du changement."}, {"id": "q_stq_2", "biasId": "statusquo", "question": "Votre banque principale vous coûte 18 € par mois. Une banque en ligne propose les mêmes services pour 0 €, avec de meilleures conditions. Quelle est votre démarche ?", "options": [{"label": "A", "value": 1, "text": "Je me dis que changer de banque est une démarche compliquée et que ça ne vaut pas la peine pour ça."}, {"label": "B", "value": 2, "text": "Je compare sérieusement les deux offres, mais je ressens une certaine hésitation à quitter une relation installée."}, {"label": "C", "value": 3, "text": "J'évalue les deux offres sur des critères objectifs : coûts, services, sécurité, flexibilité."}, {"label": "D", "value": 1, "text": "Je reste fidèle à ma banque — je la connais, le personnel aussi, et ça a de la valeur."}], "explanation": "La situation présente bénéficie d'un avantage psychologique que les alternatives n'ont pas : elle est connue, prévisible, sans effort. Nous avons tendance à sur-estimer les inconvénients du changement et sous-estimer ce que nous perdons en restant."}, {"id": "q_auth_1", "biasId": "authority", "question": "Un consultant externe, présenté comme expert reconnu, recommande une réorganisation qui va à l'encontre de l'expérience de votre équipe terrain. Votre manager veut suivre la recommandation. Vous :", "options": [{"label": "A", "value": 1, "text": "Faites confiance au consultant — c'est son domaine, il a vu bien plus d'entreprises que vous."}, {"label": "B", "value": 2, "text": "Demandez à votre manager que l'équipe puisse présenter ses retours avant la décision finale."}, {"label": "C", "value": 3, "text": "Proposez une confrontation structurée : recommandation du consultant vs analyse de l'équipe, avec des critères explicites d'arbitrage."}, {"label": "D", "value": 1, "text": "Supposez que votre équipe manque peut-être de recul et qu'un regard extérieur voit des choses que vous ne voyez pas."}], "explanation": "L'expertise légitime est précieuse, mais elle ne remplace pas la connaissance du contexte spécifique. La déférence automatique à une figure d'autorité — sans confronter son analyse à la réalité terrain — peut mener à des décisions inadaptées."}, {"id": "q_auth_2", "biasId": "authority", "question": "Un médecin vous prescrit un traitement. Vous avez lu des témoignages en ligne qui suggèrent des effets secondaires fréquents. Comment réagissez-vous ?", "options": [{"label": "A", "value": 1, "text": "Je suis la prescription sans poser de question — c'est le médecin qui sait."}, {"label": "B", "value": 2, "text": "J'en parle avec le médecin lors de la consultation suivante, mais je commence quand même le traitement."}, {"label": "C", "value": 3, "text": "Je pose des questions au médecin dès la consultation : probabilité des effets secondaires, alternatives possibles, critères de réévaluation."}, {"label": "D", "value": 1, "text": "Je fais confiance au médecin mais je lis quand même le témoignage d'une infirmière sur un forum, que je considère comme crédible."}], "explanation": "L'autorité médicale est fondée, mais le dialogue avec le professionnel de santé est essentiel. Faire confiance à une autorité ne signifie pas s'interdire de poser des questions — c'est même ce qu'un professionnel de santé compétent attend de ses patients."}, {"id": "q_conf2_1", "biasId": "conformity", "question": "En réunion, vous avez préparé une analyse qui contredit le consensus qui se dessine. Quatre collègues semblent déjà d'accord entre eux. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je ne dis rien — quatre personnes ne peuvent pas toutes se tromper, je dois manquer quelque chose."}, {"label": "B", "value": 2, "text": "Je pose une question ouverte pour comprendre leur raisonnement avant de prendre position."}, {"label": "C", "value": 3, "text": "Je présente mon analyse même si elle est minoritaire, en l'appuyant sur mes données."}, {"label": "D", "value": 1, "text": "Je défends une position légèrement différente de la leur, sans aller jusqu'à contredire franchement le groupe."}], "explanation": "La pression sociale du groupe est un mécanisme puissant. Exprimer un désaccord face à une majorité demande un effort cognitif et émotionnel réel. Pourtant, les groupes homogènes prennent souvent de moins bonnes décisions que les groupes où des voix dissidentes s'expriment."}, {"id": "q_conf2_2", "biasId": "conformity", "question": "Vous êtes sur le point d'écrire un avis négatif sur un restaurant que vous avez trouvé décevant. Vous remarquez qu'il a 4,6 étoiles sur 400 avis. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je révise légèrement mon évaluation à la hausse — peut-être que j'ai eu une mauvaise expérience isolée."}, {"label": "B", "value": 2, "text": "J'essaie de comprendre ce que les autres ont aimé que je n'ai pas apprécié, et j'adapte mon avis en conséquence."}, {"label": "C", "value": 3, "text": "J'écris mon avis en me basant uniquement sur ma propre expérience, quelle que soit la note globale."}, {"label": "D", "value": 1, "text": "Je m'abstiens — il y a sûrement quelque chose que je n'ai pas compris si tant de gens sont satisfaits."}], "explanation": "La note collective agit comme une ancre sociale qui modifie rétrospectivement notre propre évaluation. Ce phénomène explique notamment la polarisation des avis en ligne : les opinions tendent à rejoindre le consensus perçu."}, {"id": "q_opt_1", "biasId": "optimism", "question": "Vous planifiez un projet ambitieux. Une estimation rigoureuse donne 5 mois, mais votre direction attend 3 mois. Que faites-vous ?", "options": [{"label": "A", "value": 1, "text": "Je m'engage sur 3 mois — notre équipe est efficace et je veux rester compétitif."}, {"label": "B", "value": 2, "text": "Je propose 4 mois comme compromis en espérant que l'équipe tient ce délai."}, {"label": "C", "value": 3, "text": "Je présente mon estimation de 5 mois avec une ventilation par phase et une analyse des risques, même si c'est inconfortable."}, {"label": "D", "value": 1, "text": "Je pense que l'estimation de 5 mois inclut des marges excessives et que nous pouvons faire mieux."}], "explanation": "Le biais d'optimisme nous pousse à sous-estimer la durée et les ressources nécessaires — c'est la « loi de Hofstadter ». Les projets prennent presque toujours plus de temps que prévu, y compris en tenant compte de cette loi."}, {"id": "q_opt_2", "biasId": "optimism", "question": "Vous envisagez de lancer une activité indépendante. Les statistiques montrent que 60 % des nouvelles entreprises ferment dans les 5 premières années. Quelle est votre réaction à cette donnée ?", "options": [{"label": "A", "value": 1, "text": "Je pense que ces statistiques concernent des gens moins préparés que moi ou sur des marchés différents."}, {"label": "B", "value": 2, "text": "Je prends la statistique au sérieux et je renforce mon business plan pour l'intégrer dans mon analyse de risque."}, {"label": "C", "value": 3, "text": "J'utilise ce taux comme référence de base et j'analyse systématiquement quels facteurs d'échec s'appliquent à mon cas."}, {"label": "D", "value": 1, "text": "Je suis confiant — les gens qui réussissent n'ont pas arrêté parce que les statistiques étaient défavorables."}], "explanation": "Le biais d'optimisme nous conduit à croire que nous sommes moins exposés aux risques que la moyenne. Kahneman et Lovallo appellent cela le « planning fallacy » : nous raisonnons à partir de notre cas (inside view) en ignorant les données statistiques disponibles (outside view)."}, {"id": "q_neg_1", "biasId": "negativity", "question": "À l'issue d'une présentation, vous recevez 12 retours : 10 positifs et 2 critiques. Le soir, quelle est votre pensée dominante ?", "options": [{"label": "A", "value": 1, "text": "Je repasse mentalement les deux critiques, me demandant ce que j'aurais dû faire différemment."}, {"label": "B", "value": 2, "text": "Je note les critiques pour progresser, mais j'ai globalement un sentiment positif de la séance."}, {"label": "C", "value": 3, "text": "Je traite les 12 retours à proportion : 83 % de positif, c'est un bon résultat ; les critiques sont des pistes d'amélioration."}, {"label": "D", "value": 1, "text": "Je me demande si les 10 retours positifs étaient sincères ou juste de la politesse."}], "explanation": "Les informations négatives ont un impact psychologique plus fort que les informations positives de même intensité. Ce mécanisme a une valeur adaptative — être attentif aux menaces — mais dans un contexte professionnel, il peut conduire à un découragement disproportionné."}, {"id": "q_neg_2", "biasId": "negativity", "question": "En début de semaine, vous lisez une série d'articles alarmants sur votre secteur professionnel. Comment cela influence-t-il votre perception de votre propre situation ?", "options": [{"label": "A", "value": 1, "text": "Je commence à m'inquiéter pour mon poste, même si ma situation personnelle n'a pas changé."}, {"label": "B", "value": 2, "text": "Je reconnais que l'actualité génère un sentiment négatif, mais j'essaie de ne pas généraliser à ma situation."}, {"label": "C", "value": 3, "text": "Je contextualise : l'actualité médiatise les difficultés, pas les réussites ; je vais chercher des données de fond sur mon secteur."}, {"label": "D", "value": 1, "text": "Je commence à explorer d'autres pistes professionnelles par précaution, même sans signal concret dans mon entreprise."}], "explanation": "Les médias couvrent davantage les événements négatifs que positifs, ce qui crée une perception biaisée de la réalité. Faire la distinction entre la couverture médiatique d'une tendance et la réalité vécue est un exercice de pensée critique essentiel."}, {"id": "q_dk_1", "biasId": "dunningkruger", "question": "Vous venez de suivre une formation de deux jours sur la gestion de projet. Un collègue vous demande votre avis sur un problème complexe dans un projet que vous n'avez pas suivi. Que répondez-vous ?", "options": [{"label": "A", "value": 1, "text": "Je donne mon analyse — la formation m'a donné les outils pour évaluer ce type de situation."}, {"label": "B", "value": 2, "text": "Je partage quelques pistes issues de la formation, en précisant que je manque de contexte sur ce projet."}, {"label": "C", "value": 3, "text": "Je distingue clairement ce que la formation m'a apporté de ce que je ne maîtrise pas encore, et je l'exprime."}, {"label": "D", "value": 1, "text": "Je me sens suffisamment équipé pour répondre — deux jours de formation intensive, c'est solide."}], "explanation": "Les connaissances partielles créent souvent une confiance excessive, car elles ne permettent pas encore de mesurer l'étendue de ce qu'on ne sait pas. Kruger et Dunning ont montré que les personnes peu expérimentées dans un domaine surestiment systématiquement leur niveau."}, {"id": "q_dk_2", "biasId": "dunningkruger", "question": "Vous animez votre première réunion de management. Elle se passe plutôt bien. Quelle est votre évaluation de vos capacités de manager à l'issue ?", "options": [{"label": "A", "value": 1, "text": "Je me sens naturellement à l'aise dans ce rôle — le management n'est finalement pas si complexe."}, {"label": "B", "value": 2, "text": "C'est encourageant, mais je reconnais avoir encore beaucoup à apprendre sur la durée."}, {"label": "C", "value": 3, "text": "Je réalise un bilan structuré de ce que j'ai bien géré et des aspects qui dépassent encore mon niveau."}, {"label": "D", "value": 1, "text": "Je pense avoir les qualités humaines pour ce rôle ; les compétences techniques, ça vient avec la pratique."}], "explanation": "Le management est l'une des disciplines où l'effet Dunning-Kruger se manifeste le plus clairement. Une seule expérience positive ne révèle pas les limites réelles de la compétence — elle cache souvent ce qu'on n'a pas encore eu à affronter."}, {"id": "q_fram_1", "biasId": "framing", "question": "Votre médecin vous présente deux options chirurgicales : « L'opération A a un taux de survie de 92 % » ; « L'opération B présente un risque de mortalité de 8 % ». Quelle est votre réaction ?", "options": [{"label": "A", "value": 1, "text": "L'opération A me semble clairement plus rassurante, même si je réalise que c'est la même statistique."}, {"label": "B", "value": 2, "text": "Je demande des informations complémentaires : effets secondaires, récupération, taux de complications."}, {"label": "C", "value": 3, "text": "Je reformule les deux options dans les mêmes termes pour neutraliser l'effet de la présentation."}, {"label": "D", "value": 1, "text": "Je ne m'en rends pas compte sur le moment, mais l'option A m'influence davantage dans ma décision."}], "explanation": "La même information présentée différemment génère des préférences différentes. Kahneman et Tversky ont montré que nous réagissons différemment à « 92 % de survie » et à « 8 % de mortalité », bien que ces formulations soient mathématiquement identiques."}, {"id": "q_fram_2", "biasId": "framing", "question": "Un produit alimentaire est étiqueté « 90 % sans matière grasse ». Un produit concurrent mentionne qu'il « contient 10 % de matière grasse ». Comment évaluez-vous ces deux produits ?", "options": [{"label": "A", "value": 1, "text": "Le premier me semble meilleur pour la santé — la formulation positive est plus claire."}, {"label": "B", "value": 2, "text": "Je consulte les valeurs nutritionnelles détaillées pour comparer réellement les deux."}, {"label": "C", "value": 3, "text": "Je traduis mentalement les deux étiquettes dans la même unité pour les comparer à iso-information."}, {"label": "D", "value": 1, "text": "Je ne perçois pas vraiment de différence entre les deux formulations au premier coup d'œil."}], "explanation": "Le cadrage positif (« 90 % sans matière grasse ») génère une perception plus favorable que le cadrage négatif (« 10 % de matière grasse ») pour la même réalité. Ce mécanisme est largement exploité dans le marketing alimentaire et pharmaceutique."}, {"id": "q_hind_1", "biasId": "hindsight", "question": "Un projet que vous avez soutenu échoue malgré des mois d'efforts. En faisant le bilan, quelle est votre lecture ?", "options": [{"label": "A", "value": 1, "text": "Je me dis que les signaux d'alerte étaient visibles dès le début — on aurait dû les voir."}, {"label": "B", "value": 2, "text": "J'analyse les décisions clés pour comprendre ce qui aurait pu être fait différemment."}, {"label": "C", "value": 3, "text": "Je reconstitue l'information disponible à chaque étape pour évaluer si les décisions étaient raisonnables dans leur contexte."}, {"label": "D", "value": 1, "text": "Je pense que la plupart des problèmes étaient prévisibles par quelqu'un avec suffisamment d'expérience."}], "explanation": "Une fois un événement survenu, il nous semble avoir été prévisible — c'est l'illusion rétrospective. Ce biais déforme notre mémoire de ce que nous savions avant l'événement, ce qui rend difficile l'apprentissage réel à partir des échecs."}, {"id": "q_hind_2", "biasId": "hindsight", "question": "Six mois plus tôt, vous aviez prédit qu'un concurrent lancerait un nouveau produit sur votre marché. C'est arrivé. Comment interprétez-vous cette réussite ?", "options": [{"label": "A", "value": 1, "text": "Je me sens conforté dans la qualité de mon analyse — c'était clairement visible pour qui regardait les bons signaux."}, {"label": "B", "value": 2, "text": "Je note le succès de la prédiction, mais j'identifie aussi les éléments que je n'avais pas anticipés."}, {"label": "C", "value": 3, "text": "J'examine ce que j'avais réellement comme données à l'époque, pour distinguer ce qui tenait de la chance ou de la méthode."}, {"label": "D", "value": 1, "text": "Je pense avoir un bon sens des dynamiques de marché — cette prédiction le confirme."}], "explanation": "Après un événement, notre confiance en notre capacité à l'avoir prévu augmente — parfois indûment. Ce biais affecte autant les succès que les échecs : il fausse notre évaluation de ce que nous savons réellement, et peut alimenter une confiance excessive dans nos prédictions futures."}];const BIASES=[{"id": "confirmation", "name": "Biais de confirmation", "shortDef": "Tendance à chercher les informations qui confirment nos croyances.", "icon": "🔍", "color": "#2563EB", "definition": "Le biais de confirmation est la tendance à rechercher, interpréter, mémoriser et rappeler les informations d'une manière qui confirme nos croyances ou hypothèses préexistantes, tout en accordant moins d'attention aux informations qui les contredisent. C'est l'un des biais cognitifs les plus documentés en psychologie.", "howToReduce": ["Formuler activement l'hypothèse inverse de celle qu'on soutient.", "Chercher délibérément des arguments contredisant votre position (steel-manning).", "Consulter des sources diverses, y compris celles avec lesquelles on est en désaccord.", "Dans les équipes, nommer un « avocat du diable »."]}, {"id": "anchoring", "name": "Biais d'ancrage", "shortDef": "Influence excessive d'une première information sur nos jugements.", "icon": "⚓", "color": "#7C3AED", "definition": "Le biais d'ancrage décrit notre tendance à accorder un poids disproportionné à la première information reçue (l'ancre) lorsque nous formulons des jugements ou prenons des décisions. Même lorsque l'ancre est manifestement arbitraire ou non pertinente, elle continue d'influencer nos estimations de manière significative.", "howToReduce": ["Générer sa propre estimation avant d'être exposé à une ancre externe.", "En négociation, considérer plusieurs scénarios indépendants avant de répondre.", "Adopter une méthode d'estimation structurée (planification par référence de classe).", "Prendre conscience de l'ancre en la nommant explicitement dans le groupe."]}, {"id": "halo", "name": "Effet de halo", "shortDef": "Une impression globale positive ou négative colore tous nos jugements.", "icon": "✨", "color": "#D97706", "definition": "L'effet de halo est un biais cognitif par lequel l'impression générale que l'on a d'une personne, d'une marque ou d'une situation influence la manière dont on évalue ses caractéristiques spécifiques. Une personne perçue comme charismatique sera supposée compétente, honnête et intelligente, même sans preuves directes.", "howToReduce": ["Structurer les évaluations par critères indépendants, évalués séparément.", "Utiliser des grilles d'évaluation standardisées avant d'avoir une vision globale.", "Anonymiser les candidatures lors du tri initial.", "Former les évaluateurs à identifier leurs premières impressions."]}, {"id": "availability", "name": "Biais de disponibilité", "shortDef": "On surestime la probabilité de ce qui nous vient facilement à l'esprit.", "icon": "🧠", "color": "#059669", "definition": "Le biais de disponibilité est une heuristique par laquelle nous évaluons la probabilité d'un événement en fonction de la facilité avec laquelle des exemples nous viennent à l'esprit. Plus un exemple est facile à rappeler — parce qu'il est récent, émotionnellement marquant ou médiatisé —, plus nous surestimerons sa fréquence ou sa probabilité.", "howToReduce": ["Consulter les données statistiques objectives avant d'évaluer un risque.", "Distinguer l'émotion suscitée par un exemple de sa fréquence réelle.", "Utiliser des bases de référence et des taux de base dans les décisions."]}, {"id": "statusquo", "name": "Biais de statu quo", "shortDef": "Préférence pour l'état actuel des choses, résistance au changement.", "icon": "⚖️", "color": "#DC2626", "definition": "Le biais de statu quo est notre tendance à préférer l'état actuel des choses et à percevoir tout changement comme une perte potentielle. Même lorsqu'une alternative serait objectivement meilleure, nous avons tendance à rester dans la situation existante par défaut, en surestimant le coût du changement.", "howToReduce": ["Reformuler la décision en termes de coût de l'inaction plutôt que de coût du changement.", "Rendre les alternatives plus concrètes et moins abstraites.", "Proposer des transitions progressives plutôt que des ruptures brutales."]}, {"id": "authority", "name": "Biais d'autorité", "shortDef": "Tendance à accorder plus de crédit à une opinion en raison du statut de son auteur.", "icon": "🎓", "color": "#0891B2", "definition": "Le biais d'autorité est notre tendance à accorder plus de poids à l'opinion d'une personne perçue comme une autorité — en raison de son titre, de son statut, de son diplôme ou de sa réputation — sans évaluer la valeur intrinsèque de son argument.", "howToReduce": ["Développer une culture du questionnement respectueux.", "Évaluer les arguments plutôt que les sources.", "Présenter les idées anonymement avant discussion dans les équipes.", "Former les managers à valoriser les désaccords constructifs."]}, {"id": "conformity", "name": "Biais de conformité", "shortDef": "Tendance à aligner nos opinions sur celles du groupe.", "icon": "👥", "color": "#7C3AED", "definition": "Le biais de conformité est notre tendance à modifier nos croyances, nos perceptions ou nos comportements pour les aligner sur ceux du groupe auquel nous appartenons ou voulons appartenir. Il peut conduire à des comportements contraires à notre jugement initial.", "howToReduce": ["Utiliser des techniques de vote anonyme avant les discussions de groupe.", "Recueillir les avis individuels écrits avant toute délibération collective.", "Nommer un « avocat du diable » dans les réunions de décision.", "Valoriser explicitement les désaccords dans la culture d'équipe."]}, {"id": "optimism", "name": "Biais d'optimisme", "shortDef": "Tendance à surestimer les chances de succès et sous-estimer les risques.", "icon": "🌟", "color": "#F59E0B", "definition": "Le biais d'optimisme est notre tendance à croire que nos chances de vivre des événements positifs sont supérieures à la moyenne, et que nos risques de vivre des événements négatifs sont inférieurs. Nous nous percevons comme plus susceptibles de réussir, d'être en bonne santé et de connaître le bonheur que nos semblables.", "howToReduce": ["Utiliser la « planification par référence de classe » : comparer son projet à des projets similaires passés.", "Effectuer un pre-mortem : imaginer que le projet a échoué et identifier les causes possibles.", "Solliciter des estimations indépendantes de personnes non investies."]}, {"id": "negativity", "name": "Biais de négativité", "shortDef": "Les expériences négatives ont plus de poids que les positives équivalentes.", "icon": "⚡", "color": "#6B7280", "definition": "Le biais de négativité décrit notre tendance à accorder plus de poids aux expériences, aux informations et aux émotions négatives qu'aux positives de même intensité. Une critique a plus d'impact qu'un compliment, une perte est ressentie plus intensément qu'un gain équivalent.", "howToReduce": ["Pratiquer la reconnaissance des succès : tenir un journal de réussites.", "Dans le management, systématiser les feedbacks positifs spécifiques.", "Adopter la règle des 5:1 en management (Gottman) : 5 interactions positives pour 1 négative.", "Recadrer les erreurs comme des apprentissages plutôt que des échecs."]}, {"id": "dunningkruger", "name": "Effet Dunning-Kruger", "shortDef": "Les moins compétents surestiment leurs compétences ; les experts les sous-estiment.", "icon": "📊", "color": "#DC2626", "definition": "L'effet Dunning-Kruger est un biais cognitif par lequel des personnes peu compétentes dans un domaine tendent à surestimer leurs propres compétences, tandis que les personnes très compétentes ont tendance à sous-estimer les leurs. La compétence requise pour évaluer une performance est souvent la même que celle requise pour l'exécuter.", "howToReduce": ["Développer la pratique métacognitive : réfléchir régulièrement sur ce qu'on sait et ne sait pas.", "Chercher des retours réguliers de personnes compétentes dans le domaine.", "Adopter une posture d'apprenant permanent (growth mindset)."]}, {"id": "framing", "name": "Biais de cadrage", "shortDef": "Notre décision change selon la façon dont l'information est présentée.", "icon": "🖼️", "color": "#0891B2", "definition": "Le biais de cadrage (framing effect) décrit le phénomène par lequel nos décisions et nos jugements sont influencés par la façon dont une information est formulée, indépendamment de son contenu objectif. « 90% de survie » et « 10% de mortalité » représentent la même réalité mais suscitent des réactions très différentes.", "howToReduce": ["Présenter systématiquement les informations dans plusieurs formats (positif et négatif).", "Rechercher la formulation alternative de toute information importante.", "Utiliser des données brutes (chiffres absolus) plutôt que des formulations relatives."]}, {"id": "hindsight", "name": "Biais rétrospectif", "shortDef": "Après un événement, on se croit plus capable de l'avoir prédit qu'on ne l'était.", "icon": "🔮", "color": "#7C3AED", "definition": "Le biais rétrospectif (hindsight bias), souvent appelé « j'aurais dû le savoir », est notre tendance à percevoir des événements passés comme ayant été prévisibles, une fois qu'ils se sont produits. Ce biais distord notre mémoire des prédictions passées et réduit notre capacité à apprendre de nos erreurs.", "howToReduce": ["Tenir un journal de décisions : noter ses prédictions avant les événements.", "Utiliser le pre-mortem : anticiper les échecs avant qu'ils ne surviennent.", "Dans les analyses post-événement, reconstituer le contexte informationnel initial.", "Distinguer la qualité d'une décision de la qualité de son résultat."]}];
+const BMAP = Object.fromEntries(BIASES.map(b=>[b.id,b]));
 
-// ── Navigation ──
-function setNav(id) {
-  ['nav-home','nav-diag','nav-cat'].forEach(n => document.getElementById(n).classList.remove('active'));
-  if (id) document.getElementById(id).classList.add('active');
+function setNav(id){
+  ['nav-home','nav-diag','nav-cat'].forEach(n=>document.getElementById(n).classList.remove('active'));
+  if(id) document.getElementById(id).classList.add('active');
 }
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  window.scrollTo(0, 0);
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
 }
-function goHome()      { setNav('nav-home'); showPage('home'); }
-function showCatalog() { setNav('nav-cat');  showPage('catalog'); }
+function goHome()     {setNav('nav-home');showPage('home');}
+function showCatalog(){setNav('nav-cat'); showPage('catalog');}
 
-// ── Diagnostic ──
-let curQ = 0, answers = {}, shuffled = [];
+let curQ=0,answers={},shuffled=[];
 
-function startDiag() {
-  curQ = 0; answers = {};
-  shuffled = [...QUESTIONS].sort(() => Math.random() - 0.5);
-  document.getElementById('diag-intro').style.display    = 'block';
-  document.getElementById('diag-question').style.display = 'none';
-  setNav('nav-diag'); showPage('diag');
+function startDiag(){
+  curQ=0;answers={};
+  shuffled=[...QUESTIONS].sort(()=>Math.random()-.5);
+  document.getElementById('diag-intro').style.display='block';
+  document.getElementById('diag-question').style.display='none';
+  setNav('nav-diag');showPage('diag');
 }
-
-function beginDiag() {
-  document.getElementById('diag-intro').style.display    = 'none';
-  document.getElementById('diag-question').style.display = 'block';
+function beginDiag(){
+  document.getElementById('diag-intro').style.display='none';
+  document.getElementById('diag-question').style.display='block';
   renderQ();
 }
-
-function renderQ() {
-  const q = shuffled[curQ], total = shuffled.length;
-  document.getElementById('prog-count').textContent = (curQ+1) + ' / ' + total;
-  document.getElementById('prog-fill').style.width  = (curQ / total * 100) + '%';
-  document.getElementById('q-num').textContent  = 'Situation ' + (curQ+1);
-  document.getElementById('q-text').textContent = q.question;
-
-  const c = document.getElementById('q-opts');
-  c.innerHTML = '';
-  q.options.forEach((opt, i) => {
-    const b = document.createElement('button');
-    b.className = 'opt' + (answers[curQ] === i ? ' sel' : '');
-    b.innerHTML = '<span class="opt-lbl">' + opt.label + '</span><span class="opt-txt">' + opt.text + '</span>';
-    b.onclick = () => selectAnswer(i);
+function renderQ(){
+  const q=shuffled[curQ],total=shuffled.length;
+  document.getElementById('prog-count').textContent=(curQ+1)+' / '+total;
+  document.getElementById('prog-fill').style.width=(curQ/total*100)+'%';
+  document.getElementById('q-num').textContent='Situation '+(curQ+1);
+  document.getElementById('q-text').textContent=q.question;
+  const c=document.getElementById('q-opts');c.innerHTML='';
+  q.options.forEach((opt,i)=>{
+    const b=document.createElement('button');
+    b.className='opt'+(answers[curQ]===i?' sel':'');
+    b.innerHTML='<span class="opt-ltr">'+opt.label+'</span><span>'+opt.text+'</span>';
+    b.onclick=()=>selectAns(i);
     c.appendChild(b);
   });
-
-  const prev = document.getElementById('btn-prev');
-  prev.style.visibility = curQ > 0 ? 'visible' : 'hidden';
-  const next = document.getElementById('btn-next');
-  const isLast = curQ === total - 1;
-  next.textContent = isLast ? 'Voir mon diagnostic →' : 'Suivant →';
-  next.className   = 'btn-next-q' + (answers[curQ] !== undefined ? ' on' : '');
+  const prev=document.getElementById('btn-prev');
+  prev.style.visibility=curQ>0?'visible':'hidden';
+  const next=document.getElementById('btn-next');
+  const isLast=curQ===total-1;
+  next.textContent=isLast?'Voir mon diagnostic →':'Suivant →';
+  next.className='btn-next'+(answers[curQ]!==undefined?' on':'');
 }
-
-function selectAnswer(i) {
-  answers[curQ] = i;
-  document.querySelectorAll('.opt').forEach((b, j) => b.className = 'opt' + (j===i?' sel':''));
-  document.getElementById('btn-next').className = 'btn-next-q on';
+function selectAns(i){
+  answers[curQ]=i;
+  document.querySelectorAll('.opt').forEach((b,j)=>b.className='opt'+(j===i?' sel':''));
+  document.getElementById('btn-next').className='btn-next on';
 }
-
-function nextQ() {
-  if (answers[curQ] === undefined) return;
-  if (curQ === shuffled.length - 1) buildResults();
-  else { curQ++; renderQ(); window.scrollTo(0,0); }
+function nextQ(){
+  if(answers[curQ]===undefined)return;
+  if(curQ===shuffled.length-1)buildResults();
+  else{curQ++;renderQ();window.scrollTo(0,0);}
 }
-function prevQ() {
-  if (curQ > 0) { curQ--; renderQ(); window.scrollTo(0,0); }
-}
+function prevQ(){if(curQ>0){curQ--;renderQ();window.scrollTo(0,0);}}
 
-// ── Résultats ──
-function buildResults() {
-  const scores = {};
-  BIASES.forEach(b => scores[b.id] = 0);
-  shuffled.forEach((q, qi) => {
-    if (answers[qi] !== undefined) {
-      const v = q.options[answers[qi]].value;
-      scores[q.biasId] = (scores[q.biasId]||0) + (v===1?2:v===2?1:0);
+function buildResults(){
+  const scores={};BIASES.forEach(b=>scores[b.id]=0);
+  shuffled.forEach((q,qi)=>{
+    if(answers[qi]!==undefined){
+      const v=q.options[answers[qi]].value;
+      scores[q.biasId]=(scores[q.biasId]||0)+(v===1?2:v===2?1:0);
     }
   });
-  const sorted   = BIASES.map(b=>({...b,score:scores[b.id]||0})).sort((a,b)=>b.score-a.score);
-  const dominant = sorted.filter(b=>b.score>=3);
-  const moderate = sorted.filter(b=>b.score>0&&b.score<3);
-  const absent   = sorted.filter(b=>b.score===0);
-
-  fillSection('dom-sec', '⚠️ Tendances cognitives marquées', dominant, 'Tendance forte');
-  fillSection('mod-sec', '🔶 Tendances cognitives modérées', moderate, 'Tendance modérée');
-
-  const strSec = document.getElementById('str-sec');
-  strSec.innerHTML = '';
-  if (absent.length) {
-    const t = document.createElement('div'); t.className='res-sec-title';
-    t.innerHTML='✅ Biais peu présents dans vos réponses'; strSec.appendChild(t);
-    const chips = document.createElement('div'); chips.className='chips';
-    absent.forEach(b => {
-      const ch = document.createElement('div'); ch.className='chip';
-      ch.textContent = b.icon + ' ' + b.name; chips.appendChild(ch);
-    });
-    strSec.appendChild(chips);
+  const sorted=BIASES.map(b=>({...b,score:scores[b.id]||0})).sort((a,b)=>b.score-a.score);
+  const dominant=sorted.filter(b=>b.score>=3);
+  const moderate=sorted.filter(b=>b.score>0&&b.score<3);
+  const absent  =sorted.filter(b=>b.score===0);
+  fillSec('dom-sec','⚠️ Tendances marquées',dominant,'Tendance forte');
+  fillSec('mod-sec','🔶 Tendances modérées',moderate,'Tendance modérée');
+  const strSec=document.getElementById('str-sec');strSec.innerHTML='';
+  if(absent.length){
+    const t=document.createElement('div');t.className='res-sec-title';
+    t.innerHTML='✅ Biais peu présents';strSec.appendChild(t);
+    const ch=document.createElement('div');ch.className='chips';
+    absent.forEach(b=>{const c=document.createElement('div');c.className='chip';c.textContent=b.icon+' '+b.name;ch.appendChild(c);});
+    strSec.appendChild(ch);
   }
-  setNav('nav-diag'); showPage('results');
+  setNav('nav-diag');showPage('results');
 }
-
-function fillSection(id, titleHtml, list, level) {
-  const sec = document.getElementById(id); sec.innerHTML='';
-  if (!list.length) return;
-  const t = document.createElement('div'); t.className='res-sec-title'; t.innerHTML=titleHtml; sec.appendChild(t);
-  list.forEach(b => {
-    const card = document.createElement('div'); card.className='bcr';
-    card.style.borderLeftColor = b.color||'var(--vert)';
-    const def = b.definition?b.definition.substring(0,300)+'…':'';
-    card.innerHTML =
-      '<div class="bcr-head"><span class="bcr-icon">'+b.icon+'</span>'+
-      '<div><div class="bcr-name">'+b.name+'</div><div class="bcr-def">'+b.shortDef+'</div></div>'+
-      '<div class="bcr-lvl">'+level+'</div></div>'+
-      '<div class="bcr-body">'+def+'</div>'+
-      '<div class="bcr-rt">💡 Stratégies pour l&#39;atténuer :</div>'+
-      '<ul class="bcr-list">'+b.howToReduce.map(r=>'<li>'+r+'</li>').join('')+'</ul>';
+function fillSec(id,title,list,lvl){
+  const sec=document.getElementById(id);sec.innerHTML='';
+  if(!list.length)return;
+  const t=document.createElement('div');t.className='res-sec-title';t.innerHTML=title;sec.appendChild(t);
+  list.forEach(b=>{
+    const card=document.createElement('div');card.className='bias-card';
+    const def=b.definition?b.definition.substring(0,280)+'…':'';
+    card.innerHTML=
+      '<div class="bc-header">'+
+      '<span class="bc-icon">'+b.icon+'</span>'+
+      '<div class="bc-info"><div class="bc-name">'+b.name+'</div><div class="bc-short">'+b.shortDef+'</div></div>'+
+      '<div class="bc-badge">'+lvl+'</div></div>'+
+      '<div class="bc-body">'+def+'</div>'+
+      '<div class="bc-tips-label">Stratégies pour l&#39;atténuer</div>'+
+      '<ul class="bc-tips">'+b.howToReduce.map(r=>'<li>'+r+'</li>').join('')+'</ul>';
     sec.appendChild(card);
   });
 }
-
-// ── Catalogue ──
-function buildCatalog() {
-  const g = document.getElementById('cat-grid'); g.innerHTML='';
-  BIASES.forEach(b => {
-    const c = document.createElement('div'); c.className='bcard';
-    c.style.borderTopColor = b.color||'var(--jaune)';
-    c.innerHTML =
-      '<div class="bcard-head"><span class="bcard-icon">'+b.icon+'</span>'+
-      '<span class="bcard-name">'+b.name+'</span></div>'+
+function buildCatalog(){
+  const g=document.getElementById('cat-grid');g.innerHTML='';
+  BIASES.forEach(b=>{
+    const c=document.createElement('div');c.className='bcard';
+    c.innerHTML=
+      '<div class="bcard-top"><span class="bcard-icon">'+b.icon+'</span><span class="bcard-name">'+b.name+'</span></div>'+
       '<div class="bcard-def">'+b.shortDef+'</div>'+
-      '<div class="bcard-more">En savoir plus →</div>';
-    c.onclick = () => openModal(b.id);
-    g.appendChild(c);
+      '<div class="bcard-link">En savoir plus →</div>';
+    c.onclick=()=>openModal(b.id);g.appendChild(c);
   });
 }
-
-// ── Modal ──
-function openModal(id) {
-  const b = BMAP[id]; if (!b) return;
-  document.getElementById('m-icon').textContent  = b.icon;
-  document.getElementById('m-name').textContent  = b.name;
-  document.getElementById('m-short').textContent = b.shortDef;
-  document.getElementById('m-def').textContent   = b.definition||'';
-  document.getElementById('m-reduce').innerHTML  = (b.howToReduce||[]).map(r=>'<li>'+r+'</li>').join('');
+function openModal(id){
+  const b=BMAP[id];if(!b)return;
+  document.getElementById('m-icon').textContent=b.icon;
+  document.getElementById('m-name').textContent=b.name;
+  document.getElementById('m-short').textContent=b.shortDef;
+  document.getElementById('m-def').textContent=b.definition||'';
+  document.getElementById('m-reduce').innerHTML=(b.howToReduce||[]).map(r=>'<li>'+r+'</li>').join('');
   document.getElementById('overlay').classList.add('open');
 }
-function closeModal(e) {
-  if (!e||e.target===document.getElementById('overlay')||
-      e.target.classList.contains('modal-x')||
-      (e.currentTarget&&e.currentTarget.classList.contains('modal-x')))
+function closeModal(e){
+  if(!e||e.target===document.getElementById('overlay')||
+     (e.target&&(e.target.classList.contains('modal-close')||e.target.classList.contains('overlay'))))
     document.getElementById('overlay').classList.remove('open');
 }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
-
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('overlay').classList.remove('open');});
 buildCatalog();
 </script>
 </body>
