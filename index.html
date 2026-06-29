@@ -222,6 +222,13 @@ footer .sep{opacity:.3;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;}
 .chip{background:var(--blanc);border:1.5px solid rgba(47,79,62,.15);border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--vert);display:flex;align-items:center;gap:5px;box-shadow:var(--sh-xs);}
 .res-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:48px;padding-top:36px;border-top:1px solid rgba(0,0,0,.06);}
+.btn-hero-ghost{
+  background:transparent;border:2px solid rgba(47,79,62,.25);color:var(--vert);
+  padding:17px 36px;border-radius:50px;
+  font-size:16px;font-weight:600;font-family:'Inter',sans-serif;
+  cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-hero-ghost:hover{background:rgba(47,79,62,.06);border-color:var(--vert);}
 .btn-back{background:none;border:none;color:var(--gris);font-size:14px;font-weight:500;font-family:'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 0;}
 .btn-back:hover{color:var(--vert);}
 .btn-primary{background:var(--jaune);color:var(--vert);border:none;padding:14px 30px;border-radius:50px;font-size:15px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(232,183,58,.3);}
@@ -302,10 +309,10 @@ footer .sep{opacity:.3;}
       <div class="hero-label">🎓 Outil pédagogique · FormaSo · Sophie Sirgue</div>
       <h1>Identifiez vos <em>biais cognitifs</em><br>dominants</h1>
       <p class="hero-sub">Un diagnostic de 24 situations concrètes pour comprendre vos tendances cognitives et décider avec plus de recul.</p>
-      <button class="btn-hero" onclick="startDiag()">
-        Passer le test
-        <span>→</span>
-      </button>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-hero" onclick="startDiag()">Passer le test <span>→</span></button>
+        <button class="btn-hero-ghost" onclick="showCatalog()">📚 Découvrir les biais cognitifs</button>
+      </div>
       <div class="btn-hero-note">Gratuit · ~10 minutes · Aucune inscription requise</div>
       <div class="trust-row">
         <div class="trust-item"><span>🔒</span> Aucune donnée collectée</div>
