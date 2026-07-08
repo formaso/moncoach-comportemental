@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentions légales – Mon Coach Comportemental | FormaSo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green:#2F4F3E; --yellow:#E8B73A; --brown:#6A4B3A; --beige:#FAF7F2; --grey:#8A8176; --white:#FFFFFF; }
+    body { font-family:'Segoe UI',Arial,sans-serif; background:var(--beige); min-height:100vh; }
+    header { background:var(--green); padding:16px 28px; display:flex; align-items:center; justify-content:space-between; }
+    .logo { color:var(--yellow); font-weight:800; font-size:18px; text-decoration:none; }
+    .back { color:rgba(255,255,255,0.7); font-size:13px; text-decoration:none; }
+    .back:hover { color:var(--yellow); }
+    .container { max-width:720px; margin:0 auto; padding:40px 20px 60px; }
+    h1 { font-size:28px; color:var(--green); font-family:'Georgia',serif; margin-bottom:8px; }
+    .updated { font-size:12px; color:var(--grey); margin-bottom:32px; }
+    section { background:var(--white); border-radius:14px; padding:24px 28px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+    h2 { font-size:16px; color:var(--green); font-weight:700; margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid var(--beige); }
+    p, li { font-size:14px; color:var(--brown); line-height:1.7; margin-bottom:8px; }
+    ul { padding-left:18px; margin-bottom:8px; }
+    a { color:var(--green); }
+    .highlight { background:rgba(47,79,62,0.06); border-left:3px solid var(--green); border-radius:6px; padding:12px 16px; font-size:13px; color:var(--brown); margin-top:10px; }
+  </style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">FormaSo</a>
+  <a class="back" href="index.html">← Accueil</a>
+</header>
+<div class="container">
+  <h1>Mentions légales</h1>
+  <div class="updated">Dernière mise à jour : juillet 2025</div>
+
+  <section>
+    <h2>Éditeur du site</h2>
+    <p><strong>Sophie Sirgue</strong> – Formatrice indépendante</p>
+    <p>Activité exercée sous la marque <strong>FormaSo</strong></p>
+    <p>Saint-Martin-de-Seignanx (40390) – France</p>
+    <p>Certification qualité : <strong>RS7138</strong> – Intégration de l'IA en pratique professionnelle (janvier 2026)</p>
+    <p>Contact : <a href="mailto:contact@formaso.fr">contact@formaso.fr</a></p>
+  </section>
+
+  <section>
+    <h2>Hébergement</h2>
+    <p>Ce site est hébergé par <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA). Pour tout signalement technique : <a href="https://support.github.com" target="_blank">support.github.com</a></p>
+  </section>
+
+  <section>
+    <h2>Nature et finalité de l'outil</h2>
+    <p>Le site <em>Mon Coach Comportemental</em> est un <strong>outil pédagogique interactif</strong> conçu à des fins de développement professionnel. Il comprend :</p>
+    <ul>
+      <li>Un questionnaire d'identification des profils comportementaux DISC (40 questions)</li>
+      <li>Un test d'identification des biais cognitifs dominants (20 questions)</li>
+      <li>Un diagnostic généré automatiquement via l'API Claude d'Anthropic</li>
+    </ul>
+    <div class="highlight">⚠️ <strong>Important :</strong> Cet outil n'est pas un dispositif de diagnostic psychologique clinique. Il ne remplace pas un bilan de compétences, un accompagnement psychologique ou un test psychométrique normé (norme ISO 10667). Les résultats sont indicatifs et à usage strictement formatif. Ils ne sauraient être utilisés seuls à des fins de recrutement, d'évaluation RH formelle ou de soin.</div>
+  </section>
+
+  <section id="rgpd">
+    <h2>Données personnelles – RGPD</h2>
+    <p>Conformément au Règlement Général sur la Protection des Données (RGPD – UE 2016/679) et à la loi Informatique et Libertés :</p>
+    <ul>
+      <li><strong>Aucune donnée personnelle n'est collectée ni stockée</strong> sur les serveurs de FormaSo ou de GitHub Pages.</li>
+      <li>Les réponses aux questionnaires sont traitées <strong>exclusivement en mémoire locale</strong> (RAM du navigateur) et disparaissent à la fermeture de l'onglet.</li>
+      <li>Les appels à l'API Claude (Anthropic) sont des requêtes ponctuelles : le contenu est transmis à Anthropic conformément à leurs <a href="https://www.anthropic.com/privacy" target="_blank">conditions d'utilisation et politique de confidentialité</a>. Anthropic déclare ne pas utiliser les données API pour l'entraînement de ses modèles.</li>
+      <li>Aucun cookie de traçage, aucun outil analytics, aucun pixel publicitaire n'est utilisé sur ce site.</li>
+    </ul>
+    <div class="highlight">Pour exercer vos droits (accès, rectification, suppression, portabilité) : <a href="mailto:contact@formaso.fr">contact@formaso.fr</a>. Vous pouvez également contacter la CNIL : <a href="https://www.cnil.fr" target="_blank">www.cnil.fr</a></div>
+  </section>
+
+  <section>
+    <h2>Propriété intellectuelle</h2>
+    <p>Le contenu de ce site (textes, structure, design, questions, grilles d'analyse) est la propriété de <strong>Sophie Sirgue / FormaSo</strong>, sauf mention contraire. Toute reproduction, même partielle, est soumise à autorisation préalable.</p>
+    <p>Les références scientifiques citées appartiennent à leurs auteurs respectifs et sont mentionnées à titre informatif dans le respect du droit de citation.</p>
+  </section>
+
+  <section>
+    <h2>Intelligence artificielle – Transparence</h2>
+    <p>Les diagnostics produits par cet outil sont générés par le modèle <strong>Claude (Anthropic)</strong> via son API. Il s'agit d'un système d'IA générative. Les résultats sont produits automatiquement, sans intervention humaine a posteriori.</p>
+    <p>Conformément aux obligations de transparence imposées par le <strong>Règlement européen sur l'IA (AI Act, UE 2024/1689)</strong>, l'utilisateur est informé qu'il interagit avec un système d'intelligence artificielle.</p>
+    <div class="highlight">Les diagnostics générés ne constituent pas des avis professionnels (médicaux, psychologiques, juridiques ou RH). Ils doivent être interprétés dans un cadre de développement personnel et professionnel, idéalement avec l'accompagnement d'un formateur ou d'un coach certifié.</div>
+  </section>
+
+  <section>
+    <h2>Limitation de responsabilité</h2>
+    <p>FormaSo / Sophie Sirgue ne saurait être tenu·e responsable des décisions prises par un utilisateur sur la base des résultats fournis par cet outil. L'utilisation de ce site implique l'acceptation pleine et entière de ces conditions.</p>
+  </section>
+
+</div>
+</body>
+</html>
