@@ -1,165 +1,96 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Coach Comportemental — FormaSo</title>
-  <meta name="description" content="Plateforme pédagogique FormaSo : Approche comportementale et Biais cognitifs. Sophie Sirgue, formatrice indépendante.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon Coach Comportemental – FormaSo</title>
+  <meta name="description" content="Outil pédagogique interactif FormaSo : profils DISC, biais cognitifs, diagnostic IA. Par Sophie Sirgue, formatrice indépendante."/>
+  <meta name="author" content="Sophie Sirgue – FormaSo"/>
   <style>
-    :root{--vert:#2F4F3E;--vert2:#3A6250;--jaune:#E8B73A;--beige:#FAF7F2;--blanc:#FFFFFF;--texte:#2B2B2B;--gris:#8A8176;--bord:rgba(47,79,62,.12);}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html,body{height:100%;font-family:Inter,sans-serif;background:var(--beige);overflow:hidden;}
-
-    /* NAV */
-    .hub-nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:58px;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bord);display:flex;align-items:center;padding:0 20px;gap:16px;box-shadow:0 1px 10px rgba(0,0,0,.06);}
-    .hub-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;cursor:pointer;background:none;border:none;}
-    .hub-logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(140deg,var(--vert),var(--vert2));display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 8px rgba(47,79,62,.25);}
-    .hub-brand-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:800;color:var(--vert);line-height:1.1;}
-    .hub-brand-sub{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gris);}
-    .hub-sep{width:1px;height:26px;background:var(--bord);flex-shrink:0;}
-    .hub-tabs{display:flex;gap:4px;flex:1;}
-    .hub-tab{display:flex;align-items:center;gap:7px;font-family:Inter,sans-serif;font-size:13px;font-weight:500;color:var(--gris);background:transparent;border:none;cursor:pointer;padding:7px 16px;border-radius:22px;transition:all .18s;}
-    .hub-tab:hover{color:var(--vert);background:rgba(47,79,62,.07);}
-    .hub-tab.active{color:var(--vert);background:rgba(47,79,62,.09);font-weight:600;}
-    .t-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:10px;background:rgba(47,79,62,.1);color:var(--vert);transition:all .18s;}
-    .hub-tab.active .t-badge{background:var(--jaune);color:var(--vert);}
-    .hub-sig{margin-left:auto;flex-shrink:0;font-size:11px;color:var(--gris);white-space:nowrap;}
-    .hub-sig strong{color:var(--vert);font-weight:600;}
-
-    /* PANES */
-    .pane{position:fixed;top:58px;left:0;right:0;bottom:0;display:none;overflow:hidden;}
-    .pane.active{display:block;}
-    .pane iframe{width:100%;height:100%;border:none;display:block;opacity:0;transition:opacity .3s;}
-    .pane iframe.ready{opacity:1;}
-
-    /* LOADER */
-    .pane-loader{position:absolute;inset:0;background:var(--beige);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;transition:opacity .35s;}
-    .pane-loader.hidden{opacity:0;pointer-events:none;}
-    .loader-icon{font-size:36px;}
-    .loader-label{font-size:14px;color:var(--gris);}
-    .loader-dots{display:flex;gap:8px;}
-    .loader-dot{width:9px;height:9px;border-radius:50%;background:var(--vert);opacity:.25;animation:ldot 1.3s ease-in-out infinite;}
-    .loader-dot:nth-child(2){animation-delay:.15s;}
-    .loader-dot:nth-child(3){animation-delay:.30s;}
-    @keyframes ldot{0%,100%{opacity:.2;transform:scale(.8);}50%{opacity:.9;transform:scale(1.15);}}
-
-    /* SPLASH */
-    #splash{position:fixed;inset:0;z-index:8888;background:var(--beige);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .5s;}
-    #splash.hidden{opacity:0;pointer-events:none;}
-    .sp-logo{width:68px;height:68px;border-radius:18px;background:linear-gradient(140deg,var(--vert),var(--vert2));display:flex;align-items:center;justify-content:center;font-size:32px;box-shadow:0 6px 24px rgba(47,79,62,.28);}
-    .sp-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--vert);text-align:center;line-height:1.15;}
-    .sp-sub{font-size:15px;color:var(--gris);text-align:center;}
-    .sp-modules{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
-    .sp-mod{padding:14px 28px;border-radius:30px;font-family:Inter,sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;display:flex;align-items:center;gap:9px;}
-    .sp-mod:hover{transform:translateY(-2px);}
-    .sp-mod-disc{background:var(--vert);color:var(--blanc);box-shadow:0 4px 14px rgba(47,79,62,.28);}
-    .sp-mod-disc:hover{background:var(--vert2);}
-    .sp-mod-biais{background:var(--jaune);color:var(--vert);box-shadow:0 4px 14px rgba(232,183,58,.32);}
-    .sp-mod-biais:hover{filter:brightness(1.05);}
-    .sp-footer{font-size:11px;color:var(--gris);}
-
-    @media(max-width:640px){.hub-sig{display:none;}.hub-tab{padding:6px 10px;}.t-badge{display:none;}.hub-brand-name{font-size:12px;}}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --green:#2F4F3E; --orange:#D96A2B; --yellow:#E8B73A; --olive:#6B7A2E; --brown:#6A4B3A; --beige:#FAF7F2; --grey:#8A8176; --white:#FFFFFF; }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Georgia','Segoe UI',serif; background:var(--beige); min-height:100vh; display:flex; flex-direction:column; }
+    header { background:var(--green); padding:18px 32px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .logo { color:var(--yellow); font-weight:800; font-size:20px; letter-spacing:1px; font-family:'Segoe UI',sans-serif; }
+    .logo span { color:rgba(255,255,255,0.6); font-weight:400; font-size:13px; display:block; margin-top:1px; }
+    .header-badge { background:rgba(232,183,58,0.18); border:1px solid var(--yellow); color:var(--yellow); border-radius:20px; padding:5px 14px; font-size:12px; font-family:'Segoe UI',sans-serif; font-weight:600; }
+    .hero { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 24px 40px; }
+    .hero-icon { width:88px; height:88px; background:linear-gradient(135deg,var(--green) 0%,var(--olive) 100%); border-radius:24px; display:flex; align-items:center; justify-content:center; font-size:42px; margin-bottom:32px; box-shadow:0 8px 32px rgba(47,79,62,0.25); }
+    h1 { font-size:clamp(28px,5vw,48px); color:var(--green); font-weight:800; line-height:1.15; margin-bottom:16px; font-family:'Georgia',serif; }
+    .hero-sub { font-size:16px; color:var(--grey); margin-bottom:48px; font-family:'Segoe UI',sans-serif; max-width:480px; line-height:1.6; }
+    .cards { display:flex; gap:24px; flex-wrap:wrap; justify-content:center; max-width:820px; width:100%; margin-bottom:56px; }
+    .card { background:var(--white); border-radius:20px; padding:36px 28px 28px; width:340px; max-width:100%; text-align:left; box-shadow:0 4px 24px rgba(47,79,62,0.10); border:2px solid transparent; transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s; cursor:pointer; text-decoration:none; display:flex; flex-direction:column; gap:12px; }
+    .card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(47,79,62,0.18); }
+    .card.card-disc { border-color:var(--green); }
+    .card.card-biais { border-color:var(--yellow); }
+    .card-emoji { font-size:36px; margin-bottom:4px; }
+    .card-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; font-family:'Segoe UI',sans-serif; padding:3px 10px; border-radius:12px; margin-bottom:4px; }
+    .tag-disc { background:rgba(47,79,62,0.10); color:var(--green); }
+    .tag-biais { background:rgba(232,183,58,0.18); color:var(--brown); }
+    .card h2 { font-size:20px; color:var(--green); font-weight:800; font-family:'Georgia',serif; line-height:1.2; }
+    .card p { font-size:14px; color:var(--grey); line-height:1.6; font-family:'Segoe UI',sans-serif; flex:1; }
+    .card-pills { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+    .pill { font-size:11px; font-family:'Segoe UI',sans-serif; padding:3px 10px; border-radius:20px; background:var(--beige); color:var(--brown); border:1px solid #e0dbd5; }
+    .card-cta { display:inline-flex; align-items:center; gap:8px; margin-top:8px; padding:12px 20px; border-radius:12px; font-size:14px; font-weight:700; font-family:'Segoe UI',sans-serif; transition:background 0.2s; border:none; cursor:pointer; text-decoration:none; width:fit-content; }
+    .cta-disc { background:var(--green); color:var(--white); }
+    .cta-disc:hover { background:var(--olive); }
+    .cta-biais { background:var(--yellow); color:var(--brown); }
+    .cta-biais:hover { background:var(--orange); color:var(--white); }
+    .features { display:flex; gap:32px; flex-wrap:wrap; justify-content:center; margin-bottom:56px; padding:0 24px; }
+    .feat { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--grey); font-family:'Segoe UI',sans-serif; }
+    .feat-icon { font-size:20px; }
+    footer { background:var(--green); padding:24px 32px; text-align:center; }
+    .footer-brand { color:var(--yellow); font-weight:700; font-size:14px; font-family:'Segoe UI',sans-serif; }
+    .footer-sub { color:rgba(255,255,255,0.6); font-size:12px; margin-top:4px; font-family:'Segoe UI',sans-serif; line-height:1.6; }
+    .footer-links { margin-top:10px; display:flex; gap:20px; justify-content:center; flex-wrap:wrap; }
+    .footer-links a { color:rgba(255,255,255,0.5); font-size:11px; text-decoration:none; font-family:'Segoe UI',sans-serif; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--yellow); }
+    @media(max-width:600px){ header { padding:14px 16px; } .hero { padding:40px 16px 28px; } .card { width:100%; padding:28px 20px 22px; } .cards { gap:16px; } }
   </style>
 </head>
 <body>
-
-<!-- SPLASH -->
-<div id="splash">
-  <div class="sp-logo">🧠</div>
-  <div class="sp-title">Mon Coach<br>Comportemental</div>
-  <div class="sp-sub">Choisissez votre module de travail</div>
-  <div class="sp-modules">
-    <button class="sp-mod sp-mod-disc" onclick="launch('disc')">🎯 Approche comportementale</button>
-    <button class="sp-mod sp-mod-biais" onclick="launch('biais')">🧠 Biais cognitifs</button>
+<header>
+  <div class="logo">FormaSo<span>Outils pédagogiques interactifs</span></div>
+  <div class="header-badge">RS7138 · IA & Formation</div>
+</header>
+<main class="hero">
+  <div class="hero-icon">🧠</div>
+  <h1>Mon Coach<br>Comportemental</h1>
+  <p class="hero-sub">Explorez vos comportements et biais cognitifs grâce à des outils scientifiques et un diagnostic personnalisé par intelligence artificielle.</p>
+  <div class="cards">
+    <a class="card card-disc" href="disc.html">
+      <div class="card-emoji">🎯</div>
+      <span class="card-tag tag-disc">Profils comportementaux</span>
+      <h2>Approche DISC</h2>
+      <p>Identifiez votre profil comportemental dominant parmi les 4 dimensions DISC. Un questionnaire complet de 40 questions, un score visuel et un diagnostic détaillé généré par IA.</p>
+      <div class="card-pills"><span class="pill">📋 40 questions</span><span class="pill">📊 Score visuel</span><span class="pill">🤖 Diagnostic IA</span><span class="pill">🔬 Base scientifique</span></div>
+      <span class="card-cta cta-disc">Démarrer le test →</span>
+    </a>
+    <a class="card card-biais" href="biais.html">
+      <div class="card-emoji">🧩</div>
+      <span class="card-tag tag-biais">Psychologie cognitive</span>
+      <h2>Biais Cognitifs</h2>
+      <p>Découvrez les biais cognitifs qui influencent vos décisions. Documentation scientifique, test d'identification de vos biais dominants et plan d'action personnalisé.</p>
+      <div class="card-pills"><span class="pill">📚 Documentation</span><span class="pill">✅ Test interactif</span><span class="pill">🤖 Diagnostic IA</span><span class="pill">🎯 Plan d'action</span></div>
+      <span class="card-cta cta-biais">Explorer mes biais →</span>
+    </a>
   </div>
-  <div class="sp-footer">FormaSo · Sophie Sirgue, formatrice indépendante</div>
-</div>
-
-<!-- NAV HUB -->
-<nav class="hub-nav">
-  <button class="hub-brand" onclick="goHome()">
-    <div class="hub-logo">🧠</div>
-    <div>
-      <div class="hub-brand-name">Mon Coach Comportemental</div>
-      <div class="hub-brand-sub">Une application FormaSo</div>
-    </div>
-  </button>
-  <div class="hub-sep"></div>
-  <div class="hub-tabs">
-    <button class="hub-tab" id="tab-disc" onclick="showTab('disc')">
-      🎯 Approche comportementale <span class="t-badge">DISC</span>
-    </button>
-    <button class="hub-tab" id="tab-biais" onclick="showTab('biais')">
-      🧠 Biais cognitifs <span class="t-badge">Diagnostic</span>
-    </button>
+  <div class="features">
+    <div class="feat"><span class="feat-icon">🔒</span> Aucune donnée stockée</div>
+    <div class="feat"><span class="feat-icon">🎓</span> Base scientifique validée</div>
+    <div class="feat"><span class="feat-icon">🤖</span> Diagnostic par Claude (Anthropic)</div>
+    <div class="feat"><span class="feat-icon">♿</span> Accessible DYS</div>
   </div>
-  <span class="hub-sig">FormaSo · <strong>Sophie Sirgue</strong></span>
-</nav>
-
-<!-- PANE DISC -->
-<div class="pane" id="pane-disc">
-  <div class="pane-loader" id="loader-disc">
-    <div class="loader-icon">🎯</div>
-    <div class="loader-dots"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
-    <div class="loader-label">Chargement de l'approche comportementale…</div>
+</main>
+<footer>
+  <div class="footer-brand">FormaSo · Mon Coach Comportemental</div>
+  <div class="footer-sub">Sophie Sirgue, formatrice indépendante · Certification RS7138 · Saint-Martin-de-Seignanx<br>Outil pédagogique à usage formatif — ne se substitue pas à un accompagnement professionnel.</div>
+  <div class="footer-links">
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="mentions-legales.html#rgpd">Données personnelles</a>
+    <a href="mailto:contact@formaso.fr">Contact</a>
   </div>
-  <iframe id="frame-disc" src="disc.html" title="Module approche comportementale" onload="onLoad('disc')"></iframe>
-</div>
-
-<!-- PANE BIAIS -->
-<div class="pane" id="pane-biais">
-  <div class="pane-loader" id="loader-biais">
-    <div class="loader-icon">🧠</div>
-    <div class="loader-dots"><div class="loader-dot"></div><div class="loader-dot"></div><div class="loader-dot"></div></div>
-    <div class="loader-label">Chargement du module biais cognitifs…</div>
-  </div>
-  <iframe id="frame-biais" src="biais.html?embed=1" title="Module biais cognitifs" onload="onLoad('biais')"></iframe>
-</div>
-
-<script>
-const TABS=['disc','biais'];
-
-function launch(name){
-  const sp=document.getElementById('splash');
-  sp.classList.add('hidden');
-  showTab(name);
-  setTimeout(()=>{sp.style.display='none';},550);
-}
-
-function goHome(){
-  TABS.forEach(t=>{
-    document.getElementById('pane-'+t).classList.remove('active');
-    document.getElementById('tab-'+t).classList.remove('active');
-  });
-  const sp=document.getElementById('splash');
-  sp.style.display='flex';
-  requestAnimationFrame(()=>sp.classList.remove('hidden'));
-}
-
-function showTab(name){
-  TABS.forEach(t=>{
-    document.getElementById('pane-'+t).classList.toggle('active',t===name);
-    document.getElementById('tab-'+t).classList.toggle('active',t===name);
-  });
-}
-
-function onLoad(name){
-  document.getElementById('loader-'+name).classList.add('hidden');
-  const frame=document.getElementById('frame-'+name);
-  frame.classList.add('ready');
-  // Masquer la nav interne (same-origin)
-  try{
-    const fdoc=frame.contentDocument||frame.contentWindow.document;
-    if(!fdoc)return;
-    if(fdoc.getElementById('hub-embed-override'))return;
-    const s=fdoc.createElement('style');
-    s.id='hub-embed-override';
-    s.textContent='#main-nav,.nav,nav.nav{display:none!important;}';
-    fdoc.head.appendChild(s);
-  }catch(e){}
-}
-</script>
+</footer>
 </body>
 </html>
