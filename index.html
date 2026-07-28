@@ -1,95 +1,181 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mon Coach Comportemental – FormaSo</title>
-  <meta name="description" content="Outil pédagogique interactif FormaSo : profils DISC, biais cognitifs, diagnostic IA. Par Sophie Sirgue, formatrice indépendante."/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--green:#2F4F3E;--orange:#D96A2B;--yellow:#E8B73A;--olive:#6B7A2E;--brown:#6A4B3A;--beige:#FAF7F2;--grey:#8A8176;--white:#FFFFFF;}
-    html{scroll-behavior:smooth;}
-    body{font-family:'Georgia','Segoe UI',serif;background:var(--beige);min-height:100vh;display:flex;flex-direction:column;}
-    header{background:var(--green);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-    .logo{color:var(--yellow);font-weight:800;font-size:20px;letter-spacing:1px;font-family:'Segoe UI',sans-serif;}
-    .logo span{color:rgba(255,255,255,0.6);font-weight:400;font-size:13px;display:block;margin-top:1px;}
-    .header-badge{background:rgba(232,183,58,0.18);border:1px solid var(--yellow);color:var(--yellow);border-radius:20px;padding:5px 14px;font-size:12px;font-family:'Segoe UI',sans-serif;font-weight:600;}
-    .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px 40px;}
-    .hero-icon{width:96px;height:96px;background:linear-gradient(135deg,var(--green) 0%,var(--olive) 100%);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:46px;margin-bottom:32px;box-shadow:0 8px 32px rgba(47,79,62,0.25);}
-    h1{font-size:clamp(30px,5vw,52px);color:var(--green);font-weight:800;line-height:1.15;margin-bottom:16px;font-family:'Georgia',serif;}
-    .hero-sub{font-size:17px;color:var(--grey);margin-bottom:56px;font-family:'Segoe UI',sans-serif;max-width:520px;line-height:1.6;}
-    .cards{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;max-width:900px;width:100%;margin-bottom:56px;}
-    .card{background:var(--white);border-radius:24px;padding:44px 36px 36px;width:380px;max-width:100%;text-align:left;box-shadow:0 4px 24px rgba(47,79,62,0.10);border:2px solid transparent;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;cursor:pointer;text-decoration:none;display:flex;flex-direction:column;gap:14px;}
-    .card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(47,79,62,0.18);}
-    .card.card-disc{border-color:var(--green);}
-    .card.card-biais{border-color:var(--yellow);}
-    .card-emoji{font-size:42px;margin-bottom:6px;}
-    .card-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-family:'Segoe UI',sans-serif;padding:4px 12px;border-radius:12px;margin-bottom:4px;}
-    .tag-disc{background:rgba(47,79,62,0.10);color:var(--green);}
-    .tag-biais{background:rgba(232,183,58,0.18);color:var(--brown);}
-    .card h2{font-size:22px;color:var(--green);font-weight:800;font-family:'Georgia',serif;line-height:1.2;}
-    .card p{font-size:15px;color:var(--grey);line-height:1.65;font-family:'Segoe UI',sans-serif;flex:1;}
-    .card-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;}
-    .pill{font-size:12px;font-family:'Segoe UI',sans-serif;padding:4px 12px;border-radius:20px;background:var(--beige);color:var(--brown);border:1px solid #e0dbd5;}
-    .card-cta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:14px 24px;border-radius:12px;font-size:15px;font-weight:700;font-family:'Segoe UI',sans-serif;transition:background 0.2s;border:none;cursor:pointer;text-decoration:none;width:fit-content;}
-    .cta-disc{background:var(--green);color:var(--white);}
-    .cta-disc:hover{background:var(--olive);}
-    .cta-biais{background:var(--yellow);color:var(--brown);}
-    .cta-biais:hover{background:var(--orange);color:var(--white);}
-    .features{display:flex;gap:32px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;padding:0 24px;}
-    .feat{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--grey);font-family:'Segoe UI',sans-serif;}
-    .feat-icon{font-size:20px;}
-    footer{background:var(--green);padding:24px 32px;text-align:center;}
-    .footer-brand{color:var(--yellow);font-weight:700;font-size:14px;font-family:'Segoe UI',sans-serif;}
-    .footer-sub{color:rgba(255,255,255,0.6);font-size:12px;margin-top:4px;font-family:'Segoe UI',sans-serif;line-height:1.6;}
-    .footer-links{margin-top:10px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;}
-    .footer-links a{color:rgba(255,255,255,0.5);font-size:11px;text-decoration:none;font-family:'Segoe UI',sans-serif;transition:color 0.2s;}
-    .footer-links a:hover{color:var(--yellow);}
-    @media(max-width:600px){header{padding:14px 16px;}.hero{padding:40px 16px 28px;}.card{width:100%;padding:32px 22px 26px;}.cards{gap:18px;}}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mon Coach Comportemental – FormaSo</title>
+<meta name="description" content="Outils pédagogiques interactifs FormaSo : profils DISC, biais cognitifs, diagnostic IA. Par Sophie Sirgue, formatrice indépendante."/>
+<meta name="author" content="Sophie Sirgue – FormaSo"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --green:#2F4F3E; --orange:#D96A2B; --yellow:#E8B73A;
+  --olive:#6B7A2E; --brown:#6A4B3A; --beige:#FAF7F2;
+  --grey:#8A8176; --white:#FFFFFF;
+  --border:#E6E0D6;
+  --serif:'Lora',Georgia,serif;
+  --sans:'Inter','Segoe UI',Arial,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--beige);color:var(--brown);min-height:100vh;display:flex;flex-direction:column;line-height:1.6;}
+
+/* ---------- NAV ---------- */
+nav{padding:26px 0;border-bottom:1px solid var(--border);background:var(--beige);}
+.wrap{max-width:1060px;margin:0 auto;padding:0 32px;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.brand-mark{width:38px;height:38px;border-radius:9px;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.brand-name{font-family:var(--serif);font-size:23px;font-weight:600;color:var(--green);letter-spacing:-0.3px;line-height:1;}
+.brand-name em{font-style:normal;color:var(--orange);}
+.brand-sub{font-size:9.5px;font-weight:700;letter-spacing:1.6px;color:var(--grey);text-transform:uppercase;margin-top:3px;}
+.nav-badge{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--olive);border:1px solid var(--border);border-radius:100px;padding:7px 16px;background:var(--white);}
+
+/* ---------- HERO ---------- */
+.hero{padding:76px 0 60px;}
+.eyebrow{font-size:11.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--olive);margin-bottom:22px;}
+h1{font-family:var(--serif);font-size:clamp(34px,5.2vw,54px);font-weight:600;color:var(--green);line-height:1.18;letter-spacing:-0.8px;margin-bottom:24px;max-width:16ch;}
+h1 span{color:var(--orange);}
+.lead{font-size:17.5px;color:var(--grey);max-width:56ch;line-height:1.72;margin-bottom:38px;}
+.lead strong{color:var(--brown);font-weight:600;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:26px;padding-top:30px;border-top:1px solid var(--border);}
+.meta{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--grey);}
+.meta i{font-style:normal;font-size:15px;}
+
+/* ---------- CARDS ---------- */
+.section-head{margin-bottom:32px;}
+.section-label{font-size:11.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--olive);margin-bottom:12px;}
+h2.section-title{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--green);letter-spacing:-0.4px;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:26px;padding-bottom:78px;}
+.card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:38px 34px 34px;text-decoration:none;display:flex;flex-direction:column;gap:15px;transition:border-color .22s,box-shadow .22s,transform .22s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .22s;}
+.card-disc::before{background:var(--green);}
+.card-biais::before{background:var(--yellow);}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(47,79,62,.10);}
+.card-disc:hover{border-color:var(--green);}
+.card-biais:hover{border-color:var(--yellow);}
+.card:hover::before{height:5px;}
+.card-icon{width:50px;height:50px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:3px;}
+.icon-disc{background:rgba(47,79,62,.09);}
+.icon-biais{background:rgba(232,183,58,.16);}
+.card-kicker{font-size:10.5px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;color:var(--grey);}
+.card h3{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--green);letter-spacing:-0.3px;line-height:1.25;}
+.card p{font-size:15px;color:var(--grey);line-height:1.68;flex:1;}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px;}
+.tag{font-size:12px;color:var(--brown);background:var(--beige);border:1px solid var(--border);border-radius:100px;padding:5px 13px;}
+.cta{margin-top:12px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 26px;border-radius:8px;font-size:14.5px;font-weight:600;font-family:var(--sans);transition:background .2s,color .2s;width:fit-content;}
+.cta-disc{background:var(--green);color:var(--white);}
+.cta-disc:hover{background:#26402F;}
+.cta-biais{background:var(--yellow);color:var(--brown);}
+.cta-biais:hover{background:var(--orange);color:var(--white);}
+
+/* ---------- FOOTER ---------- */
+footer{margin-top:auto;background:var(--green);padding:44px 0 38px;}
+.foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;}
+.foot-brand{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--yellow);margin-bottom:8px;}
+.foot-text{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.8;max-width:48ch;}
+.foot-links{display:flex;flex-direction:column;gap:9px;}
+.foot-links a{font-size:12.5px;color:rgba(255,255,255,.62);text-decoration:none;transition:color .2s;}
+.foot-links a:hover{color:var(--yellow);}
+.foot-bottom{margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.13);font-size:11.5px;color:rgba(255,255,255,.42);line-height:1.7;}
+
+/* ---------- FOCUS / A11Y ---------- */
+a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radius:4px;}
+
+@media(max-width:640px){
+  .wrap{padding:0 22px;}
+  .hero{padding:52px 0 44px;}
+  .card{padding:30px 25px 28px;}
+  .hero-meta{gap:16px;}
+}
+</style>
 </head>
 <body>
-<header>
-  <div class="logo">FormaSo<span>Outils pédagogiques interactifs</span></div>
-  <div class="header-badge">RS7138 · IA & Formation</div>
-</header>
-<main class="hero">
-  <div class="hero-icon">🧠</div>
-  <h1>Mon Coach<br>Comportemental</h1>
-  <p class="hero-sub">Explorez vos comportements et biais cognitifs grâce à des outils scientifiques et un diagnostic personnalisé par intelligence artificielle.</p>
-  <div class="cards">
-    <a class="card card-disc" href="disc.html">
-      <div class="card-emoji">🎯</div>
-      <span class="card-tag tag-disc">Profils comportementaux</span>
-      <h2>Approche DISC</h2>
-      <p>Identifiez votre profil comportemental dominant parmi les 4 dimensions DISC. Un questionnaire complet de 40 questions, un score visuel et un diagnostic détaillé généré par IA.</p>
-      <div class="card-pills"><span class="pill">📋 40 questions</span><span class="pill">📊 Score visuel</span><span class="pill">🤖 Diagnostic IA</span><span class="pill">🔬 Base scientifique</span></div>
-      <span class="card-cta cta-disc">Démarrer le test →</span>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">🌱</span>
+      <span>
+        <span class="brand-name">Forma<em>So</em></span>
+        <span class="brand-sub">Outils comportementaux</span>
+      </span>
     </a>
-    <a class="card card-biais" href="biais.html">
-      <div class="card-emoji">🧩</div>
-      <span class="card-tag tag-biais">Psychologie cognitive</span>
-      <h2>Biais Cognitifs</h2>
-      <p>Découvrez les biais cognitifs qui influencent vos décisions. Documentation scientifique, test d'identification de vos biais dominants et plan d'action personnalisé.</p>
-      <div class="card-pills"><span class="pill">📚 Documentation</span><span class="pill">✅ 30 questions</span><span class="pill">🤖 Diagnostic IA</span><span class="pill">🎯 Plan d'action</span></div>
-      <span class="card-cta cta-biais">Explorer mes biais →</span>
-    </a>
+    <span class="nav-badge">RS7138 · IA &amp; Formation</span>
   </div>
-  <div class="features">
-    <div class="feat"><span class="feat-icon">🔒</span> Aucune donnée stockée</div>
-    <div class="feat"><span class="feat-icon">🎓</span> Base scientifique validée</div>
-    <div class="feat"><span class="feat-icon">🤖</span> Diagnostic par Claude (Anthropic)</div>
-    <div class="feat"><span class="feat-icon">♿</span> Accessible DYS</div>
-  </div>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Sophie Sirgue · Formatrice indépendante</p>
+      <h1>Mieux se connaître pour <span>mieux décider</span>.</h1>
+      <p class="lead">Deux outils d'autoévaluation fondés sur la recherche en psychologie comportementale et cognitive. Chaque parcours combine documentation scientifique, questionnaire structuré et <strong>restitution personnalisée</strong>.</p>
+      <div class="hero-meta">
+        <span class="meta"><i>🔒</i> Aucune donnée conservée</span>
+        <span class="meta"><i>🎓</i> Sources scientifiques citées</span>
+        <span class="meta"><i>🤖</i> Restitution par Claude (Anthropic)</span>
+        <span class="meta"><i>♿</i> Lecture facilitée DYS</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <p class="section-label">Les parcours</p>
+      <h2 class="section-title">Choisissez votre module</h2>
+    </div>
+
+    <div class="cards">
+      <a class="card card-disc" href="disc.html">
+        <span class="card-icon icon-disc">🎯</span>
+        <span class="card-kicker">Profils comportementaux</span>
+        <h3>Approche DISC</h3>
+        <p>Explorez vos tendances comportementales à travers les quatre dimensions du modèle DISC. Questionnaire de 40 situations professionnelles, visualisation des scores et restitution nuancée.</p>
+        <div class="tags">
+          <span class="tag">40 questions</span>
+          <span class="tag">Score visuel</span>
+          <span class="tag">Restitution IA</span>
+          <span class="tag">Sources citées</span>
+        </div>
+        <span class="cta cta-disc">Démarrer le parcours →</span>
+      </a>
+
+      <a class="card card-biais" href="biais.html">
+        <span class="card-icon icon-biais">🧩</span>
+        <span class="card-kicker">Psychologie cognitive</span>
+        <h3>Biais Cognitifs</h3>
+        <p>Identifiez les raccourcis mentaux qui influencent vos décisions au quotidien. Dix biais documentés, trente mises en situation et pistes de débiaisage concrètes.</p>
+        <div class="tags">
+          <span class="tag">30 questions</span>
+          <span class="tag">10 biais</span>
+          <span class="tag">Restitution IA</span>
+          <span class="tag">Plan d'action</span>
+        </div>
+        <span class="cta cta-biais">Explorer mes biais →</span>
+      </a>
+    </div>
+  </section>
 </main>
+
 <footer>
-  <div class="footer-brand">FormaSo · Mon Coach Comportemental</div>
-  <div class="footer-sub">Sophie Sirgue, formatrice indépendante · Certification RS7138 · Saint-Martin-de-Seignanx<br>Outil pédagogique à usage formatif — ne se substitue pas à un accompagnement professionnel.</div>
-  <div class="footer-links">
-    <a href="mentions-legales.html">Mentions légales</a>
-    <a href="mentions-legales.html#rgpd">Données personnelles</a>
-    <a href="mailto:contact@formaso.fr">Contact</a>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-brand">FormaSo</p>
+        <p class="foot-text">Sophie Sirgue, formatrice indépendante · Certification RS7138<br>Saint-Martin-de-Seignanx · contact@formaso.fr</p>
+      </div>
+      <div class="foot-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="mentions-legales.html#rgpd">Données personnelles</a>
+        <a href="mailto:contact@formaso.fr">Nous contacter</a>
+      </div>
+    </div>
+    <p class="foot-bottom">Outils d'autoévaluation à visée pédagogique. Les résultats constituent des pistes de réflexion et ne remplacent ni un bilan de compétences, ni un accompagnement psychologique, ni un test psychométrique normé.</p>
   </div>
 </footer>
+
 </body>
 </html>
