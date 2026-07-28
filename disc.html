@@ -167,7 +167,7 @@ Rédige un retour structuré en 5 parties courtes et bienveillantes :
 4. COMMUNICATION ET RELATIONS — Comment ce profil peut interagir avec les autres. Maximum 3 lignes.
 5. UNE PISTE DE DÉVELOPPEMENT — Une seule action concrète et testable. 2 lignes maximum.
 
-Ton : bienveillant, non-jugeant, professionnel. Tutoiement. Français uniquement. Titres en majuscules.`try{const res=await fetch('/.netlify/functions/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}]})});const data=await res.json();const text=data.content?.map(b=>b.text||'').join('')||'Erreur.';el.textContent=text;window._diagText=text;}catch{el.textContent='Erreur de connexion.';}}
+Ton : bienveillant, non-jugeant, professionnel. Tutoiement. Français uniquement. Titres en majuscules.`;try{const res=await fetch('/.netlify/functions/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}]})});const data=await res.json();const text=data.content?.map(b=>b.text||'').join('')||'Erreur.';el.textContent=text;window._diagText=text;}catch{el.textContent='Erreur de connexion.';}}
 function copyDiag(){navigator.clipboard.writeText(window._diagText||'');const btn=document.getElementById('btnCopy');btn.textContent='✅ Copié !';btn.classList.add('ok');setTimeout(()=>{btn.textContent='📋 Copier';btn.classList.remove('ok');},2000);}
 function retry(){answers=new Array(40).fill(null);current=0;document.getElementById('tab-results').style.display='none';showTab('test');}
 renderQuestion();
