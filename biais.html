@@ -186,7 +186,7 @@ Rédige un retour structuré en 4 parties courtes et bienveillantes :
 3. PISTES DE DÉBIAISAGE — 3 techniques concrètes et accessibles issues de la littérature en psychologie cognitive. Maximum 4 lignes.
 4. UNE ACTION POUR CETTE SEMAINE — Une seule action simple et testable. 2 lignes maximum.
 
-Ton : bienveillant, non-jugeant, professionnel. Tutoiement. Français uniquement. Titres en majuscules.`try{const res=await fetch('/.netlify/functions/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}]})});const data=await res.json();const text=data.content?.map(b=>b.text||'').join('')||'Erreur.';el.textContent=text;window._diagText=text;}catch{el.textContent='Erreur de connexion. Rechargez et réessayez.';}}
+Ton : bienveillant, non-jugeant, professionnel. Tutoiement. Français uniquement. Titres en majuscules.`;try{const res=await fetch('/.netlify/functions/claude',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'user',content:prompt}]})});const data=await res.json();const text=data.content?.map(b=>b.text||'').join('')||'Erreur.';el.textContent=text;window._diagText=text;}catch{el.textContent='Erreur de connexion. Rechargez et réessayez.';}}
 function copyDiag(){navigator.clipboard.writeText(window._diagText||'');const btn=document.getElementById('btnCopy');btn.textContent='✅ Copié !';btn.classList.add('ok');setTimeout(()=>{btn.textContent='📋 Copier';btn.classList.remove('ok');},2000);}
 function retry(){answers=new Array(30).fill(null);current=0;document.getElementById('tab-results').style.display='none';showTab('test');}
 renderQuestion();
