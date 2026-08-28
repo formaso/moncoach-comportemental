@@ -15,6 +15,7 @@
     .tabs{display:flex;gap:4px;margin-bottom:32px;background:rgba(47,79,62,0.08);border-radius:14px;padding:4px;}
     .tab{flex:1;padding:10px 8px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--grey);transition:all 0.2s;font-family:inherit;text-align:center;}
     .tab.active{background:var(--green);color:var(--white);}
+    @media(max-width:420px){.tab{font-size:11.5px;padding:10px 4px;}}
     .section{display:none;}.section.active{display:block;}
     .doc-intro{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;border-left:4px solid var(--yellow);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
     .doc-intro h2{font-size:22px;color:var(--green);margin-bottom:10px;font-family:'Georgia',serif;}
