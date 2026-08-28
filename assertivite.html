@@ -16,6 +16,7 @@
     .tabs{display:flex;gap:4px;margin-bottom:32px;background:rgba(47,79,62,0.08);border-radius:14px;padding:4px;}
     .tab{flex:1;padding:10px 8px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--grey);transition:all 0.2s;font-family:inherit;text-align:center;}
     .tab.active{background:var(--green);color:var(--white);}
+    @media(max-width:420px){.tab{font-size:11.5px;padding:10px 4px;}}
     .section{display:none;}.section.active{display:block;}
     .doc-intro{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;border-left:4px solid var(--green);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
     .doc-intro h2{font-size:22px;color:var(--green);margin-bottom:10px;font-family:'Georgia',serif;}
@@ -62,6 +63,7 @@
     .type-score-bar-wrap{flex:1;background:#eee;border-radius:4px;height:8px;overflow:hidden;}
     .type-score-bar{height:100%;border-radius:4px;background:var(--green);transition:width 1s;}
     .type-score-val{font-size:13px;color:var(--grey);min-width:40px;text-align:right;font-weight:600;}
+    @media(max-width:580px){.type-score-name{min-width:130px;font-size:13px;}}
     .diag-box{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.07);margin-bottom:24px;}
     .diag-header{background:var(--green);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
     .diag-header span{color:var(--white);font-weight:700;font-size:15px;}
