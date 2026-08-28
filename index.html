@@ -53,13 +53,16 @@ h2.section-title{font-family:var(--serif);font-size:30px;font-weight:600;color:v
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .22s;}
 .card-disc::before{background:var(--green);}
 .card-biais::before{background:var(--yellow);}
+.card-assert::before{background:var(--orange);}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(47,79,62,.10);}
 .card-disc:hover{border-color:var(--green);}
 .card-biais:hover{border-color:var(--yellow);}
+.card-assert:hover{border-color:var(--orange);}
 .card:hover::before{height:5px;}
 .card-icon{width:50px;height:50px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:3px;}
 .icon-disc{background:rgba(47,79,62,.09);}
 .icon-biais{background:rgba(232,183,58,.16);}
+.icon-assert{background:rgba(217,106,43,.12);}
 .card-kicker{font-size:10.5px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;color:var(--grey);}
 .card h3{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--green);letter-spacing:-0.3px;line-height:1.25;}
 .card p{font-size:15px;color:var(--grey);line-height:1.68;flex:1;}
@@ -70,6 +73,8 @@ h2.section-title{font-family:var(--serif);font-size:30px;font-weight:600;color:v
 .cta-disc:hover{background:#26402F;}
 .cta-biais{background:var(--yellow);color:var(--brown);}
 .cta-biais:hover{background:var(--orange);color:var(--white);}
+.cta-assert{background:var(--orange);color:var(--white);}
+.cta-assert:hover{background:#B85623;}
 
 /* ---------- FOOTER ---------- */
 footer{margin-top:auto;background:var(--green);padding:44px 0 38px;}
@@ -112,7 +117,7 @@ a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radi
     <div class="wrap">
       <p class="eyebrow">Sophie Sirgue · Formatrice indépendante</p>
       <h1>Mieux se connaître pour mieux décider.</h1>
-      <p class="lead">Deux outils d'autoévaluation fondés sur la recherche en psychologie comportementale et cognitive. Chaque parcours combine documentation scientifique, questionnaire structuré et <strong>restitution personnalisée</strong>.</p>
+      <p class="lead">Trois outils d'autoévaluation fondés sur la recherche en psychologie comportementale et cognitive. Chaque parcours combine documentation scientifique, questionnaire structuré et <strong>restitution personnalisée</strong>.</p>
       <div class="hero-meta">
         <span class="meta"><i>🔒</i> Aucune donnée conservée</span>
         <span class="meta"><i>🎓</i> Sources scientifiques citées</span>
@@ -155,6 +160,20 @@ a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radi
           <span class="tag">Plan d'action</span>
         </div>
         <span class="cta cta-biais">Explorer mes biais →</span>
+      </a>
+
+      <a class="card card-assert" href="assertivite.html">
+        <span class="card-icon icon-assert">🗣️</span>
+        <span class="card-kicker">Communication interpersonnelle</span>
+        <h3>Test d'Assertivité</h3>
+        <p>Découvrez votre style de communication dominant parmi quatre registres : fuite, attaque, manipulation, assertivité. Trente situations variées, ordre aléatoire et diagnostic personnalisé.</p>
+        <div class="tags">
+          <span class="tag">30 questions</span>
+          <span class="tag">4 registres</span>
+          <span class="tag">Ordre aléatoire</span>
+          <span class="tag">Restitution IA</span>
+        </div>
+        <span class="cta cta-assert">Tester mon style →</span>
       </a>
     </div>
   </section>
