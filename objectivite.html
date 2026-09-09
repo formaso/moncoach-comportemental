@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Croyances, a priori et objectivité – Mon Coach Comportemental | FormaSo</title>
+  <meta name="description" content="Testez votre rapport aux croyances, aux a priori et aux jugements rapides. Questionnaire de 20 affirmations évaluées sur une échelle, dans des situations de la vie quotidienne, et diagnostic avec pistes de réflexion."/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{--green:#2F4F3E;--orange:#D96A2B;--yellow:#E8B73A;--olive:#6B7A2E;--brown:#6A4B3A;--beige:#FAF7F2;--grey:#8A8176;--white:#FFFFFF;}
+    body{font-family:'Segoe UI',Arial,sans-serif;background:var(--beige);min-height:100vh;}
+    header{background:var(--green);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+    .logo{color:var(--yellow);font-weight:800;font-size:18px;text-decoration:none;}
+    .back{color:rgba(255,255,255,0.85);font-size:15px;font-weight:600;text-decoration:none;background:rgba(255,255,255,0.12);padding:8px 18px;border-radius:20px;transition:background 0.2s;}.back:hover{background:rgba(255,255,255,0.22);color:var(--yellow);}
+    .container{max-width:820px;margin:0 auto;padding:32px 20px 60px;}
+    .tabs{display:flex;gap:4px;margin-bottom:32px;background:rgba(47,79,62,0.08);border-radius:14px;padding:4px;}
+    .tab{flex:1;padding:10px 8px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:transparent;color:var(--grey);transition:all 0.2s;font-family:inherit;text-align:center;}
+    .tab.active{background:var(--olive);color:var(--white);}
+    @media(max-width:420px){.tab{font-size:11.5px;padding:10px 4px;}}
+    .section{display:none;}.section.active{display:block;}
+    .doc-intro{background:var(--white);border-radius:16px;padding:28px;margin-bottom:24px;border-left:4px solid var(--olive);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+    .doc-intro h2{font-size:22px;color:var(--green);margin-bottom:10px;font-family:'Georgia',serif;}
+    .doc-intro p{color:var(--brown);line-height:1.7;font-size:15px;}
+    .dim-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:24px;}
+    details.dim-card{background:var(--white);border-radius:14px;padding:20px 22px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid;}
+    details.dim-card summary{font-size:16px;font-weight:700;color:var(--green);cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;}
+    details.dim-card summary::after{content:'▸';margin-left:auto;color:var(--grey);}
+    details[open] summary::after{content:'▾';}
+    .dim-body{margin-top:12px;font-size:14px;color:var(--brown);line-height:1.7;}
+    .dim-body .exemple{background:var(--beige);border-radius:8px;padding:10px 14px;margin-top:8px;font-style:italic;font-size:13px;color:var(--grey);}
+    .source-box{background:rgba(47,79,62,0.06);border-radius:10px;padding:14px 18px;font-size:12px;color:var(--grey);line-height:1.6;margin-bottom:24px;}
+    .source-box strong{color:var(--green);}
+    .btn-start{display:block;width:fit-content;margin:0 auto;background:var(--olive);color:var(--white);border:none;border-radius:12px;padding:14px 32px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.2s;}
+    .btn-start:hover{background:var(--green);}
+    .progress-bar-wrap{background:#ddd;border-radius:8px;height:8px;margin-bottom:8px;overflow:hidden;}
+    .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--olive),var(--yellow));border-radius:8px;transition:width 0.4s;}
+    .progress-label{font-size:12px;color:var(--grey);margin-bottom:24px;}
+    .question-card{background:var(--white);border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,0.07);margin-bottom:20px;}
+    .q-num{font-size:11px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+    .q-text{font-size:16px;color:var(--brown);line-height:1.6;margin-bottom:6px;font-weight:500;font-style:italic;}
+    .q-context{font-size:13px;color:var(--grey);font-style:italic;margin-bottom:6px;line-height:1.5;}
+    .scale-hint{font-size:12.5px;color:var(--olive);font-weight:600;margin-bottom:16px;}
+    .options{display:flex;flex-direction:column;gap:10px;}
+    .opt{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;border:2px solid #e8e3de;border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:14px;color:var(--brown);line-height:1.5;}
+    .opt:hover{border-color:var(--olive);background:rgba(107,122,46,0.06);}
+    .opt.selected{border-color:var(--olive);background:rgba(107,122,46,0.08);font-weight:600;}
+    .opt-dot{min-width:10px;height:10px;border-radius:50%;background:#ddd;margin-top:5px;flex-shrink:0;}
+    .opt.selected .opt-dot{background:var(--olive);}
+    .nav-btns{display:flex;gap:12px;margin-top:8px;}
+    .btn-nav{padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;}
+    .btn-prev{background:transparent;border:2px solid var(--grey);color:var(--grey);}
+    .btn-prev:hover{border-color:var(--green);color:var(--green);}
+    .btn-next{background:var(--olive);color:var(--white);}
+    .btn-next:hover{background:var(--green);}
+    .btn-next:disabled{background:#ccc;cursor:not-allowed;}
+    .results-header{text-align:center;margin-bottom:28px;}
+    .results-header h2{font-size:26px;color:var(--green);font-family:'Georgia',serif;margin-bottom:8px;}
+    .results-header p{color:var(--grey);font-size:14px;}
+    .dim-scores{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+    .dim-score-row{background:var(--white);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;box-shadow:0 2px 6px rgba(0,0,0,0.05);}
+    .dim-score-name{font-size:14px;font-weight:700;color:var(--brown);min-width:220px;}
+    .dim-score-bar-wrap{flex:1;background:#eee;border-radius:4px;height:8px;overflow:hidden;}
+    .dim-score-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--olive),var(--yellow));transition:width 1s;}
+    .dim-score-val{font-size:13px;color:var(--grey);min-width:36px;text-align:right;font-weight:600;}
+    @media(max-width:580px){.dim-score-name{min-width:150px;font-size:13px;}}
+    .diag-box{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.07);margin-bottom:24px;}
+    .diag-header{background:var(--green);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+    .diag-header span{color:var(--white);font-weight:700;font-size:15px;}
+    .diag-content{padding:22px;font-size:14px;color:var(--brown);line-height:1.8;white-space:pre-wrap;min-height:80px;}
+    .diag-loading{color:var(--grey);font-style:italic;}
+    .btn-copy{background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);color:var(--white);border-radius:8px;padding:5px 14px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600;}
+    .btn-copy.ok{background:var(--olive);border-color:var(--olive);}
+    .btn-retry{display:block;margin:0 auto;background:var(--yellow);color:var(--brown);border:none;border-radius:12px;padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}
+    .btn-retry:hover{background:var(--orange);color:var(--white);}
+    .legal-note{font-size:11px;color:var(--grey);text-align:center;line-height:1.6;margin-top:24px;padding:0 20px;}
+  </style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">FormaSo</a>
+  <a class="back" href="index.html">← Accueil</a>
+</header>
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('doc')">📚 Documentation</button>
+    <button class="tab" onclick="startTest()">🧭 Test (20 affirmations)</button>
+    <button class="tab" id="tab-results" style="display:none" onclick="showTab('results')">📊 Mon diagnostic</button>
+  </div>
+  <div class="section active" id="sec-doc">
+    <div class="doc-intro">
+      <h2>Croyances, a priori et jugements : tester son objectivité</h2>
+      <p>Avant même de raisonner, nous croyons : à une information, à une personne, à une explication. Ce module ne porte pas sur les raccourcis mentaux généraux (voir le module Biais Cognitifs) mais sur un point plus spécifique : la façon dont on évalue ce qui mérite d'être cru, et la façon dont on juge vite une personne ou une situation. Il s'appuie sur la tradition française de l'esprit critique et de la zététique — la « méthode du doute » appliquée aux croyances — ainsi que sur les travaux du sociologue Gérald Bronner sur les mécanismes de la crédulité, et sur les repères de l'éducation aux médias et à l'information.</p>
+    </div>
+    <div class="dim-grid">
+      <details class="dim-card" style="border-color:var(--orange)"><summary>🔎 Négligence de la source</summary><div class="dim-body">Tendance à accorder du crédit à une information sans regarder qui la porte, avec quelle légitimité et sur quelle base.<div class="exemple">Une publication qui va dans notre sens est partagée après la seule lecture du titre, sans vérifier l'auteur ni la source d'origine.</div></div></details>
+      <details class="dim-card" style="border-color:var(--yellow)"><summary>⚖️ Confusion fait / opinion</summary><div class="dim-body">Tendance à présenter une opinion personnelle comme un fait établi, ou à accepter une explication séduisante sans se demander si elle est démontrée.</div></details>
+      <details class="dim-card" style="border-color:var(--green)"><summary>🔄 Résistance à la révision</summary><div class="dim-body">Tendance à maintenir une conviction ancienne malgré des faits nouveaux qui la contredisent — ce que Gérald Bronner décrit comme le confort cognitif d'une croyance déjà installée.</div></details>
+      <details class="dim-card" style="border-color:var(--olive)"><summary>🎤 Sensibilité à l'autorité et au charisme</summary><div class="dim-body">Tendance à juger une affirmation à l'aune du statut, de l'aisance ou de la sympathie de celui ou celle qui la porte, plutôt qu'à ses preuves — l'« argument d'autorité » classique en zététique.</div></details>
+      <details class="dim-card" style="border-color:var(--brown)"><summary>⚡ Jugement hâtif</summary><div class="dim-body">Tendance à se forger un avis sur une personne ou une situation en quelques instants, à partir d'un indice superficiel, avant d'avoir réuni les éléments.</div></details>
+    </div>
+    <div class="source-box"><strong>Repères :</strong> Le Cortecs — collectif de recherche transdisciplinaire sur l'esprit critique et la zététique (cortecs.org). — AFIS, Association française pour l'information scientifique, rubrique zététique (afis.org). — Gérald Bronner, <em>La Démocratie des crédules</em> (PUF, 2013). — CLEMI, Centre pour l'éducation aux médias et à l'information (réseau Canopé / Éducation nationale).<br><br>⚠️ <strong>Avertissement :</strong> Cet outil est à visée pédagogique. Il ne constitue pas un test psychométrique validé ni un diagnostic clinique. Pour chaque affirmation, indiquez simplement à quel point vous êtes d'accord : il n'y a pas de bonne ou de mauvaise réponse — chacun mobilise ces réflexes à des degrés divers, selon le sujet et le contexte.</div>
+    <button class="btn-start" onclick="startTest()">Tester mon objectivité (20 affirmations) →</button>
+  </div>
+  <div class="section" id="sec-test">
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-label" id="progressLabel">Affirmation 1 / 20</div>
+    <div id="questionArea"></div>
+    <div class="nav-btns">
+      <button class="btn-nav btn-prev" id="btnPrev" onclick="prevQ()">← Précédent</button>
+      <button class="btn-nav btn-next" id="btnNext" onclick="nextQ()" disabled>Suivant →</button>
+    </div>
+  </div>
+  <div class="section" id="sec-results">
+    <div class="results-header"><h2>Votre rapport aux croyances et aux jugements</h2><p>Résultats basés sur votre évaluation de 20 affirmations — indicatifs et à visée pédagogique</p></div>
+    <div class="dim-scores" id="dimScores"></div>
+    <div class="diag-box">
+      <div class="diag-header"><span>📊 Diagnostic et pistes de réflexion</span><button class="btn-copy" id="btnCopy" onclick="copyDiag()">📋 Copier</button></div>
+      <div class="diag-content" id="diagContent"><span class="diag-loading">⏳ Génération en cours…</span></div>
+    </div>
+    <button class="btn-retry" onclick="retry()">🔄 Refaire le test</button>
+    <p class="legal-note">Outil pédagogique — FormaSo · Sophie Sirgue · RS7138 · Aucune donnée stockée. L'ordre des affirmations est mélangé à chaque passation.</p>
+  </div>
+</div>
+<script>
+const DIM=['Source','FaitOpinion','Revision','Autorite','Jugement'];
+const NOM={Source:"Négligence de la source",FaitOpinion:"Confusion fait / opinion",Revision:"Résistance à la révision",Autorite:"Sensibilité à l'autorité",Jugement:"Jugement hâtif"};
+const ICON={Source:'🔎',FaitOpinion:'⚖️',Revision:'🔄',Autorite:'🎤',Jugement:'⚡'};
+const SCALE=[{v:1,label:"Pas du tout d'accord"},{v:2,label:"Plutôt pas d'accord"},{v:3,label:"Plutôt d'accord"},{v:4,label:"Tout à fait d'accord"}];
+const QUESTIONS=[
+{stmt:"Quand une information va dans le sens de ce que je pense déjà, je regarde rarement qui en est l'auteur ou la source.",ctx:"Réseaux sociaux et actualité.",dim:"Source"},
+{stmt:"Il m'arrive de partager un article ou une publication après avoir seulement lu le titre.",ctx:"Réseaux sociaux.",dim:"Source"},
+{stmt:"Face à un chiffre qui confirme mon opinion, je vérifie rarement d'où il vient.",ctx:"Débats et discussions.",dim:"Source"},
+{stmt:"Une information qui circule beaucoup autour de moi me semble plus crédible, même sans l'avoir vérifiée.",ctx:"Vie quotidienne.",dim:"Source"},
+{stmt:"Il m'arrive de présenter mon opinion sur un sujet comme si c'était un fait établi.",ctx:"Discussions professionnelles.",dim:"FaitOpinion"},
+{stmt:"Dans une discussion, il m'arrive de confondre ce que je pense être vrai avec ce qui est réellement démontré.",ctx:"Débats et discussions.",dim:"FaitOpinion"},
+{stmt:"Une explication qui me semble logique me suffit souvent, sans que j'aie besoin de la vérifier.",ctx:"Vie quotidienne.",dim:"FaitOpinion"},
+{stmt:"Il m'arrive de dire « c'est évident » pour une idée qui, en réalité, reste à démontrer.",ctx:"Vie professionnelle.",dim:"FaitOpinion"},
+{stmt:"Quand un fait nouveau contredit une opinion que j'ai depuis longtemps, j'ai du mal à la remettre en question.",ctx:"Convictions personnelles.",dim:"Revision"},
+{stmt:"Face à un argument qui me contredit, je cherche d'abord ses failles plutôt qu'à comprendre ce qu'il apporte.",ctx:"Débats.",dim:"Revision"},
+{stmt:"Une fois que je me suis fait une idée sur un sujet, il faut beaucoup d'éléments pour que j'en change.",ctx:"Vie quotidienne.",dim:"Revision"},
+{stmt:"Je préfère garder une conviction qui me rassure plutôt que d'explorer une explication qui la remettrait en cause.",ctx:"Convictions personnelles.",dim:"Revision"},
+{stmt:"Une personne qui s'exprime avec assurance me semble automatiquement plus fiable qu'une autre.",ctx:"Réunions et discussions.",dim:"Autorite"},
+{stmt:"Le statut ou le titre de quelqu'un influence fortement le crédit que j'accorde à ce qu'il ou elle affirme.",ctx:"Vie professionnelle.",dim:"Autorite"},
+{stmt:"Une explication racontée comme une bonne histoire me convainc plus facilement qu'une explication appuyée sur des données brutes.",ctx:"Vie quotidienne.",dim:"Autorite"},
+{stmt:"Je fais davantage confiance à une information si elle vient de quelqu'un que j'apprécie personnellement.",ctx:"Relations et entourage.",dim:"Autorite"},
+{stmt:"Je me fais une opinion sur une personne dès les premières minutes d'un échange.",ctx:"Rencontres.",dim:"Jugement"},
+{stmt:"Face à une situation inhabituelle, je me fais rapidement un avis, avant d'avoir tous les éléments.",ctx:"Vie professionnelle.",dim:"Jugement"},
+{stmt:"L'apparence ou le comportement général de quelqu'un influence mon jugement sur ses compétences.",ctx:"Recrutement et vie professionnelle.",dim:"Jugement"},
+{stmt:"Une fois qu'une personne m'a déçu·e, il m'est difficile de revoir mon jugement à son sujet.",ctx:"Relations personnelles.",dim:"Jugement"}
+];
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function buildObjDiag(sorted){
+var IMPACT={
+Source:"partager ou croire une information sans regarder sa source revient à évaluer un contenu sur sa seule résonance émotionnelle — au risque de relayer une erreur ou une rumeur, avec un coût réel de crédibilité si elle est ensuite démentie.",
+FaitOpinion:"confondre une opinion avec un fait établi fragilise un argumentaire : dans un débat ou une négociation, cela expose à devoir défendre une position sur des bases qui ne résistent pas à une question simple — « qu'est-ce qui le prouve ? ».",
+Revision:"maintenir une conviction malgré des faits qui la contredisent procure un confort immédiat, mais retarde une décision plus juste — et peut isoler d'un groupe qui, lui, a intégré l'information nouvelle.",
+Autorite:"juger une idée à l'aisance ou au statut de celui qui la porte plutôt qu'à ses preuves expose à suivre un discours convaincant mais infondé, ou à l'inverse à écarter une idée juste venue d'une personne moins assurée.",
+Jugement:"un avis formé en quelques instants, sur un indice superficiel, oriente ensuite silencieusement toute l'interaction qui suit — un recrutement, une négociation, une première rencontre — bien avant que les faits aient eu le temps de s'exprimer."
+};
+var REFLEX={
+Source:["Est-ce que je pourrais citer la source précise de ce que je viens de considérer comme vrai ?","Aurais-je vérifié cette information de la même façon si elle avait contredit ce que je pense ?"],
+FaitOpinion:["Ce que je viens d'affirmer, est-ce démontrable, ou est-ce ce que j'en pense ?","Qu'est-ce qui, concrètement, permettrait de vérifier ou d'infirmer cette explication ?"],
+Revision:["Qu'est-ce qui, précisément, me ferait changer d'avis sur ce sujet — et pourquoi n'ai-je pas encore cherché cet élément ?","Est-ce que je défends cette idée parce qu'elle est juste, ou parce que j'y suis déjà attaché·e ?"],
+Autorite:["Est-ce que je suis convaincu·e par les preuves, ou par la façon dont elles sont présentées ?","Accorderais-je le même crédit à cette affirmation si elle venait de quelqu'un d'autre, moins assuré ou moins gradé ?"],
+Jugement:["Sur quoi précisément repose mon jugement initial — un fait observé, ou une impression générale ?","Qu'est-ce que je n'ai pas encore vérifié avant de me faire un avis définitif sur cette personne ou cette situation ?"]
+};
+var ACTION={
+Source:"Avant de partager ou de citer une information marquante, prenez 30 secondes pour identifier sa source d'origine.",
+FaitOpinion:"Dans votre prochain échange à enjeu, distinguez à voix haute ce qui est un fait de ce qui est votre lecture des faits.",
+Revision:"Notez une conviction que vous tenez pour acquise, et cherchez volontairement un argument sérieux qui la remettrait en cause.",
+Autorite:"Face à une prochaine affirmation convaincante, demandez la preuve avant de demander la source de l'aisance de celui qui la porte.",
+Jugement:"La prochaine fois qu'un avis se forme vite sur quelqu'un, notez-le mentalement comme une hypothèse à vérifier, pas comme une conclusion."
+};
+var top=sorted.slice(0,3);
+var lines=[];
+lines.push('TENDANCES OBSERVÉES');
+if(top[0][1]<45){lines.push('Aucune tendance ne se détache fortement dans vos réponses. Voici toutefois les plus marquées, à prendre avec nuance : '+top.map(function(x){return NOM[x[0]]+' ('+x[1]+'%)';}).join(', ')+'.');}
+else{lines.push('Vos réponses font ressortir en priorité : '+top.map(function(x){return NOM[x[0]]+' ('+x[1]+'%)';}).join(', ')+'. Un score élevé indique une tendance possible, pas une certitude, et elle varie selon les sujets.');}
+lines.push('');
+top.forEach(function(x){
+lines.push('IMPACT — '+NOM[x[0]]);
+lines.push('Vos réponses suggèrent une sensibilité à cette tendance. Concrètement, '+IMPACT[x[0]]);
+lines.push('Pistes de réflexion :');
+lines.push('• '+REFLEX[x[0]][0]);
+lines.push('• '+REFLEX[x[0]][1]);
+lines.push('');
+});
+lines.push('UNE MÉTHODE GÉNÉRALE');
+lines.push("• Séparer ce qui est observé de ce qui est interprété, avant de conclure.\n• Se demander qui a intérêt à ce que je croie telle chose, et sur quelle base je le crois moi-même.\n• Accorder à un fait qui me dérange la même rigueur de vérification qu'à un fait qui m'arrange.");
+lines.push('');
+lines.push('UNE ACTION POUR CETTE SEMAINE');
+lines.push(ACTION[top[0][0]]);
+lines.push('');
+lines.push('Résultat indicatif, construit à partir de vos réponses à ce questionnaire : ces tendances varient selon le sujet, l\'enjeu et le contexte, et ne constituent pas un diagnostic psychologique.');
+return lines.join('\n');
+}
+let qOrder=[],current=0,answers=new Array(20).fill(null);
+function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));const map={doc:'sec-doc',test:'sec-test',results:'sec-results'};document.getElementById(map[id]).classList.add('active');const idx={doc:0,test:1,results:2}[id];document.querySelectorAll('.tab')[idx]?.classList.add('active');}
+function startTest(){qOrder=shuffle(QUESTIONS.map((q,i)=>i));current=0;answers=new Array(20).fill(null);showTab('test');renderQuestion();}
+function renderQuestion(){const qi=qOrder[current];const q=QUESTIONS[qi];const pct=Math.round(((current+1)/20)*100);document.getElementById('progressFill').style.width=pct+'%';document.getElementById('progressLabel').textContent='Affirmation '+(current+1)+' / 20';document.getElementById('btnPrev').disabled=current===0;document.getElementById('btnNext').disabled=answers[current]===null;document.getElementById('btnNext').textContent=current===19?'Voir mes résultats →':'Suivant →';document.getElementById('questionArea').innerHTML='<div class="question-card"><div class="q-num">Affirmation '+(current+1)+' sur 20</div><div class="q-text">« '+q.stmt+' »</div><div class="q-context">'+q.ctx+'</div><div class="scale-hint">À quel point êtes-vous d\'accord avec cette affirmation ?</div><div class="options">'+SCALE.map(s=>'<div class="opt '+(answers[current]===s.v?'selected':'')+'" onclick="selectRating('+s.v+')"><div class="opt-dot"></div><div>'+s.label+'</div></div>').join('')+'</div></div>';}
+function selectRating(v){answers[current]=v;renderQuestion();}
+function nextQ(){if(answers[current]===null)return;if(current===19){computeResults();return;}current++;renderQuestion();}
+function prevQ(){if(current===0)return;current--;renderQuestion();}
+function computeResults(){const sums={};DIM.forEach(d=>sums[d]=0);const counts={};DIM.forEach(d=>counts[d]=0);for(let i=0;i<20;i++){const qi=qOrder[i];const q=QUESTIONS[qi];sums[q.dim]+=answers[i];counts[q.dim]++;}const scoresObj={};DIM.forEach(d=>scoresObj[d]=counts[d]?Math.round(sums[d]/(counts[d]*4)*100):0);const sorted=Object.entries(scoresObj).sort((a,b)=>b[1]-a[1]);const wrap=document.getElementById('dimScores');wrap.innerHTML='';sorted.forEach(([name,val])=>{const row=document.createElement('div');row.className='dim-score-row';row.innerHTML='<div class="dim-score-name">'+ICON[name]+' '+NOM[name]+'</div><div class="dim-score-bar-wrap"><div class="dim-score-bar" style="width:0%" data-pct="'+val+'"></div></div><div class="dim-score-val">'+val+'%</div>';wrap.appendChild(row);});setTimeout(()=>{document.querySelectorAll('.dim-score-bar').forEach(b=>{b.style.width=b.dataset.pct+'%';});},100);document.getElementById('tab-results').style.display='';showTab('results');generateDiagnostic(sorted);}
+function generateDiagnostic(sorted){const el=document.getElementById('diagContent');el.innerHTML='<span class="diag-loading">⏳ Génération de votre diagnostic en cours…</span>';try{const text=buildObjDiag(sorted);el.textContent=text;window._diagText=text;}catch(e){el.textContent='Erreur de connexion. Rechargez et réessayez.';}}
+function copyDiag(){navigator.clipboard.writeText(window._diagText||'');const btn=document.getElementById('btnCopy');btn.textContent='✅ Copié !';btn.classList.add('ok');setTimeout(()=>{btn.textContent='📋 Copier';btn.classList.remove('ok');},2000);}
+function retry(){answers=new Array(20).fill(null);current=0;document.getElementById('tab-results').style.display='none';startTest();}
+</script>
+</body>
+</html>
