@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mon Coach Comportemental – FormaSo</title>
-<meta name="description" content="Outils pédagogiques interactifs FormaSo : profils DISC, biais cognitifs, diagnostic personnalisé. Par Sophie Sirgue, formatrice indépendante."/>
+<meta name="description" content="Outils pédagogiques interactifs FormaSo : profils DISC, biais cognitifs, assertivité, objectivité, diagnostic personnalisé. Par Sophie Sirgue, formatrice indépendante."/>
 <meta name="author" content="Sophie Sirgue – FormaSo"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,21 +48,25 @@ h1{font-family:var(--serif);font-size:clamp(34px,5.2vw,54px);font-weight:600;col
 .section-head{margin-bottom:32px;}
 .section-label{font-size:11.5px;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--olive);margin-bottom:12px;}
 h2.section-title{font-family:var(--serif);font-size:30px;font-weight:600;color:var(--green);letter-spacing:-0.4px;}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:26px;padding-bottom:78px;}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding-bottom:78px;}
+@media(max-width:700px){.cards{grid-template-columns:1fr;}}
 .card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:38px 34px 34px;text-decoration:none;display:flex;flex-direction:column;gap:15px;transition:border-color .22s,box-shadow .22s,transform .22s;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:height .22s;}
 .card-disc::before{background:var(--green);}
 .card-biais::before{background:var(--yellow);}
 .card-assert::before{background:var(--orange);}
+.card-obj::before{background:var(--olive);}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 38px rgba(47,79,62,.10);}
 .card-disc:hover{border-color:var(--green);}
 .card-biais:hover{border-color:var(--yellow);}
 .card-assert:hover{border-color:var(--orange);}
+.card-obj:hover{border-color:var(--olive);}
 .card:hover::before{height:5px;}
 .card-icon{width:50px;height:50px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:3px;}
 .icon-disc{background:rgba(47,79,62,.09);}
 .icon-biais{background:rgba(232,183,58,.16);}
 .icon-assert{background:rgba(217,106,43,.12);}
+.icon-obj{background:rgba(107,122,46,.12);}
 .card-kicker{font-size:10.5px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;color:var(--grey);}
 .card h3{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--green);letter-spacing:-0.3px;line-height:1.25;}
 .card p{font-size:15px;color:var(--grey);line-height:1.68;flex:1;}
@@ -75,6 +79,8 @@ h2.section-title{font-family:var(--serif);font-size:30px;font-weight:600;color:v
 .cta-biais:hover{background:var(--orange);color:var(--white);}
 .cta-assert{background:var(--orange);color:var(--white);}
 .cta-assert:hover{background:#B85623;}
+.cta-obj{background:var(--olive);color:var(--white);}
+.cta-obj:hover{background:var(--green);}
 
 /* ---------- FOOTER ---------- */
 footer{margin-top:auto;background:var(--green);padding:44px 0 38px;}
@@ -94,6 +100,27 @@ a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radi
   .hero{padding:52px 0 44px;}
   .card{padding:30px 25px 28px;}
   .hero-meta{gap:16px;}
+  .foot-grid{gap:26px;}
+  .foot-links{gap:12px;}
+  .foot-links a{padding:4px 0;display:inline-block;}
+}
+
+@media(max-width:480px){
+  nav{padding:18px 0;}
+  .wrap{padding:0 18px;}
+  .brand-sub{display:none;}
+  .nav-badge{font-size:10px;padding:6px 12px;}
+  .hero{padding:38px 0 34px;}
+  .eyebrow{margin-bottom:16px;font-size:11px;}
+  h1{font-size:28px;max-width:none;margin-bottom:18px;}
+  .lead{font-size:15.5px;margin-bottom:28px;}
+  .hero-meta{padding-top:22px;gap:14px 20px;}
+  .meta{font-size:12.5px;}
+  h2.section-title{font-size:24px;}
+  .cards{gap:18px;padding-bottom:56px;}
+  .card{padding:26px 22px 24px;gap:12px;}
+  .card h3{font-size:21px;}
+  .cta{width:100%;padding:15px 24px;}
 }
 </style>
 </head>
@@ -116,13 +143,11 @@ a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radi
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Sophie Sirgue · Formatrice indépendante</p>
-      <h1>Mieux se connaître pour mieux décider.</h1>
-      <p class="lead">Trois outils d'autoévaluation fondés sur la recherche en psychologie comportementale et cognitive. Chaque parcours combine documentation scientifique, questionnaire structuré et <strong>restitution personnalisée</strong>.</p>
+      <h1>Mieux se connaître pour mieux communiquer.</h1>
+      <p class="lead">Quatre outils d'autoévaluation fondés sur la recherche en psychologie comportementale et cognitive. Chaque parcours combine documentation scientifique, questionnaire structuré et <strong>restitution personnalisée</strong>.</p>
       <div class="hero-meta">
         <span class="meta"><i>🔒</i> Aucune donnée conservée</span>
         <span class="meta"><i>🎓</i> Sources scientifiques citées</span>
-        <span class="meta"><i>⚙️</i> Algorithme local, sans IA générative</span>
-        <span class="meta"><i>🎨</i> Mise en page aérée et sans distraction</span>
       </div>
     </div>
   </section>
@@ -171,6 +196,19 @@ a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radi
         </div>
         <span class="cta cta-assert">Tester mon style →</span>
       </a>
+
+      <a class="card card-obj" href="objectivite.html">
+        <span class="card-icon icon-obj">🧭</span>
+        <span class="card-kicker">Esprit critique</span>
+        <h3>Croyances et objectivité</h3>
+        <p>Testez votre rapport aux croyances, aux a priori et aux jugements rapides face aux faits. Vingt affirmations dans des situations variées, cinq tendances explorées et pistes de réflexion.</p>
+        <div class="tags">
+          <span class="tag">20 questions</span>
+          <span class="tag">5 tendances</span>
+          <span class="tag">Pistes de réflexion</span>
+        </div>
+        <span class="cta cta-obj">Tester mon objectivité →</span>
+      </a>
     </div>
   </section>
 </main>
@@ -180,7 +218,7 @@ a:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radi
     <div class="foot-grid">
       <div>
         <p class="foot-brand">FormaSo</p>
-        <p class="foot-text">Sophie Sirgue, formatrice indépendante · Certification RS7138<br>Saint-Martin-de-Seignanx · contact@formaso.fr</p>
+        <p class="foot-text">Sophie Sirgue, formatrice indépendante · Certification RS7138<br>Saint-Martin-de-Seignanx · so.sirgue64@gmail.com</p>
       </div>
       <div class="foot-links">
         <a href="mentions-legales.html">Mentions légales</a>
