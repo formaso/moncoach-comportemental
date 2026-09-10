@@ -127,25 +127,25 @@ const NOM={Source:"Négligence de la source",FaitOpinion:"Confusion fait / opini
 const ICON={Source:'🔎',FaitOpinion:'⚖️',Revision:'🔄',Autorite:'🎤',Jugement:'⚡'};
 const SCALE=[{v:1,label:"Pas du tout d'accord"},{v:2,label:"Plutôt pas d'accord"},{v:3,label:"Plutôt d'accord"},{v:4,label:"Tout à fait d'accord"}];
 const QUESTIONS=[
-{stmt:"Quand une information va dans le sens de ce que je pense déjà, je regarde rarement qui en est l'auteur ou la source.",ctx:"Réseaux sociaux et actualité.",dim:"Source"},
-{stmt:"Il m'arrive de partager un article ou une publication après avoir seulement lu le titre.",ctx:"Réseaux sociaux.",dim:"Source"},
-{stmt:"Face à un chiffre qui confirme mon opinion, je vérifie rarement d'où il vient.",ctx:"Débats et discussions.",dim:"Source"},
+{stmt:"Quand une information va dans le sens de ce que je pense déjà, je regarde rarement qui l'a publiée.",ctx:"Réseaux sociaux et actualité.",dim:"Source"},
+{stmt:"Il m'arrive de partager un article après avoir lu seulement le titre.",ctx:"Réseaux sociaux.",dim:"Source"},
+{stmt:"Face à un chiffre qui va dans le sens de mon opinion, je regarde rarement d'où il vient.",ctx:"Débats et discussions.",dim:"Source"},
 {stmt:"Une information qui circule beaucoup autour de moi me semble plus crédible.",ctx:"Vie quotidienne.",dim:"Source"},
-{stmt:"Il m'arrive de présenter mon opinion sur un sujet comme si c'était un fait établi.",ctx:"Discussions professionnelles.",dim:"FaitOpinion"},
-{stmt:"Dans une discussion, il m'arrive de confondre ce que je pense être vrai avec ce qui est réellement démontré.",ctx:"Débats et discussions.",dim:"FaitOpinion"},
+{stmt:"Il m'arrive de présenter mon opinion comme si c'était un fait établi.",ctx:"Discussions professionnelles.",dim:"FaitOpinion"},
+{stmt:"Dans une discussion, il m'arrive de confondre ce que je pense être vrai et ce qui est démontré.",ctx:"Débats et discussions.",dim:"FaitOpinion"},
 {stmt:"Une explication qui me semble logique me suffit souvent pour la considérer comme vraie.",ctx:"Vie quotidienne.",dim:"FaitOpinion"},
-{stmt:"Il m'arrive de dire « c'est évident » pour une idée qui, en réalité, reste à démontrer.",ctx:"Vie professionnelle.",dim:"FaitOpinion"},
+{stmt:"Il m'arrive de qualifier d'« évident » un point de vue qui reste à démontrer.",ctx:"Vie professionnelle.",dim:"FaitOpinion"},
 {stmt:"Quand un fait nouveau contredit une opinion que j'ai depuis longtemps, j'ai du mal à la remettre en question.",ctx:"Convictions personnelles.",dim:"Revision"},
-{stmt:"Face à un argument qui me contredit, je cherche d'abord ses failles plutôt qu'à comprendre ce qu'il apporte.",ctx:"Débats.",dim:"Revision"},
+{stmt:"Face à un argument qui me contredit, je pense d'abord aux raisons pour lesquelles il pourrait être faux.",ctx:"Débats.",dim:"Revision"},
 {stmt:"Une fois que je me suis fait une idée sur un sujet, il faut beaucoup d'éléments pour que j'en change.",ctx:"Vie quotidienne.",dim:"Revision"},
 {stmt:"Je préfère garder mes convictions plutôt que d'explorer des explications qui pourraient les remettre en cause.",ctx:"Convictions personnelles.",dim:"Revision"},
 {stmt:"Une personne qui s'exprime avec assurance me semble plus fiable qu'une autre.",ctx:"Réunions et discussions.",dim:"Autorite"},
 {stmt:"Une personne avec un statut ou un titre important me semble plus crédible sur ce qu'elle affirme.",ctx:"Vie professionnelle.",dim:"Autorite"},
-{stmt:"Une explication racontée comme une bonne histoire me convainc plus facilement qu'une explication appuyée sur des données brutes.",ctx:"Vie quotidienne.",dim:"Autorite"},
-{stmt:"Je fais davantage confiance à une information si elle vient de quelqu'un que j'apprécie personnellement.",ctx:"Relations et entourage.",dim:"Autorite"},
+{stmt:"Une explication racontée comme une histoire me convainc plus facilement qu'une explication appuyée sur des données.",ctx:"Vie quotidienne.",dim:"Autorite"},
+{stmt:"Je fais davantage confiance à une information si elle vient de quelqu'un que j'apprécie.",ctx:"Relations et entourage.",dim:"Autorite"},
 {stmt:"Je me fais une opinion sur une personne dès les premières minutes d'un échange.",ctx:"Rencontres.",dim:"Jugement"},
 {stmt:"Face à une situation inhabituelle, je me fais rapidement un avis.",ctx:"Vie professionnelle.",dim:"Jugement"},
-{stmt:"Une personne à l'allure soignée ou à l'attitude assurée me semble souvent compétente.",ctx:"Recrutement et vie professionnelle.",dim:"Jugement"},
+{stmt:"Je me fais une première impression de quelqu'un à partir de sa tenue ou de son attitude.",ctx:"Rencontres professionnelles.",dim:"Jugement"},
 {stmt:"Une fois qu'une personne m'a déçu·e, il m'est difficile de revoir mon jugement à son sujet.",ctx:"Relations personnelles.",dim:"Jugement"}
 ];
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
