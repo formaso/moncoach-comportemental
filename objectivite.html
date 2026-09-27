@@ -62,7 +62,16 @@
     .dim-score-bar-wrap{flex:1;background:#eee;border-radius:4px;height:8px;overflow:hidden;}
     .dim-score-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--olive),var(--yellow));transition:width 1s;}
     .dim-score-val{font-size:13px;color:var(--grey);min-width:36px;text-align:right;font-weight:600;}
-    @media(max-width:580px){.dim-score-name{min-width:150px;font-size:13px;}}
+    .zone-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap;border:1px solid transparent;}
+    .z-appui{background:rgba(47,79,62,0.12);color:var(--green);border-color:var(--green);}
+    .z-equil{background:rgba(232,183,58,0.18);color:var(--brown);border-color:var(--yellow);}
+    .z-vig{background:rgba(217,106,43,0.12);color:var(--brown);border-color:var(--orange);}
+    .dim-score-bar.b-appui{background:var(--green);}
+    .dim-score-bar.b-equil{background:var(--yellow);}
+    .dim-score-bar.b-vig{background:var(--orange);}
+    .zone-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:14px;}
+    .zone-legend-note{font-size:12px;color:var(--grey);margin-top:8px;line-height:1.5;}
+    @media(max-width:580px){.dim-score-row{flex-wrap:wrap;}.dim-score-name{min-width:100%;font-size:13px;}}
     .diag-box{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.07);margin-bottom:24px;}
     .diag-header{background:var(--green);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
     .diag-header span{color:var(--white);font-weight:700;font-size:15px;}
@@ -111,7 +120,7 @@
     </div>
   </div>
   <div class="section" id="sec-results">
-    <div class="results-header"><h2>Votre rapport aux croyances et aux jugements</h2><p>Résultats basés sur votre évaluation de 20 affirmations — une lecture croisée, indicative, à visée pédagogique</p></div>
+    <div class="results-header"><h2>Votre rapport aux croyances et aux jugements</h2><p>Résultats basés sur votre évaluation de 20 affirmations — une lecture croisée, indicative, à visée pédagogique</p><div class="zone-legend"><span class="zone-badge z-appui">Point d'appui · 0–34 %</span><span class="zone-badge z-equil">Zone d'équilibre · 35–65 %</span><span class="zone-badge z-vig">Point de vigilance · 66–100 %</span></div><p class="zone-legend-note">Chaque score mesure l'intensité d'une tendance : plus il est bas, plus votre prise de recul est marquée sur cette dimension. Les seuils sont des repères pédagogiques, pas des normes.</p></div>
     <div class="dim-scores" id="dimScores"></div>
     <div class="diag-box">
       <div class="diag-header"><span>📊 Diagnostic et pistes de réflexion</span><button class="btn-copy" id="btnCopy" onclick="copyDiag()">📋 Copier</button></div>
@@ -129,33 +138,57 @@ const SCALE=[{v:1,label:"Pas du tout d'accord"},{v:2,label:"Plutôt pas d'accord
 const QUESTIONS=[
 {stmt:"Quand une information va dans le sens de ce que je pense déjà, je regarde rarement qui l'a publiée.",ctx:"Réseaux sociaux et actualité.",dim:"Source"},
 {stmt:"Il m'arrive de partager un article après avoir lu seulement le titre.",ctx:"Réseaux sociaux.",dim:"Source"},
-{stmt:"Face à un chiffre qui va dans le sens de mon opinion, je regarde rarement d'où il vient.",ctx:"Débats et discussions.",dim:"Source"},
+{stmt:"Avant de relayer une information, je vérifie qui l'a publiée, même quand elle me donne raison.",ctx:"Réseaux sociaux et vie professionnelle.",dim:"Source",rev:true},
 {stmt:"Une information qui circule beaucoup autour de moi me semble plus crédible.",ctx:"Vie quotidienne.",dim:"Source"},
 {stmt:"Il m'arrive de présenter mon opinion comme si c'était un fait établi.",ctx:"Discussions professionnelles.",dim:"FaitOpinion"},
-{stmt:"Dans une discussion, il m'arrive de confondre ce que je pense être vrai et ce qui est démontré.",ctx:"Débats et discussions.",dim:"FaitOpinion"},
+{stmt:"Quand je donne mon avis, je précise qu'il s'agit de mon interprétation et non d'un fait établi.",ctx:"Débats et discussions.",dim:"FaitOpinion",rev:true},
 {stmt:"Une explication qui me semble logique me suffit souvent pour la considérer comme vraie.",ctx:"Vie quotidienne.",dim:"FaitOpinion"},
 {stmt:"Il m'arrive de qualifier d'« évident » un point de vue qui reste à démontrer.",ctx:"Vie professionnelle.",dim:"FaitOpinion"},
 {stmt:"Quand un fait nouveau contredit une opinion que j'ai depuis longtemps, j'ai du mal à la remettre en question.",ctx:"Convictions personnelles.",dim:"Revision"},
-{stmt:"Face à un argument qui me contredit, je pense d'abord aux raisons pour lesquelles il pourrait être faux.",ctx:"Débats.",dim:"Revision"},
-{stmt:"Une fois que je me suis fait une idée sur un sujet, il faut beaucoup d'éléments pour que j'en change.",ctx:"Vie quotidienne.",dim:"Revision"},
+{stmt:"Face à un argument qui me contredit, je cherche surtout à le réfuter plutôt qu'à l'examiner.",ctx:"Débats.",dim:"Revision"},
+{stmt:"Quand un élément solide contredit mon avis, je suis prêt·e à le réviser, même sur un sujet qui me tient à cœur.",ctx:"Vie quotidienne.",dim:"Revision",rev:true},
 {stmt:"Je préfère garder mes convictions plutôt que d'explorer des explications qui pourraient les remettre en cause.",ctx:"Convictions personnelles.",dim:"Revision"},
 {stmt:"Une personne qui s'exprime avec assurance me semble plus fiable qu'une autre.",ctx:"Réunions et discussions.",dim:"Autorite"},
-{stmt:"Une personne avec un statut ou un titre important me semble plus crédible sur ce qu'elle affirme.",ctx:"Vie professionnelle.",dim:"Autorite"},
-{stmt:"Une explication racontée comme une histoire me convainc plus facilement qu'une explication appuyée sur des données.",ctx:"Vie quotidienne.",dim:"Autorite"},
+{stmt:"Une personne avec un statut ou un titre important me semble plus crédible, y compris sur des sujets éloignés de son domaine de compétence.",ctx:"Vie professionnelle.",dim:"Autorite"},
+{stmt:"Il m'arrive de demander des preuves à une personne que j'estime, même quand elle parle avec assurance.",ctx:"Réunions et vie professionnelle.",dim:"Autorite",rev:true},
 {stmt:"Je fais davantage confiance à une information si elle vient de quelqu'un que j'apprécie.",ctx:"Relations et entourage.",dim:"Autorite"},
-{stmt:"Je me fais une opinion sur une personne dès les premières minutes d'un échange.",ctx:"Rencontres.",dim:"Jugement"},
-{stmt:"Face à une situation inhabituelle, je me fais rapidement un avis.",ctx:"Vie professionnelle.",dim:"Jugement"},
+{stmt:"Je considère ma première impression sur quelqu'un comme une hypothèse à vérifier plutôt que comme une conclusion.",ctx:"Rencontres.",dim:"Jugement",rev:true},
+{stmt:"Face à une situation inhabituelle, je me fais rapidement un avis définitif, avant d'avoir réuni les faits.",ctx:"Vie professionnelle.",dim:"Jugement"},
 {stmt:"Je me fais une première impression de quelqu'un à partir de sa tenue ou de son attitude.",ctx:"Rencontres professionnelles.",dim:"Jugement"},
 {stmt:"Une fois qu'une personne m'a déçu·e, il m'est difficile de revoir mon jugement à son sujet.",ctx:"Relations personnelles.",dim:"Jugement"}
 ];
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function zoneOf(v){return v<=34?'appui':(v<=65?'equil':'vig');}
 function buildObjDiag(sorted){
 var IMPACT={
-Source:"Ce que vos réponses reflètent s'apparente à l'effet de vérité illusoire (Hasher, Goldstein & Toppino, 1977) : la simple répétition ou circulation d'une information augmente le sentiment qu'elle est vraie, indépendamment de sa source réelle. Sur le terrain professionnel, cela expose à relayer une donnée non vérifiée — un chiffre, une rumeur interne, un retour client isolé présenté comme représentatif — avec un coût de crédibilité si elle est ensuite démentie.",
-FaitOpinion:"Vos réponses indiquent une porosité entre ce qui est établi et ce qui est interprété, l'un des premiers obstacles identifiés par la démarche zététique (Le Cortecs, AFIS). Dans un échange à enjeu — négociation, recadrage managérial, argumentation commerciale — présenter une opinion comme un fait expose à devoir défendre une position qui ne résiste pas à une question simple, « qu'est-ce qui le prouve ? », et fragilise la crédibilité de l'ensemble du propos, y compris ses parties solides.",
-Revision:"Vos réponses indiquent une résistance au changement de conviction que la recherche relie au besoin de clôture cognitive (Kruglanski) : la préférence pour une réponse stable et rapide plutôt que pour l'inconfort d'une remise en question — un mécanisme que Gérald Bronner décrit par ailleurs comme le confort cognitif d'une croyance déjà installée. Ce réflexe procure un confort immédiat, mais retarde une décision plus juste et peut isoler d'une équipe qui, elle, a déjà intégré une information nouvelle.",
-Autorite:"Ce que vous décrivez correspond à l'argument d'autorité, l'un des sophismes les plus anciens identifiés par la tradition de l'esprit critique et de la zététique (Le Cortecs, AFIS) : le statut, l'aisance ou la sympathie d'une personne colorent, souvent à notre insu, l'évaluation de ce qu'elle affirme, indépendamment de ses preuves. En contexte professionnel, ce réflexe expose à suivre un discours assuré mais infondé, ou inversement à écarter une idée juste portée par une personne moins assurée ou moins gradée.",
-Jugement:"Vos réponses traduisent un mécanisme documenté par la psychologie sociale de la catégorisation, distinct des biais cognitifs classiques : le cerveau trie spontanément une personne à partir d'un indice superficiel, avant même d'avoir réuni les faits. Cette première impression s'organise souvent autour de deux axes, la compétence perçue et la chaleur perçue (Fiske, Cuddy, Glick & Xu, 2002), puis oriente silencieusement la suite de l'interaction — un entretien, une négociation, un management au quotidien — via un effet Pygmalion (Rosenthal & Jacobson, 1968), où l'attente initiale finit par produire, en partie, le comportement qu'elle anticipait."
+Source:"Vos réponses pourraient refléter l'effet de vérité illusoire (Hasher, Goldstein & Toppino, 1977) : la simple répétition ou circulation d'une information augmente le sentiment qu'elle est vraie, indépendamment de sa source réelle. Sur le terrain professionnel, cela expose à relayer une donnée non vérifiée — un chiffre, une rumeur interne, un retour client isolé présenté comme représentatif — avec un coût de crédibilité si elle est ensuite démentie.",
+FaitOpinion:"Vos réponses suggèrent une possible porosité entre ce qui est établi et ce qui est interprété, l'un des premiers obstacles identifiés par la démarche zététique (Le Cortecs, AFIS). Dans un échange à enjeu — négociation, recadrage managérial, argumentation commerciale — présenter une opinion comme un fait expose à devoir défendre une position qui ne résiste pas à une question simple, « qu'est-ce qui le prouve ? », et fragilise la crédibilité de l'ensemble du propos, y compris ses parties solides.",
+Revision:"Vos réponses suggèrent une certaine résistance au changement de conviction que la recherche relie au besoin de clôture cognitive (Kruglanski) : la préférence pour une réponse stable et rapide plutôt que pour l'inconfort d'une remise en question — un mécanisme que Gérald Bronner décrit par ailleurs comme le confort cognitif d'une croyance déjà installée. Ce réflexe procure un confort immédiat, mais retarde une décision plus juste et peut isoler d'une équipe qui, elle, a déjà intégré une information nouvelle.",
+Autorite:"Ce que vous décrivez peut relever de l'argument d'autorité, l'un des sophismes les plus anciens identifiés par la tradition de l'esprit critique et de la zététique (Le Cortecs, AFIS) : le statut, l'aisance ou la sympathie d'une personne colorent, souvent à notre insu, l'évaluation de ce qu'elle affirme, indépendamment de ses preuves. En contexte professionnel, ce réflexe expose à suivre un discours assuré mais infondé, ou inversement à écarter une idée juste portée par une personne moins assurée ou moins gradée.",
+Jugement:"Vos réponses peuvent refléter un mécanisme documenté par la psychologie sociale de la catégorisation, distinct des biais cognitifs classiques : le cerveau trie spontanément une personne à partir d'un indice superficiel, avant même d'avoir réuni les faits. Cette première impression s'organise souvent autour de deux axes, la compétence perçue et la chaleur perçue (Fiske, Cuddy, Glick & Xu, 2002), puis oriente silencieusement la suite de l'interaction — un entretien, une négociation, un management au quotidien — via un effet Pygmalion (Rosenthal & Jacobson, 1968), où l'attente initiale finit par produire, en partie, le comportement qu'elle anticipait."
+};
+var POS={Source:"Vérification des sources",FaitOpinion:"Distinction fait / opinion",Revision:"Ouverture à la révision",Autorite:"Évaluation indépendante du statut",Jugement:"Jugement différé"};
+var VALOR={
+Source:"Vos réponses traduisent une attention à l'origine des informations, y compris lorsqu'elles confortent votre avis. C'est le geste de base de l'éducation aux médias et à l'information (CLEMI) et de ce que Sperber et al. (2010) nomment la vigilance épistémique : évaluer une information et sa source avant de l'intégrer à ses propres croyances. En contexte professionnel, cette posture protège votre crédibilité et celle de votre équipe : c'est elle qui permet de demander, sans agressivité, « d'où vient ce chiffre ? ».",
+FaitOpinion:"Vous semblez distinguer ce qui est établi de ce qui relève de l'interprétation — le premier réflexe de la démarche zététique (Le Cortecs, AFIS). Cette clarté renforce la solidité de votre propos : une opinion présentée comme telle reste discutable sans fragiliser vos arguments factuels, ce qui est précieux en négociation, en recadrage ou en argumentation commerciale.",
+Revision:"Vos réponses indiquent une disposition à réviser une conviction face à un élément nouveau — l'inverse du besoin de clôture cognitive décrit par Kruglanski, et du confort de la croyance installée analysé par Gérald Bronner. Cette souplesse permet d'ajuster une décision sans la vivre comme un désaveu, et d'intégrer plus facilement ce que les autres apportent.",
+Autorite:"Vous semblez évaluer une affirmation d'abord sur ses preuves, plutôt que sur le statut, l'aisance ou la sympathie de celui ou celle qui la porte — une résistance à l'argument d'autorité que la tradition de l'esprit critique place au premier plan (Le Cortecs, AFIS). Cela vous permet d'entendre une idée juste portée par une personne moins en vue, en réunion, en recrutement ou en arbitrage. Accorder du crédit à un expert dans son propre domaine reste, bien sûr, une démarche rationnelle : l'enjeu est de le faire en connaissance de cause, ce que vos réponses suggèrent.",
+Jugement:"Vous semblez traiter une première impression comme une hypothèse plutôt que comme une conclusion. C'est précisément ce qui limite l'effet Pygmalion (Rosenthal & Jacobson, 1968) : en laissant à l'autre la possibilité de démentir votre attente initiale, vous évitez que cette attente ne produise le comportement qu'elle anticipait — un atout réel en entretien, en management et dans toute première rencontre professionnelle."
+};
+var EQUIL={
+Source:"Votre attention à l'origine des informations paraît présente mais variable : elle peut s'exercer davantage sur certains sujets ou certains canaux que sur d'autres. C'est un fonctionnement courant ; l'enjeu est de repérer les situations dans lesquelles la vérification se relâche.",
+FaitOpinion:"Vous distinguez en partie ce qui est établi de ce qui relève de l'interprétation, sans que ce réflexe soit systématique. Il peut se relâcher lorsque le sujet vous tient à cœur ou lorsque l'échange s'accélère.",
+Revision:"Votre ouverture à la révision paraît réelle mais dépendante du sujet : plus aisée sur des questions pratiques, potentiellement plus coûteuse sur des convictions auxquelles vous êtes attaché·e.",
+Autorite:"Le statut, l'aisance ou la sympathie de celui qui s'exprime semblent peser sur votre jugement dans certaines situations, sans pour autant l'emporter systématiquement sur les preuves.",
+Jugement:"Il vous arrive de vous forger une première impression rapide, sans nécessairement la figer. L'enjeu est d'identifier les situations — urgence, fatigue, contexte inhabituel — où cette impression risque de devenir une conclusion."
+};
+var GESTE={Source:"vérifier l'origine d'une information avant de la tenir pour vraie",FaitOpinion:"distinguer ce qui est établi de ce qui est interprété",Revision:"accepter de réviser une position face à un élément nouveau",Autorite:"évaluer une idée sur ses preuves plutôt que sur la personne qui la porte",Jugement:"tenir une première impression pour une hypothèse à vérifier"};
+var CONSOLIDER={
+Source:"Cette semaine, lorsqu'une information douteuse circule dans votre équipe, partagez votre réflexe : demandez d'où elle vient, en portant la question sur l'information et non sur la personne qui la relaie.",
+FaitOpinion:"Lors d'une prochaine réunion, proposez de distinguer au tableau les faits établis et les interprétations : une pratique simple que votre équipe peut s'approprier.",
+Revision:"Racontez à un·e collègue une situation où vous avez changé d'avis, et ce qui vous a convaincu·e : cela rend la révision légitime pour les autres.",
+Autorite:"Lors d'un prochain échange collectif, sollicitez explicitement l'avis de la personne la moins en vue ou la moins gradée : c'est le prolongement naturel de votre posture.",
+Jugement:"Lors d'une prochaine première rencontre professionnelle, notez vos impressions initiales, puis confrontez-les aux faits en fin d'échange : vous ancrez ainsi une pratique que vous appliquez déjà."
 };
 var REFLEX={
 Source:["Est-ce que je pourrais citer la source précise de ce que je viens de considérer comme vrai ?","Aurais-je vérifié cette information de la même façon si elle avait contredit ce que je pense ?"],
@@ -184,33 +217,70 @@ Revision_Jugement:"Le jugement initial porté sur une personne tend à devenir l
 Autorite_Jugement:"C'est la combinaison la plus documentée par la psychologie sociale du jugement d'autrui : une impression se forme en quelques secondes sur la base d'indices superficiels (statut, aisance, prestance), et cette impression initiale oriente ensuite silencieusement la lecture de tout ce qui suit, au-delà de ce qui a réellement été observé — un mécanisme central des biais de recrutement et d'évaluation en entreprise."
 };
 function pairKey(a,b){return DIM.indexOf(a)<DIM.indexOf(b)?a+'_'+b:b+'_'+a;}
-var top=sorted.slice(0,3);
+function plur(n,sg,pl){return n+' '+(n>1?pl:sg);}
+var appui=sorted.filter(function(x){return zoneOf(x[1])==='appui';}).sort(function(a,b){return a[1]-b[1];});
+var equil=sorted.filter(function(x){return zoneOf(x[1])==='equil';});
+var vig=sorted.filter(function(x){return zoneOf(x[1])==='vig';});
 var lines=[];
 lines.push("LECTURE D'ENSEMBLE");
-if(top[0][1]<45){
-lines.push("Aucune tendance ne domine nettement dans vos réponses : c'est plutôt le signe d'une vigilance assez répartie. Les plus marquées, à considérer avec mesure, sont : "+top.map(function(x){return NOM[x[0]]+" ("+x[1]+"%)";}).join(", ")+".");
+lines.push("Sur les cinq dimensions explorées, vos réponses dessinent "+plur(appui.length,"point d'appui","points d'appui")+", "+plur(equil.length,"zone d'équilibre","zones d'équilibre")+" et "+plur(vig.length,"point de vigilance","points de vigilance")+".");
+if(vig.length===0&&appui.length>=3){
+lines.push("Votre profil témoigne d'une prise de recul marquée face aux croyances et aux jugements rapides : sur la plupart des dimensions, vous déclarez vérifier, distinguer et nuancer avant de conclure. C'est une ressource à reconnaître — et à faire vivre auprès des autres.");
+}else if(vig.length===0){
+lines.push("Aucune dimension n'apparaît en zone de vigilance : votre prise de recul est globalement présente, plus ou moins affirmée selon les dimensions et, sans doute, selon les sujets et les contextes.");
+}else if(appui.length>0){
+lines.push("Votre profil est contrasté : vous disposez de réels points d'appui, qui constituent la meilleure base pour travailler "+(vig.length>1?"les points de vigilance repérés":"le point de vigilance repéré")+".");
 }else{
-lines.push("Sur les vingt situations proposées, deux à trois réflexes se dégagent nettement de vos réponses : "+top.map(function(x){return NOM[x[0]]+" ("+x[1]+"%)";}).join(", ")+". Un score élevé indique une tendance possible, pas une certitude, et elle varie selon le sujet et l'enjeu du moment. Ces tendances ne fonctionnent pas isolément : la lecture qui suit les relie entre elles plutôt que de les commenter une à une.");
+lines.push("Certains réflexes de jugement rapide ressortent de vos réponses. Ils sont universels et documentés chez chacun, à des degrés divers : les repérer est déjà une première étape de prise de recul.");
 }
+lines.push("Lecture des scores : 0 % signifie que vous ne vous reconnaissez dans aucune des affirmations décrivant la tendance, 100 % que vous vous y reconnaissez pleinement. Un score indique une tendance possible, pas une certitude, et varie selon le sujet et l'enjeu du moment.");
 lines.push('');
-top.forEach(function(x,i){
-lines.push("TENDANCE N°"+(i+1)+" — "+NOM[x[0]].toUpperCase()+" ("+x[1]+"%)");
-lines.push("Mécanisme en jeu : "+IMPACT[x[0]]);
+if(appui.length){
+lines.push("VOS POINTS D'APPUI");
+appui.forEach(function(x){
+lines.push("✔ "+POS[x[0]].toUpperCase()+" (score de tendance : "+x[1]+" %)");
+lines.push(VALOR[x[0]]);
+lines.push('');
+});
+}
+if(equil.length){
+lines.push("VOS ZONES D'ÉQUILIBRE");
+equil.forEach(function(x){
+lines.push("◐ "+NOM[x[0]].toUpperCase()+" ("+x[1]+" %)");
+lines.push(EQUIL[x[0]]);
+lines.push("Question pour aller plus loin : "+REFLEX[x[0]][0]);
+lines.push('');
+});
+}
+if(vig.length){
+lines.push("VOS POINTS DE VIGILANCE");
+vig.forEach(function(x){
+lines.push("▲ "+NOM[x[0]].toUpperCase()+" ("+x[1]+" %)");
+lines.push("Mécanisme possiblement en jeu : "+IMPACT[x[0]]);
 lines.push("Pistes de réflexion :");
 lines.push("• "+REFLEX[x[0]][0]);
 lines.push("• "+REFLEX[x[0]][1]);
 lines.push('');
 });
-lines.push("CE QUE RÉVÈLE LA COMBINAISON DE VOS DEUX TENDANCES DOMINANTES");
-lines.push(INTERACTION[pairKey(top[0][0],top[1][0])]);
+}
+if(vig.length>=2){
+lines.push("CE QUE RÉVÈLE LA COMBINAISON DE VOS DEUX POINTS DE VIGILANCE");
+lines.push(INTERACTION[pairKey(vig[0][0],vig[1][0])]);
 lines.push('');
+}else if(vig.length===1&&appui.length){
+lines.push("VOTRE LEVIER");
+lines.push("Vous savez déjà "+GESTE[appui[0][0]]+". Le point de vigilance repéré ("+NOM[vig[0][0]].toLowerCase()+") appelle un geste de même nature : "+GESTE[vig[0][0]]+". Il s'agit moins d'acquérir une compétence nouvelle que d'étendre à un autre terrain une rigueur que vous pratiquez déjà.");
+lines.push('');
+}
 lines.push("UNE MÉTHODE GÉNÉRALE");
 lines.push("• Séparer systématiquement ce qui est observé de ce qui est interprété, avant de conclure — c'est le cœur de ce que la recherche appelle la vigilance épistémique (Sperber et al., 2010) : évaluer une information et sa source avant de l'intégrer à ses propres croyances.\n• Se demander qui a intérêt à ce que l'on croie telle chose, et sur quelle base on le croit soi-même.\n• Accorder à un fait qui dérange la même rigueur de vérification qu'à un fait qui arrange — le test le plus simple d'une posture réellement objective.");
 lines.push('');
 lines.push("UNE ACTION POUR CETTE SEMAINE");
-lines.push(ACTION[top[0][0]]);
+if(vig.length){lines.push(ACTION[vig[0][0]]);}
+else if(appui.length){lines.push(CONSOLIDER[appui[0][0]]);}
+else{lines.push(ACTION[sorted[0][0]]);}
 lines.push('');
-lines.push("Résultat indicatif, construit à partir de vos réponses à ce questionnaire. Ces mécanismes — catégorisation rapide, besoin de clôture cognitive, effet Pygmalion, effet de vérité illusoire — sont universels et documentés chez l'ensemble des individus, à des degrés divers selon le sujet, l'enjeu et le contexte : ce résultat ne constitue ni un diagnostic psychologique, ni un jugement sur les personnes ou les situations que vous évaluez au quotidien.");
+lines.push("Résultat indicatif, construit à partir de vos réponses à ce questionnaire. Il s'agit d'une auto-évaluation : les recherches sur le « biais d'angle mort » (Pronin, Lin & Ross, 2002) montrent que chacun tend à se percevoir moins influencé par les biais que les autres. Un score, qu'il soit bas ou élevé, gagne donc à être confronté à vos pratiques réelles et au regard de votre entourage. Ces mécanismes — catégorisation rapide, besoin de clôture cognitive, effet Pygmalion, effet de vérité illusoire — sont universels et documentés chez l'ensemble des individus, à des degrés divers selon le sujet, l'enjeu et le contexte : ce résultat ne constitue ni un diagnostic psychologique, ni un jugement sur les personnes ou les situations que vous évaluez au quotidien.");
 return lines.join('\n');
 }
 let qOrder=[],current=0,answers=new Array(20).fill(null);
@@ -220,7 +290,7 @@ function renderQuestion(){const qi=qOrder[current];const q=QUESTIONS[qi];const p
 function selectRating(v){answers[current]=v;renderQuestion();}
 function nextQ(){if(answers[current]===null)return;if(current===19){computeResults();return;}current++;renderQuestion();}
 function prevQ(){if(current===0)return;current--;renderQuestion();}
-function computeResults(){const sums={};DIM.forEach(d=>sums[d]=0);const counts={};DIM.forEach(d=>counts[d]=0);for(let i=0;i<20;i++){const qi=qOrder[i];const q=QUESTIONS[qi];sums[q.dim]+=answers[i];counts[q.dim]++;}const scoresObj={};DIM.forEach(d=>scoresObj[d]=counts[d]?Math.round(sums[d]/(counts[d]*4)*100):0);const sorted=Object.entries(scoresObj).sort((a,b)=>b[1]-a[1]);const wrap=document.getElementById('dimScores');wrap.innerHTML='';sorted.forEach(([name,val])=>{const row=document.createElement('div');row.className='dim-score-row';row.innerHTML='<div class="dim-score-name">'+ICON[name]+' '+NOM[name]+'</div><div class="dim-score-bar-wrap"><div class="dim-score-bar" style="width:0%" data-pct="'+val+'"></div></div><div class="dim-score-val">'+val+'%</div>';wrap.appendChild(row);});setTimeout(()=>{document.querySelectorAll('.dim-score-bar').forEach(b=>{b.style.width=b.dataset.pct+'%';});},100);document.getElementById('tab-results').style.display='';showTab('results');generateDiagnostic(sorted);}
+function computeResults(){const sums={};DIM.forEach(d=>sums[d]=0);const counts={};DIM.forEach(d=>counts[d]=0);for(let i=0;i<20;i++){const qi=qOrder[i];const q=QUESTIONS[qi];sums[q.dim]+=(q.rev?5-answers[i]:answers[i]);counts[q.dim]++;}const scoresObj={};DIM.forEach(d=>scoresObj[d]=counts[d]?Math.round((sums[d]/counts[d]-1)/3*100):0);const sorted=Object.entries(scoresObj).sort((a,b)=>b[1]-a[1]);const wrap=document.getElementById('dimScores');wrap.innerHTML='';sorted.forEach(([name,val])=>{const row=document.createElement('div');row.className='dim-score-row';const z=zoneOf(val);const ZL={appui:"Point d'appui",equil:"Équilibre",vig:"Vigilance"};row.innerHTML='<div class="dim-score-name">'+ICON[name]+' '+NOM[name]+'</div><div class="dim-score-bar-wrap"><div class="dim-score-bar b-'+z+'" style="width:0%" data-pct="'+val+'"></div></div><div class="dim-score-val">'+val+'%</div><span class="zone-badge z-'+z+'">'+ZL[z]+'</span>';wrap.appendChild(row);});setTimeout(()=>{document.querySelectorAll('.dim-score-bar').forEach(b=>{b.style.width=b.dataset.pct+'%';});},100);document.getElementById('tab-results').style.display='';showTab('results');generateDiagnostic(sorted);}
 function generateDiagnostic(sorted){const el=document.getElementById('diagContent');el.innerHTML='<span class="diag-loading">⏳ Génération de votre diagnostic en cours…</span>';try{const text=buildObjDiag(sorted);el.textContent=text;window._diagText=text;}catch(e){el.textContent='Erreur de connexion. Rechargez et réessayez.';}}
 function copyDiag(){navigator.clipboard.writeText(window._diagText||'');const btn=document.getElementById('btnCopy');btn.textContent='✅ Copié !';btn.classList.add('ok');setTimeout(()=>{btn.textContent='📋 Copier';btn.classList.remove('ok');},2000);}
 function retry(){answers=new Array(20).fill(null);current=0;document.getElementById('tab-results').style.display='none';startTest();}
